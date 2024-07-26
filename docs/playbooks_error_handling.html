@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Playbooks 中的错误处理 &mdash; 国内最专业的Ansible中文官方学习手册</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="标签" href="playbooks_tags.html" />
+    <link rel="prev" title="配置环境 (在代理环境中)" href="playbooks_environment.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Ansible中文权威指南
+          </a>
+              <div class="version">
+                5.2.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">总体介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">快速学习视频</a></li>
+<li class="toctree-l1"><a class="reference internal" href="playbooks.html">Playbooks</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="playbooks_special_topics.html">Playbooks: Special Topics</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="playbooks_acceleration.html">Accelerated Mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_async.html">异步操作和轮询</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_checkmode.html">Check Mode (“Dry Run”)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_delegation.html">委托,滚动更新,本地动作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_environment.html">配置环境 (在代理环境中)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Playbooks 中的错误处理</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#section-1">忽略错误的命令</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#section-2">控制对失败的定义</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#section-3">覆写更改结果</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_tags.html">标签</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_vault.html">Vault</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_startnstep.html">从指定任务开始运行palybook以及分步运行playbook</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">模块相关</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guides.html">详细指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developing.html">开发者须知</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tower.html">Ansible Tower</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community.html">Ansible用户</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community.html#section-4">对当前和未来的开发人员</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community.html#section-5">其它主题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="galaxy.html">Ansible Galaxy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test_strategies.html">测试策略</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">术语表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="YAMLSyntax.html">YAML 语法</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Ansible中文权威指南</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="playbooks_special_topics.html">Playbooks: Special Topics</a></li>
+      <li class="breadcrumb-item active">Playbooks 中的错误处理</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/docs/playbooks_error_handling.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="playbooks">
+<h1><a class="toc-backref" href="#toc-entry-1" role="doc-backlink">Playbooks 中的错误处理</a><a class="headerlink" href="#playbooks" title="Permalink to this headline">¶</a></h1>
+<nav class="contents" id="topics">
+<p class="topic-title">Topics</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#playbooks" id="toc-entry-1">Playbooks 中的错误处理</a></p>
+<ul>
+<li><p><a class="reference internal" href="#section-1" id="toc-entry-2">忽略错误的命令</a></p></li>
+<li><p><a class="reference internal" href="#section-2" id="toc-entry-3">控制对失败的定义</a></p></li>
+<li><p><a class="reference internal" href="#section-3" id="toc-entry-4">覆写更改结果</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<p>Ansible 通常默认会确保检测模块和命令的返回码并且会快速失败 – 专注于一个错误除非你另作打算.</p>
+<p>有时一条命令会返回 0 但那不是报错.有时命令不会总是报告它 ‘改变’ 了远程系统.本章节描述了
+如何将 Ansible 处理输出结果和错误处理的默认行为改变成你想要的.</p>
+<section id="section-1">
+<span id="ignoring-failed-commands"></span><h2><a class="toc-backref" href="#toc-entry-2" role="doc-backlink">忽略错误的命令</a><a class="headerlink" href="#section-1" title="Permalink to this headline">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 0.6.</span></p>
+</div>
+<p>通常情况下, 当出现失败时 Ansible 会停止在宿主机上执行.有时候,你会想要继续执行下去.为此
+你需要像这样编写任务:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">this</span> <span class="n">will</span> <span class="ow">not</span> <span class="n">be</span> <span class="n">counted</span> <span class="k">as</span> <span class="n">a</span> <span class="n">failure</span>
+  <span class="n">command</span><span class="p">:</span> <span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">false</span>
+  <span class="n">ignore_errors</span><span class="p">:</span> <span class="n">yes</span>
+</pre></div>
+</div>
+<p>注意上面的系统仅仅处理那个特定的任务,所以当你在使用一个未定义的变量时, Ansible 仍然会报
+错,需要使用者进行处理.</p>
+</section>
+<section id="section-2">
+<span id="controlling-what-defines-failure"></span><h2><a class="toc-backref" href="#toc-entry-3" role="doc-backlink">控制对失败的定义</a><a class="headerlink" href="#section-2" title="Permalink to this headline">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.4.</span></p>
+</div>
+<p>假设一条命令的错误码毫无意义只有它的输出结果能告诉你什么出了问题,比如说字符串 “FAILED” 出
+现在输出结果中.</p>
+<p>在 Ansible 1.4及之后的版本中提供了如下的方式来指定这样的特殊行为:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">this</span> <span class="n">command</span> <span class="n">prints</span> <span class="n">FAILED</span> <span class="n">when</span> <span class="n">it</span> <span class="n">fails</span>
+  <span class="n">command</span><span class="p">:</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">example</span><span class="o">-</span><span class="n">command</span> <span class="o">-</span><span class="n">x</span> <span class="o">-</span><span class="n">y</span> <span class="o">-</span><span class="n">z</span>
+  <span class="n">register</span><span class="p">:</span> <span class="n">command_result</span>
+  <span class="n">failed_when</span><span class="p">:</span> <span class="s2">&quot;&#39;FAILED&#39; in command_result.stderr&quot;</span>
+</pre></div>
+</div>
+<p>在 Ansible 1.4 之前的版本能通过如下方式完成:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">this</span> <span class="n">command</span> <span class="n">prints</span> <span class="n">FAILED</span> <span class="n">when</span> <span class="n">it</span> <span class="n">fails</span>
+  <span class="n">command</span><span class="p">:</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">example</span><span class="o">-</span><span class="n">command</span> <span class="o">-</span><span class="n">x</span> <span class="o">-</span><span class="n">y</span> <span class="o">-</span><span class="n">z</span>
+  <span class="n">register</span><span class="p">:</span> <span class="n">command_result</span>
+  <span class="n">ignore_errors</span><span class="p">:</span> <span class="kc">True</span>
+
+<span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">fail</span> <span class="n">the</span> <span class="n">play</span> <span class="k">if</span> <span class="n">the</span> <span class="n">previous</span> <span class="n">command</span> <span class="n">did</span> <span class="ow">not</span> <span class="n">succeed</span>
+  <span class="n">fail</span><span class="p">:</span> <span class="n">msg</span><span class="o">=</span><span class="s2">&quot;the command failed&quot;</span>
+  <span class="n">when</span><span class="p">:</span> <span class="s2">&quot;&#39;FAILED&#39; in command_result.stderr&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="section-3">
+<span id="override-the-changed-result"></span><h2><a class="toc-backref" href="#toc-entry-4" role="doc-backlink">覆写更改结果</a><a class="headerlink" href="#section-3" title="Permalink to this headline">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.3.</span></p>
+</div>
+<p>When a shell/command or other module runs it will typically report
+“changed” status based on whether it thinks it affected machine state.
+当一个 shell或命令或其他模块运行时,它们往往都会在它们认为其影响机器状态时报告 “changed”
+状态</p>
+<dl>
+<dt>有时你可以通过返回码或是输出结果来知道它们其实并没有做出任何更改.你希望覆写结果的</dt><dd><p>“changed” 状态使它不会出现在输出的报告或不会触发其他处理程序:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tasks</span><span class="p">:</span>
+
+  <span class="o">-</span> <span class="n">shell</span><span class="p">:</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">billybass</span> <span class="o">--</span><span class="n">mode</span><span class="o">=</span><span class="s2">&quot;take me to the river&quot;</span>
+    <span class="n">register</span><span class="p">:</span> <span class="n">bass_result</span>
+    <span class="n">changed_when</span><span class="p">:</span> <span class="s2">&quot;bass_result.rc != 2&quot;</span>
+
+  <span class="c1"># this will never report &#39;changed&#39; status</span>
+  <span class="o">-</span> <span class="n">shell</span><span class="p">:</span> <span class="n">wall</span> <span class="s1">&#39;beep&#39;</span>
+    <span class="n">changed_when</span><span class="p">:</span> <span class="kc">False</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="playbooks.html"><span class="doc">Playbooks</span></a></dt><dd><p>An introduction to playbooks</p>
+</dd>
+<dt><a class="reference internal" href="playbooks_best_practices.html"><span class="doc">最佳实践</span></a></dt><dd><p>Best practices in playbooks</p>
+</dd>
+<dt><a class="reference internal" href="playbooks_conditionals.html"><span class="doc">条件选择</span></a></dt><dd><p>Conditional statements in playbooks</p>
+</dd>
+<dt><a class="reference internal" href="playbooks_variables.html"><span class="doc">Variables</span></a></dt><dd><p>All about variables</p>
+</dd>
+<dt><a class="reference external" href="http://groups.google.com/group/ansible-devel">User Mailing List</a></dt><dd><p>Have a question?  Stop by the google group!</p>
+</dd>
+<dt><a class="reference external" href="http://irc.freenode.net">irc.freenode.net</a></dt><dd><p>#ansible IRC chat channel</p>
+</dd>
+</dl>
+</aside>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="playbooks_environment.html" class="btn btn-neutral float-left" title="配置环境 (在代理环境中)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="playbooks_tags.html" class="btn btn-neutral float-right" title="标签" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2015, http://www.magedu.com, 马哥Linux团队成员荣誉出品(薛定谔的章鱼 &amp; guli &amp; 以马内利 &amp; 黄博文 &amp; coocla &amp; 云中鹤 &amp; stanley) 官方QQ交流群:372011984.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amazon Web Services Guide &mdash; 国内最专业的Ansible中文官方学习手册</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Rackspace 云指南" href="guide_rax.html" />
+    <link rel="prev" title="详细指南" href="guides.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Ansible中文权威指南
+          </a>
+              <div class="version">
+                5.2.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">总体介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">快速学习视频</a></li>
+<li class="toctree-l1"><a class="reference internal" href="playbooks.html">Playbooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="playbooks_special_topics.html">Playbooks: Special Topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">模块相关</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="guides.html">详细指南</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Amazon Web Services Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#section-1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#section-2">认证</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#provisioning">供给(Provisioning)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#section-3">主机清单</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#section-4">标签,组和变量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ansible-pull">使用Ansible Pull自动伸缩</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#asnible-tower">使用Asnible Tower自动伸缩</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ansible">Ansible云构造</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ansible-aws">使用Ansible 构造AWS镜像</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#section-5">下一步:探索模块</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="guide_rax.html">Rackspace 云指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide_gce.html">Google Cloud Platform Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide_vagrant.html">使用Vagrant和Ansible</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide_rolling_upgrade.html">持续交付与滚动升级</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="developing.html">开发者须知</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tower.html">Ansible Tower</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community.html">Ansible用户</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community.html#section-4">对当前和未来的开发人员</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community.html#section-5">其它主题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="galaxy.html">Ansible Galaxy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test_strategies.html">测试策略</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">术语表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="YAMLSyntax.html">YAML 语法</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Ansible中文权威指南</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="guides.html">详细指南</a></li>
+      <li class="breadcrumb-item active">Amazon Web Services Guide</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/docs/guide_aws.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="amazon-web-services-guide">
+<h1>Amazon Web Services Guide<a class="headerlink" href="#amazon-web-services-guide" title="Permalink to this headline">¶</a></h1>
+<section id="section-1">
+<span id="aws-intro"></span><h2>简介<a class="headerlink" href="#section-1" title="Permalink to this headline">¶</a></h2>
+<p>Ansible包含了大量的控制Amazon web service(AWS)模块.这个章节的目的是为了说明如何在AWS环境下组合ansible的模块使用ansible(The purpose of this
+section is to explain how to put Ansible modules together (and use inventory scripts) to use Ansible in AWS context)</p>
+<p>AWS模块的需求(requiement)是很少的</p>
+<p>所有需要的模块以及被最近的 boto 版本测试过了.你需要这个模块安装在你的控制机器上面.boto 可以从linux发行版或者使用python的pip安装</p>
+<p>然而典型的ansible执行任务,对多个主机进行循环(Whereas classically ansible will execute tasks in its host loop against multiple remote machines),大部分的云控制步骤发生在你的本地机器所关联的区域</p>
+<p>在你的 playbook 步骤里,我们会使用下面的样式演示步骤:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">hosts</span><span class="p">:</span> <span class="n">localhost</span>
+  <span class="n">connection</span><span class="p">:</span> <span class="n">local</span>
+  <span class="n">gather_facts</span><span class="p">:</span> <span class="kc">False</span>
+  <span class="n">tasks</span><span class="p">:</span>
+    <span class="o">-</span> <span class="o">...</span>
+</pre></div>
+</div>
+</section>
+<section id="section-2">
+<span id="aws-authentication"></span><h2>认证<a class="headerlink" href="#section-2" title="Permalink to this headline">¶</a></h2>
+<p>AWS 认证相关的模块通过指定访问密钥作为 ENV 的变量或者模块参数.</p>
+<p>对于环境变量:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">AWS_ACCESS_KEY_ID</span><span class="o">=</span><span class="s1">&#39;AK123&#39;</span>
+<span class="n">export</span> <span class="n">AWS_SECRET_ACCESS_KEY</span><span class="o">=</span><span class="s1">&#39;abc123&#39;</span>
+</pre></div>
+</div>
+<p>存储变量在一个 vars_file ,最好使用ansible-vault:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---</span>
+<span class="n">ec2_access_key</span><span class="p">:</span> <span class="s2">&quot;--REMOVED--&quot;</span>
+<span class="n">ec2_secret_key</span><span class="p">:</span> <span class="s2">&quot;--REMOVED--&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="provisioning">
+<span id="aws-provisioning"></span><h2>供给(Provisioning)<a class="headerlink" href="#provisioning" title="Permalink to this headline">¶</a></h2>
+<p>在EC2中提供和取消实例的ec2模块</p>
+<p>一个确保只有5个实例标签为“Demo”的例子</p>
+<p>在下面的例子里,”exact_count”实例被设置为了5,这意味着如果0个实例存在,将会创建5个.如果两个实例创建,将会创建三个,如果8个实例存在,将会终止3个.</p>
+<p>指定”count_tag”参数的将被计数, “instance_tags” 参数用于给新创建的实例应用标签:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># demo_setup.yml</span>
+
+<span class="o">-</span> <span class="n">hosts</span><span class="p">:</span> <span class="n">localhost</span>
+  <span class="n">connection</span><span class="p">:</span> <span class="n">local</span>
+  <span class="n">gather_facts</span><span class="p">:</span> <span class="kc">False</span>
+
+  <span class="n">tasks</span><span class="p">:</span>
+
+    <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">Provision</span> <span class="n">a</span> <span class="nb">set</span> <span class="n">of</span> <span class="n">instances</span>
+      <span class="n">ec2</span><span class="p">:</span>
+         <span class="n">key_name</span><span class="p">:</span> <span class="n">my_key</span>
+         <span class="n">group</span><span class="p">:</span> <span class="n">test</span>
+         <span class="n">instance_type</span><span class="p">:</span> <span class="n">t2</span><span class="o">.</span><span class="n">micro</span>
+         <span class="n">image</span><span class="p">:</span> <span class="s2">&quot;{{ ami_id }}&quot;</span>
+         <span class="n">wait</span><span class="p">:</span> <span class="n">true</span>
+         <span class="n">exact_count</span><span class="p">:</span> <span class="mi">5</span>
+         <span class="n">count_tag</span><span class="p">:</span>
+            <span class="n">Name</span><span class="p">:</span> <span class="n">Demo</span>
+         <span class="n">instance_tags</span><span class="p">:</span>
+            <span class="n">Name</span><span class="p">:</span> <span class="n">Demo</span>
+      <span class="n">register</span><span class="p">:</span> <span class="n">ec2</span>
+</pre></div>
+</div>
+<p>有关实例被常见的数据被保存在通过 “register” 关键字设置的”ec2”变量</p>
+<p>我们将会使用 add_host 模块动态的创建主机组组成新的实例.这将会在后来的任务里面立即执行这些配置文件:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># demo_setup.yml</span>
+
+<span class="o">-</span> <span class="n">hosts</span><span class="p">:</span> <span class="n">localhost</span>
+  <span class="n">connection</span><span class="p">:</span> <span class="n">local</span>
+  <span class="n">gather_facts</span><span class="p">:</span> <span class="kc">False</span>
+
+  <span class="n">tasks</span><span class="p">:</span>
+
+    <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">Provision</span> <span class="n">a</span> <span class="nb">set</span> <span class="n">of</span> <span class="n">instances</span>
+      <span class="n">ec2</span><span class="p">:</span>
+         <span class="n">key_name</span><span class="p">:</span> <span class="n">my_key</span>
+         <span class="n">group</span><span class="p">:</span> <span class="n">test</span>
+         <span class="n">instance_type</span><span class="p">:</span> <span class="n">t2</span><span class="o">.</span><span class="n">micro</span>
+         <span class="n">image</span><span class="p">:</span> <span class="s2">&quot;{{ ami_id }}&quot;</span>
+         <span class="n">wait</span><span class="p">:</span> <span class="n">true</span>
+         <span class="n">exact_count</span><span class="p">:</span> <span class="mi">5</span>
+         <span class="n">count_tag</span><span class="p">:</span>
+            <span class="n">Name</span><span class="p">:</span> <span class="n">Demo</span>
+         <span class="n">instance_tags</span><span class="p">:</span>
+            <span class="n">Name</span><span class="p">:</span> <span class="n">Demo</span>
+      <span class="n">register</span><span class="p">:</span> <span class="n">ec2</span>
+
+   <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">Add</span> <span class="nb">all</span> <span class="n">instance</span> <span class="n">public</span> <span class="n">IPs</span> <span class="n">to</span> <span class="n">host</span> <span class="n">group</span>
+     <span class="n">add_host</span><span class="p">:</span> <span class="n">hostname</span><span class="o">=</span><span class="p">{{</span> <span class="n">item</span><span class="o">.</span><span class="n">public_ip</span> <span class="p">}}</span> <span class="n">groups</span><span class="o">=</span><span class="n">ec2hosts</span>
+     <span class="n">with_items</span><span class="p">:</span> <span class="n">ec2</span><span class="o">.</span><span class="n">instances</span>
+</pre></div>
+</div>
+<p>在主机组添加之后,规则剧本底部的第二个演出将会开始一些配置步骤:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># demo_setup.yml</span>
+
+<span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">Provision</span> <span class="n">a</span> <span class="nb">set</span> <span class="n">of</span> <span class="n">instances</span>
+  <span class="n">hosts</span><span class="p">:</span> <span class="n">localhost</span>
+  <span class="c1"># ... AS ABOVE ...</span>
+
+<span class="o">-</span> <span class="n">hosts</span><span class="p">:</span> <span class="n">ec2hosts</span>
+  <span class="n">name</span><span class="p">:</span> <span class="n">configuration</span> <span class="n">play</span>
+  <span class="n">user</span><span class="p">:</span> <span class="n">ec2</span><span class="o">-</span><span class="n">user</span>
+  <span class="n">gather_facts</span><span class="p">:</span> <span class="n">true</span>
+
+  <span class="n">tasks</span><span class="p">:</span>
+
+     <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">Check</span> <span class="n">NTP</span> <span class="n">service</span>
+       <span class="n">service</span><span class="p">:</span> <span class="n">name</span><span class="o">=</span><span class="n">ntpd</span> <span class="n">state</span><span class="o">=</span><span class="n">started</span>
+</pre></div>
+</div>
+</section>
+<section id="section-3">
+<span id="aws-host-inventory"></span><h2>主机清单<a class="headerlink" href="#section-3" title="Permalink to this headline">¶</a></h2>
+<p>一旦你的节点开始运转起来了,你可能想去和它们通信.在云的配置下,最好不要维护静态的云主机名.最好的方式是使用ec2动态清单脚本来处理.</p>
+<p>这将会动态的挑选节点甚至不是由Ansible创建的,同样允许Ansible管理它们.</p>
+<p>阅读  doc:<cite>aws_example</cite> 查看如何使用,然后继续回到这个章节.</p>
+</section>
+<section id="section-4">
+<span id="aws-tags-and-groups"></span><h2>标签,组和变量<a class="headerlink" href="#section-4" title="Permalink to this headline">¶</a></h2>
+<p>当使用ec2清单脚本的时候,主机基于它们如何在EC2里面的标签动态的出现在组里面</p>
+<p>例如,如果一个主机给了 “class” 标签,同时给它”webserver”作为值,它会自动被动态组发现,就像这样:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">hosts</span><span class="p">:</span> <span class="n">tag_class_webserver</span>
+  <span class="n">tasks</span><span class="p">:</span>
+    <span class="o">-</span> <span class="n">ping</span>
+</pre></div>
+</div>
+<p>这是很好的根据他们的性能划分系统的方式.</p>
+<p>在这个例子里,如果我们想去定义自动应用每台机器上面的变量,同时 “webserver” 带有标签 “class” , 在ansible里面可以使用的”group_vars”, 阅读:ref:<cite>splitting_out_vars</cite>.</p>
+<p>对于区域和其它分类,相似的组是可用的,可以使用同一种机制分配相似的变量.(Similar groups are available for regions and other classifications, and can be similarly assigned variables using the same mechanism.)</p>
+</section>
+<section id="ansible-pull">
+<span id="aws-pull"></span><h2>使用Ansible Pull自动伸缩<a class="headerlink" href="#ansible-pull" title="Permalink to this headline">¶</a></h2>
+<p>Amazon有基于负载自动的增加和减少容量的特性. 在 cloud 文档里,也有一些 Ansible 模块可以配置自动伸缩策略.</p>
+<p>当节点在线的时候,可能没有足够的时间等待下一个周期来临,让ansible命令配置那个节点.</p>
+<p>为了这么做,(To do this, pre-bake machine images which contain the necessary ansible-pull invocation.).Ansible-pull 是从git服务器上面抓取playbook在本地运行的一个命令行工具.</p>
+<p>这种方式的一个挑战在于在自动伸缩的环境里面需要一个中心化的方式存取 pull 命令的数据.因为这个原因,下面提供自动伸缩解决方案更好一些.</p>
+<p>阅读 <a class="reference internal" href="playbooks_intro.html#ansible-pull"><span class="std std-ref">Ansible-Pull（拉取配置而非推送配置）</span></a> 在pull-node playbook 获取更多的信息</p>
+</section>
+<section id="asnible-tower">
+<span id="aws-autoscale"></span><h2>使用Asnible Tower自动伸缩<a class="headerlink" href="#asnible-tower" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="tower.html"><span class="doc">Ansible Tower</span></a> 同样包含了一个非常好的特性来自动伸缩.在这种方式下,简单的curl脚本可以调用定义的URL,服务器也会对请求”dial out”和配置正在运行的实例.这是一个很好的方式重新配置生存周期短暂的节点.阅读Tower安装和产品文档获取更多的信息.</p>
+<p>在Tower使用回收机制有个好处是,任务结果仍然是中心化的,但是和远程主机分享更少的信息(A benefit of using the callback in Tower over pull mode is that job results are still centrally recorded and less information has to be shared
+with remote hosts.)</p>
+</section>
+<section id="ansible">
+<span id="aws-cloudformation-example"></span><h2>Ansible云构造<a class="headerlink" href="#ansible" title="Permalink to this headline">¶</a></h2>
+<p>云构造是一个Amazon的技术,让云栈作为JSON文档</p>
+<p>Ansible摸块提供了一个比云构造更容易的接口,不需要定义复杂的JSON文档.这是推荐用户使用的.</p>
+<p>然而,当用户决定使用云构造,也有 Ansible 模块可以应用于云构造模板.</p>
+<p>当使用Ansible配合云构造的时候,Ansible通常使用一个工具像 Packer 来构建镜像,CloudFormation 运行这些镜像, 或者通过用户数据,一旦镜像上线,ansible会被激发.(When using Ansible with CloudFormation, typically Ansible will be used with a tool like Packer to build images, and CloudFormation will launch
+those images, or ansible will be invoked through user data once the image comes online, or a combination of the two.)</p>
+<p>请阅读ansible云构造的例子获取更多的细节.</p>
+</section>
+<section id="ansible-aws">
+<span id="aws-image-build"></span><h2>使用Ansible 构造AWS镜像<a class="headerlink" href="#ansible-aws" title="Permalink to this headline">¶</a></h2>
+<p>Many users may want to have images boot to a more complete configuration rather than configuring them entirely after instantiation.  To do this,
+one of many programs can be used with Ansible playbooks to define and upload a base image, which will then get its own AMI ID for usage with
+the ec2 module or other Ansible AWS modules such as ec2_asg or the cloudformation module.   Possible tools include Packer, aminator, and Ansible’s
+ec2_ami module.</p>
+<p>许多用户想去开机启动更完整的配置而不是安装之后配置.为了这样做,许多程序可以用于ansible playbook定义和上传基本的镜像,这让他们使用 ec2 模块后得到自己的AMI ID,或者其它的Ansible AWS模块例如ec2_asg 或者cloudformation 模块.可能的工具包含 Packer,aminator,和Ansible’s ec2_ami 模块</p>
+<p>总的来说,我们发现许多用户使用Packer</p>
+<p>Ansible Packer的文档可以在这里找到 <a class="reference external" href="https://www.packer.io/docs/provisioners/ansible-local.html">https://www.packer.io/docs/provisioners/ansible-local.html</a>.</p>
+<p>如果你想采用Packer这时,配置一个基本的镜像使用Ansible在规则之后是可以接受的.</p>
+</section>
+<section id="section-5">
+<span id="aws-next-steps"></span><h2>下一步:探索模块<a class="headerlink" href="#section-5" title="Permalink to this headline">¶</a></h2>
+<p>Ansible附带许多模块来配置许多EC2服务.浏览 模块的 “Cloud” 目录查看完整的列表</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="modules.html"><span class="doc">模块相关</span></a></dt><dd><p>All the documentation for Ansible modules</p>
+</dd>
+<dt><a class="reference internal" href="playbooks.html"><span class="doc">Playbooks</span></a></dt><dd><p>An introduction to playbooks</p>
+</dd>
+<dt><a class="reference internal" href="playbooks_delegation.html"><span class="doc">委托,滚动更新,本地动作</span></a></dt><dd><p>Delegation, useful for working with loud balancers, clouds, and locally executed steps.</p>
+</dd>
+<dt><a class="reference external" href="http://groups.google.com/group/ansible-devel">User Mailing List</a></dt><dd><p>Have a question?  Stop by the google group!</p>
+</dd>
+<dt><a class="reference external" href="http://irc.freenode.net">irc.freenode.net</a></dt><dd><p>#ansible IRC chat channel</p>
+</dd>
+</dl>
+</aside>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="guides.html" class="btn btn-neutral float-left" title="详细指南" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="guide_rax.html" class="btn btn-neutral float-right" title="Rackspace 云指南" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2015, http://www.magedu.com, 马哥Linux团队成员荣誉出品(薛定谔的章鱼 &amp; guli &amp; 以马内利 &amp; 黄博文 &amp; coocla &amp; 云中鹤 &amp; stanley) 官方QQ交流群:372011984.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

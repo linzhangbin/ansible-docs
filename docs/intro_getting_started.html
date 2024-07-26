@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>新手上路 &mdash; 国内最专业的Ansible中文官方学习手册</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Inventory文件" href="intro_inventory.html" />
+    <link rel="prev" title="Installation" href="intro_installation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Ansible中文权威指南
+          </a>
+              <div class="version">
+                5.2.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="intro.html">总体介绍</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro_installation.html">Installation</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">新手上路</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#section-2">前言</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#section-3">你的第一条命令</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#section-4">公钥认证</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="intro_inventory.html">Inventory文件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro_dynamic_inventory.html">动态 Inventory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro_patterns.html">Patterns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro_adhoc.html">Introduction To Ad-Hoc Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro_configuration.html">Ansible的配置文件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro_windows.html">Windows Support</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">快速学习视频</a></li>
+<li class="toctree-l1"><a class="reference internal" href="playbooks.html">Playbooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="playbooks_special_topics.html">Playbooks: Special Topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">模块相关</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guides.html">详细指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developing.html">开发者须知</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tower.html">Ansible Tower</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community.html">Ansible用户</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community.html#section-4">对当前和未来的开发人员</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community.html#section-5">其它主题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="galaxy.html">Ansible Galaxy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test_strategies.html">测试策略</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">术语表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="YAMLSyntax.html">YAML 语法</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Ansible中文权威指南</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="intro.html">总体介绍</a></li>
+      <li class="breadcrumb-item active">新手上路</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/docs/intro_getting_started.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="section-1">
+<h1><a class="toc-backref" href="#toc-entry-1" role="doc-backlink">新手上路</a><a class="headerlink" href="#section-1" title="Permalink to this headline">¶</a></h1>
+<nav class="contents" id="topics">
+<p class="topic-title">Topics</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#section-1" id="toc-entry-1">新手上路</a></p>
+<ul>
+<li><p><a class="reference internal" href="#section-2" id="toc-entry-2">前言</a></p></li>
+<li><p><a class="reference internal" href="#section-3" id="toc-entry-3">你的第一条命令</a></p></li>
+<li><p><a class="reference internal" href="#section-4" id="toc-entry-4">公钥认证</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="section-2">
+<span id="gs-about"></span><h2><a class="toc-backref" href="#toc-entry-2" role="doc-backlink">前言</a><a class="headerlink" href="#section-2" title="Permalink to this headline">¶</a></h2>
+<p>现在你已经阅读了 <a class="reference internal" href="intro_installation.html"><span class="doc">Installation</span></a> 安装指南并安装了Ansible.是时候通过一些命令开始深入了解Ansible了.</p>
+<p>我们最先展示的并非那强大的集配置,部署,自动化于一身的playbook.
+Playbooks 相关内容将在另一章节中讲述.</p>
+<p>本章节讲述如何进行初始化.一旦你有了这些概念,请去阅读 <a class="reference internal" href="intro_adhoc.html"><span class="doc">Introduction To Ad-Hoc Commands</span></a> 以获取更多细节,然后你就能去深入playbook并探索它最有趣的部分.</p>
+<p id="remote-connection-information">远程连接概述</p>
+<hr class="docutils" />
+<p>在我们开始前要先理解Ansible是如何通过SSH与远程服务器连接是很重要的.</p>
+<p>Ansible 1.3及之后的版本默认会在本地的 OpenSSH可用时会尝试用其进行远程通讯.这会启用ControlPersist(一个性能特性),Kerberos,和在~/.ssh/config中的配置选项如 Jump Host setup.然而,当你使用Linux企业版6作为主控机(红帽企业版及其衍生版如CentOS),其OpenSSH版本可能过于老旧无法支持ControlPersist.
+在这些操作系统中,Ansible将会退回并采用 paramiko (由Python实现的高质量OpenSSH库).
+如果你希望能够使用像是Kerberized SSH之类的特性,烦请考虑使用Fedora, OS X, 或 Ubuntu 作为你的主控机直到相关平台上有更新版本的OpenSSH可供使用,或者启用Ansible的“accelerated mode”.参见 <a class="reference internal" href="playbooks_acceleration.html"><span class="doc">Accelerated Mode</span></a>.</p>
+<p>在Ansible 1.2 及之前的版本,默认将会使用 paramiko. 本地OpenSSH必须通过-c ssh 或者 在配置文件中设定.</p>
+<p>你偶尔会遇到不支持SFTP的设备.虽然这很少见,但你会有概率中奖.你可以通过在配置文件(<a class="reference internal" href="intro_configuration.html"><span class="doc">Ansible的配置文件</span></a>)中切换至 SCP模式来与之链接.</p>
+<p>说起远程设备,Ansible会默认假定你使用 SSH Key(我们推荐这种)但是密码也一样可以.通过在需要的地方添加 –ask-pass选项 来启用密码验证.如果使用了sudo 特性,当sudo需要密码时,也同样适当的提供了–ask-sudo-pass选项.</p>
+<p>也许这是常识,但也值得分享:任何管理系统受益于被管理的机器在主控机附近运行.如果在云中运行,可以考虑在使用云中的一台机器来运行Ansible.</p>
+<p>作为一个进阶话题,Ansible不止支持SSH来远程连接.连接方式是插件化的而且还有许多本地化管理的选项诸如管理 chroot, lxc, 和 jail containers.一个叫做‘ansible-pull’的模式能够反转主控关系并使远程系统通过定期从中央git目录检出 并 拉取 配置指令来实现背景连接通信.</p>
+</section>
+<section id="section-3">
+<span id="target-1"></span><h2><a class="toc-backref" href="#toc-entry-3" role="doc-backlink">你的第一条命令</a><a class="headerlink" href="#section-3" title="Permalink to this headline">¶</a></h2>
+<p>现在你已经安装了Ansible,是时候从一些基本知识开始了.
+编辑(或创建)/etc/ansible/hosts 并在其中加入一个或多个远程系统.你的public SSH key必须在这些系统的``authorized_keys``中:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">192.168.1.50</span>
+<span class="n">aserver</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">org</span>
+<span class="n">bserver</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">org</span>
+</pre></div>
+</div>
+<p>这里有个节点设置文件(inventory file)将会在 <a class="reference internal" href="intro_inventory.html"><span class="doc">Inventory文件</span></a> 中得到深入说明.
+我们假定你使用SSH Key来授权.为了避免在建立SSH连接时,重复输入密码你可以这么
+做:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ssh-agent<span class="w"> </span>bash
+$<span class="w"> </span>ssh-add<span class="w"> </span>~/.ssh/id_rsa
+</pre></div>
+</div>
+<p>(根据你的建立方式,你也许希望使用Ansible的 <code class="docutils literal notranslate"><span class="pre">--private-key</span></code> 选项,通过指定pem文件来代替SSH Key来授权)
+现在ping 你的所有节点:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span>ping
+</pre></div>
+</div>
+<p>Ansible会像SSH那样试图用你的当前用户名来连接你的远程机器.要覆写远程用户名,只需使用’-u’参数.
+如果你想访问 sudo模式,这里也有标识(flags)来实现:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># as bruce</span>
+$<span class="w"> </span>ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span>ping<span class="w"> </span>-u<span class="w"> </span>bruce
+<span class="c1"># as bruce, sudoing to root</span>
+$<span class="w"> </span>ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span>ping<span class="w"> </span>-u<span class="w"> </span>bruce<span class="w"> </span>--sudo
+<span class="c1"># as bruce, sudoing to batman</span>
+$<span class="w"> </span>ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span>ping<span class="w"> </span>-u<span class="w"> </span>bruce<span class="w"> </span>--sudo<span class="w"> </span>--sudo-user<span class="w"> </span>batman
+</pre></div>
+</div>
+<p>(如果你碰巧想要使用其他sudo的实现方式,你可以通过修改Ansible的配置文件来实现.也可以通过传递标识给sudo(如-H)来设置.)
+现在对你的所有节点运行一个命令:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ansible<span class="w"> </span>all<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;/bin/echo hello&quot;</span>
+</pre></div>
+</div>
+<p>恭喜你！你刚刚通过Ansible连接了你的所有节点.很快你就会阅读更多的关于现实案例 <a class="reference internal" href="intro_adhoc.html"><span class="doc">Introduction To Ad-Hoc Commands</span></a> 并探索可以通过不同的模块做什么以及研究Ansible的playbook语言</p>
+<p><a class="reference internal" href="playbooks.html"><span class="doc">Playbooks</span></a> .Ansible不只是能运行命令,它同样也拥有强大的配置管理和部署特性.虽然还有更多内容等待你的探索,但你基础设施已经能完全工作了！</p>
+</section>
+<section id="section-4">
+<span id="a-note-about-host-key-checking"></span><h2><a class="toc-backref" href="#toc-entry-4" role="doc-backlink">公钥认证</a><a class="headerlink" href="#section-4" title="Permalink to this headline">¶</a></h2>
+<p>Ansible1.2.1及其之后的版本都会默认启用公钥认证.</p>
+<p>如果有个主机重新安装并在“known_hosts”中有了不同的key,这会提示一个错误信息直到被纠正为止.在使用Ansible时,你可能不想遇到这样的情况:如果有个主机没有在“known_hosts”中被初始化将会导致在交互使用Ansible或定时执行Ansible时对key信息的确认提示.</p>
+<p>如果你想禁用此项行为并明白其含义,你能够通过编辑 /etc/ansible/ansible.cfg or ~/.ansible.cfg来实现:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">defaults</span><span class="p">]</span>
+<span class="n">host_key_checking</span> <span class="o">=</span> <span class="kc">False</span>
+</pre></div>
+</div>
+<p>或者你也可以通过设置环境变量来实现:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">ANSIBLE_HOST_KEY_CHECKING</span><span class="o">=</span>False
+</pre></div>
+</div>
+<p>同样注意在paramiko 模式中 公钥认证 相当的慢.因此,当使用这项特性时,切换至’SSH’是推荐做法.</p>
+<p id="a-note-about-logging">Ansible将会对远程系统模块参数记录在远程的syslog中,除非一个任务或者play被标记了“no_log: True”属性,稍后解释.
+在主控机上启用基本的日志功能参见 <a class="reference internal" href="intro_configuration.html"><span class="doc">Ansible的配置文件</span></a> 文档 并 在配置文件中设置’log_path’.企业用户可能也对 <a class="reference internal" href="tower.html"><span class="doc">Ansible Tower</span></a> 感兴趣.</p>
+<p>塔提供了非常实用数据库日志.它使一次次向下钻取并查看基于主机,项目,和特定的结果集成为可能———— 同时提供了图形和 RESTful API.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="intro_inventory.html"><span class="doc">Inventory文件</span></a></dt><dd><p>More information about inventory</p>
+</dd>
+<dt><a class="reference internal" href="intro_adhoc.html"><span class="doc">Introduction To Ad-Hoc Commands</span></a></dt><dd><p>Examples of basic commands</p>
+</dd>
+<dt><a class="reference internal" href="playbooks.html"><span class="doc">Playbooks</span></a></dt><dd><p>Learning Ansible’s configuration management language</p>
+</dd>
+<dt><a class="reference external" href="http://groups.google.com/group/ansible-project">Mailing List</a></dt><dd><p>Questions? Help? Ideas?  Stop by the list on Google Groups</p>
+</dd>
+<dt><a class="reference external" href="http://irc.freenode.net">irc.freenode.net</a></dt><dd><p>#ansible IRC chat channel</p>
+</dd>
+</dl>
+</aside>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="intro_installation.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="intro_inventory.html" class="btn btn-neutral float-right" title="Inventory文件" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2015, http://www.magedu.com, 马哥Linux团队成员荣誉出品(薛定谔的章鱼 &amp; guli &amp; 以马内利 &amp; 黄博文 &amp; coocla &amp; 云中鹤 &amp; stanley) 官方QQ交流群:372011984.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

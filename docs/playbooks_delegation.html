@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>委托,滚动更新,本地动作 &mdash; 国内最专业的Ansible中文官方学习手册</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="配置环境 (在代理环境中)" href="playbooks_environment.html" />
+    <link rel="prev" title="Check Mode (“Dry Run”)" href="playbooks_checkmode.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Ansible中文权威指南
+          </a>
+              <div class="version">
+                5.2.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">总体介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">快速学习视频</a></li>
+<li class="toctree-l1"><a class="reference internal" href="playbooks.html">Playbooks</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="playbooks_special_topics.html">Playbooks: Special Topics</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="playbooks_acceleration.html">Accelerated Mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_async.html">异步操作和轮询</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_checkmode.html">Check Mode (“Dry Run”)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">委托,滚动更新,本地动作</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#section-2">最大失败百分比</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#section-3">委任</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#run-once-1">Run Once</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#playbooks">本地Playbooks</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_environment.html">配置环境 (在代理环境中)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_error_handling.html">Playbooks 中的错误处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_tags.html">标签</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_vault.html">Vault</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_startnstep.html">从指定任务开始运行palybook以及分步运行playbook</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">模块相关</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guides.html">详细指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developing.html">开发者须知</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tower.html">Ansible Tower</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community.html">Ansible用户</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community.html#section-4">对当前和未来的开发人员</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community.html#section-5">其它主题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="galaxy.html">Ansible Galaxy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test_strategies.html">测试策略</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">术语表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="YAMLSyntax.html">YAML 语法</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Ansible中文权威指南</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="playbooks_special_topics.html">Playbooks: Special Topics</a></li>
+      <li class="breadcrumb-item active">委托,滚动更新,本地动作</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/docs/playbooks_delegation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="section-1">
+<h1><a class="toc-backref" href="#toc-entry-1" role="doc-backlink">委托,滚动更新,本地动作</a><a class="headerlink" href="#section-1" title="Permalink to this headline">¶</a></h1>
+<nav class="contents" id="topics">
+<p class="topic-title">Topics</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#section-1" id="toc-entry-1">委托,滚动更新,本地动作</a></p>
+<ul>
+<li><p><a class="reference internal" href="#section-2" id="toc-entry-2">最大失败百分比</a></p></li>
+<li><p><a class="reference internal" href="#section-3" id="toc-entry-3">委任</a></p></li>
+<li><p><a class="reference internal" href="#run-once-1" id="toc-entry-4">Run Once</a></p></li>
+<li><p><a class="reference internal" href="#playbooks" id="toc-entry-5">本地Playbooks</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<p>由于设计初衷是作为多用户,Anisible很擅长在某一个主机上代表另一个做事,或者参考远程主机做一些本地工作.</p>
+<p>这个特性对于架设连续实现某些设施或者0暂停滚动升级,这里你可能会提到负载均衡或者监控系统.</p>
+<p>更多的特性允许调试事情完成的顺序,和设置一批窗口,来确定多少机器在一次中滚动更新.</p>
+<p>这节会介绍所有这些特性.`详情案例参见 &lt;<a class="reference external" href="http://github.com/ansible/ansible-examples/">http://github.com/ansible/ansible-examples/</a>&gt;`_.这里有很多案例来说明对于不同程序来实行,0暂停更新步骤</p>
+<p>你也可以参考:doc:<a href="#system-message-1"><span class="problematic" id="problematic-1">`</span></a>modules`部分,很多模块例如 ‘ec2_elb’, ‘nagios’, ‘bigip_pool’, ‘netscaler’ 的一些概念会在这里介绍.</p>
+<p>你可能也想参考:doc:<cite>playbooks_roles</cite>,你可以找到类似’pre_task’和’post_task’的详细介绍和调用方式.</p>
+<p id="rolling-update-batch-size">Rolling Update Batch Size
+滚动更新批量尺寸
+<code class="docutils literal notranslate"><span class="pre">`````````````````````</span></code></p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 0.7.</span></p>
+</div>
+<p>默认来说,Anisble 可以使图参考某一个play来并行操作所有主机.对于滚动更新案例,
+你可以定义Ansible可以在一个特定时间同时控制多少主机,使用’’serial’’ 关键词:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">test</span> <span class="n">play</span>
+  <span class="n">hosts</span><span class="p">:</span> <span class="n">webservers</span>
+  <span class="n">serial</span><span class="p">:</span> <span class="mi">3</span>
+</pre></div>
+</div>
+<p>在上面的例子,如果我们有100台主机,3 台主机定义在组’webservers’
+可以在下面3个主机开始之前完全完成</p>
+<p>这个’’serial’’ 关键词在Ansible 1.8 以后可以被定义为百分数,用来定义每一次操作一个play中百分之多少主机:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">test</span> <span class="n">play</span>
+  <span class="n">hosts</span><span class="p">:</span> <span class="n">websevers</span>
+  <span class="n">serial</span><span class="p">:</span> <span class="s2">&quot;30%&quot;</span>
+</pre></div>
+</div>
+<p>如果主机数不能被passes数量整除,最后的pass将会包含提醒信息</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>不管多小的百分比,每个pass的主机数一定会大于等于1.</p>
+</aside>
+<section id="section-2">
+<span id="maximum-failure-percentage"></span><h2><a class="toc-backref" href="#toc-entry-2" role="doc-backlink">最大失败百分比</a><a class="headerlink" href="#section-2" title="Permalink to this headline">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.3.</span></p>
+</div>
+<p>默认来说,Ansible 会持续执行行为只要在一个组中还有主机没有宕机.
+在有些情况下,例如之前提到的滚动更新,也许理想的情况是当一个失败数上线达到时主动宕掉这个play.为了达到这个目的,在
+1.3版本中,你可以设置最大失败半分比:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">hosts</span><span class="p">:</span> <span class="n">webservers</span>
+  <span class="n">max_fail_percentage</span><span class="p">:</span> <span class="mi">30</span>
+  <span class="n">serial</span><span class="p">:</span> <span class="mi">10</span>
+</pre></div>
+</div>
+<p>在上面的例子中,如果在10个服务器中如果多余3个,其它的play就会主动宕掉.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>这个百分比必须被超过,不仅仅是相等.例如如果serial值呗设置为4,并且你希望任务主动在2个系统失败时候放弃.那么这个百分比应该设置为49而不是50.</p>
+</aside>
+</section>
+<section id="section-3">
+<span id="delegation"></span><h2><a class="toc-backref" href="#toc-entry-3" role="doc-backlink">委任</a><a class="headerlink" href="#section-3" title="Permalink to this headline">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 0.7.</span></p>
+</div>
+<p>This isn’t actually rolling update specific but comes up frequently in those cases.
+这个虽然不属于滚动更新,但是在那些场景下经常会出现.</p>
+<p>如果你想参考其它主机来在一个主机上执行一个任务,我们就可以使用’delegate_to’关键词在你要执行的任务上.
+这个对于把节点放在一个负载均衡池里面活着从里面移除非常理想. 这个选项也对处理窗口中断非常有用.
+使用’serial’关键词来控制一定数量的主机也是一个好想法:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---</span>
+
+<span class="o">-</span> <span class="n">hosts</span><span class="p">:</span> <span class="n">webservers</span>
+  <span class="n">serial</span><span class="p">:</span> <span class="mi">5</span>
+
+  <span class="n">tasks</span><span class="p">:</span>
+
+  <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">take</span> <span class="n">out</span> <span class="n">of</span> <span class="n">load</span> <span class="n">balancer</span> <span class="n">pool</span>
+    <span class="n">command</span><span class="p">:</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">take_out_of_pool</span> <span class="p">{{</span> <span class="n">inventory_hostname</span> <span class="p">}}</span>
+    <span class="n">delegate_to</span><span class="p">:</span> <span class="mf">127.0.0.1</span>
+
+  <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">actual</span> <span class="n">steps</span> <span class="n">would</span> <span class="n">go</span> <span class="n">here</span>
+    <span class="n">yum</span><span class="p">:</span> <span class="n">name</span><span class="o">=</span><span class="n">acme</span><span class="o">-</span><span class="n">web</span><span class="o">-</span><span class="n">stack</span> <span class="n">state</span><span class="o">=</span><span class="n">latest</span>
+
+  <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">add</span> <span class="n">back</span> <span class="n">to</span> <span class="n">load</span> <span class="n">balancer</span> <span class="n">pool</span>
+    <span class="n">command</span><span class="p">:</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">add_back_to_pool</span> <span class="p">{{</span> <span class="n">inventory_hostname</span> <span class="p">}}</span>
+    <span class="n">delegate_to</span><span class="p">:</span> <span class="mf">127.0.0.1</span>
+</pre></div>
+</div>
+<dl>
+<dt>这些命令可以在127.0.0.1上面运行,这个运行Ansible的主机.这个也是一个简写的语法用在每一个任务基础（per-task basis）: ‘local_action’.以上就是这样一个playbook.但是使用的是简化后的语法在172.0.0.1上面做代理::</dt><dd><p>—</p>
+<p># …</p>
+<blockquote>
+<div><p>tasks:</p>
+<ul class="simple">
+<li><p>name: take out of load balancer pool
+local_action: command /usr/bin/take_out_of_pool {{ inventory_hostname }}</p></li>
+</ul>
+</div></blockquote>
+<p># …</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>name: add back to load balancer pool
+local_action: command /usr/bin/add_back_to_pool {{ inventory_hostname }}</p></li>
+</ul>
+</div></blockquote>
+</dd>
+</dl>
+<p>A common pattern is to use a local action to call ‘rsync’ to recursively copy files to the managed servers.
+Here is an example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---</span>
+<span class="c1"># ...</span>
+  <span class="n">tasks</span><span class="p">:</span>
+
+  <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">recursively</span> <span class="n">copy</span> <span class="n">files</span> <span class="kn">from</span> <span class="nn">management</span> <span class="n">server</span> <span class="n">to</span> <span class="n">target</span>
+    <span class="n">local_action</span><span class="p">:</span> <span class="n">command</span> <span class="n">rsync</span> <span class="o">-</span><span class="n">a</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">files</span> <span class="p">{{</span> <span class="n">inventory_hostname</span> <span class="p">}}:</span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">target</span><span class="o">/</span>
+</pre></div>
+</div>
+<p>注意你必须拥有不需要密码SSH密钥或者ssh-agent配置,不然的话rsync会需要询问密码.</p>
+</section>
+<section id="run-once-1">
+<span id="run-once"></span><h2><a class="toc-backref" href="#toc-entry-4" role="doc-backlink">Run Once</a><a class="headerlink" href="#run-once-1" title="Permalink to this headline">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.7.</span></p>
+</div>
+<p>有时候你有这样的需求,在一个主机上面只执行一次一个任务.这样的配置可以配置”run_once”来实现:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---</span>
+<span class="c1"># ...</span>
+
+  <span class="n">tasks</span><span class="p">:</span>
+
+    <span class="c1"># ...</span>
+
+    <span class="o">-</span> <span class="n">command</span><span class="p">:</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">application</span><span class="o">/</span><span class="n">upgrade_db</span><span class="o">.</span><span class="n">py</span>
+      <span class="n">run_once</span><span class="p">:</span> <span class="n">true</span>
+
+    <span class="c1"># ...</span>
+</pre></div>
+</div>
+<p>这样可以添加在”delegat_to”选项对中来定义要执行的主机:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">command</span><span class="p">:</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">application</span><span class="o">/</span><span class="n">upgrade_db</span><span class="o">.</span><span class="n">py</span>
+  <span class="n">run_once</span><span class="p">:</span> <span class="n">true</span>
+  <span class="n">delegate_to</span><span class="p">:</span> <span class="n">web01</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">org</span>
+</pre></div>
+</div>
+<p>当”run_once” 没有喝”delegate_to”一起使用,这个任务将会被清单指定的第一个主机.
+在一组被play制定主机.例如 webservers[0], 如果play指定为 “hosts: webservers”.</p>
+<p>这个方法也很类似,虽然比使用条件更加简单粗暴,如下事例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">command</span><span class="p">:</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">application</span><span class="o">/</span><span class="n">upgrade_db</span><span class="o">.</span><span class="n">py</span>
+  <span class="n">when</span><span class="p">:</span> <span class="n">inventory_hostname</span> <span class="o">==</span> <span class="n">webservers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="playbooks">
+<span id="local-playbooks"></span><h2><a class="toc-backref" href="#toc-entry-5" role="doc-backlink">本地Playbooks</a><a class="headerlink" href="#playbooks" title="Permalink to this headline">¶</a></h2>
+<p>在本地使用playbook有时候比ssh远程使用更加有用.可以通过把playbook放在crontab中,来确保一个系统的配置,可以很有用.
+在OS installer 中运行一个playbook也很有用.例如Anaconda kickstart.</p>
+<p>要想在本地运行一个play,可以直接设置”host:” 与 “hosts:127.0.0.1”, 然后使用下面的命令运行:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ansible</span><span class="o">-</span><span class="n">playbook</span> <span class="n">playbook</span><span class="o">.</span><span class="n">yml</span> <span class="o">--</span><span class="n">connection</span><span class="o">=</span><span class="n">local</span>
+</pre></div>
+</div>
+<p>或者,一个本地连接也可以作为一个单独的playbook play应用在playbook中, 即便playbook中其他的plays使用默认远程
+连接如下:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">hosts</span><span class="p">:</span> <span class="mf">127.0.0.1</span>
+  <span class="n">connection</span><span class="p">:</span> <span class="n">local</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="playbooks.html"><span class="doc">Playbooks</span></a></dt><dd><p>An introduction to playbooks</p>
+</dd>
+<dt><a class="reference external" href="http://github.com/ansible/ansible-examples">Ansible Examples on GitHub</a></dt><dd><p>Many examples of full-stack deployments</p>
+</dd>
+<dt><a class="reference external" href="http://groups.google.com/group/ansible-devel">User Mailing List</a></dt><dd><p>Have a question?  Stop by the google group!</p>
+</dd>
+<dt><a class="reference external" href="http://irc.freenode.net">irc.freenode.net</a></dt><dd><p>#ansible IRC chat channel</p>
+</dd>
+</dl>
+</aside>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="playbooks_checkmode.html" class="btn btn-neutral float-left" title="Check Mode (“Dry Run”)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="playbooks_environment.html" class="btn btn-neutral float-right" title="配置环境 (在代理环境中)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2015, http://www.magedu.com, 马哥Linux团队成员荣誉出品(薛定谔的章鱼 &amp; guli &amp; 以马内利 &amp; 黄博文 &amp; coocla &amp; 云中鹤 &amp; stanley) 官方QQ交流群:372011984.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

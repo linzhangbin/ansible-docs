@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>简介 &mdash; 国内最专业的Ansible中文官方学习手册</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="核心模块" href="modules_core.html" />
+    <link rel="prev" title="模块相关" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Ansible中文权威指南
+          </a>
+              <div class="version">
+                5.2.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">总体介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">快速学习视频</a></li>
+<li class="toctree-l1"><a class="reference internal" href="playbooks.html">Playbooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="playbooks_special_topics.html">Playbooks: Special Topics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">模块相关</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules_core.html">核心模块</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules_extra.html">额外模块</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common_return_values.html">共同的返回值</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="guides.html">详细指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developing.html">开发者须知</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tower.html">Ansible Tower</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community.html">Ansible用户</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community.html#section-4">对当前和未来的开发人员</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community.html#section-5">其它主题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="galaxy.html">Ansible Galaxy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test_strategies.html">测试策略</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">术语表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="YAMLSyntax.html">YAML 语法</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Ansible中文权威指南</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">模块相关</a></li>
+      <li class="breadcrumb-item active">简介</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/docs/modules_intro.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="section-1">
+<h1>简介<a class="headerlink" href="#section-1" title="Permalink to this headline">¶</a></h1>
+<p>模块(也被称为 “task plugins” 或 “library plugins”)是在 Ansible 中实际在执行的.它们就
+是在每个 playbook 任务中被执行的.你也可以仅仅通过 ‘ansible’ 命令来运行它们.</p>
+<p>让我们回顾一下我们是如何通过命令行来执行三个不同的模块:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ansible</span> <span class="n">webservers</span> <span class="o">-</span><span class="n">m</span> <span class="n">service</span> <span class="o">-</span><span class="n">a</span> <span class="s2">&quot;name=httpd state=started&quot;</span>
+<span class="n">ansible</span> <span class="n">webservers</span> <span class="o">-</span><span class="n">m</span> <span class="n">ping</span>
+<span class="n">ansible</span> <span class="n">webservers</span> <span class="o">-</span><span class="n">m</span> <span class="n">command</span> <span class="o">-</span><span class="n">a</span> <span class="s2">&quot;/sbin/reboot -t now&quot;</span>
+</pre></div>
+</div>
+<p>每个模块都能接收参数. 几乎所有的模块都接受键值对(<code class="docutils literal notranslate"><span class="pre">key=value</span></code>)参数,空格分隔.一些模块
+不接收参数,只需在命令行输入相关的命令就能调用.</p>
+<p>在 playbook 中, Ansible 模块以类似的方式执行:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">reboot</span> <span class="n">the</span> <span class="n">servers</span>
+  <span class="n">action</span><span class="p">:</span> <span class="n">command</span> <span class="o">/</span><span class="n">sbin</span><span class="o">/</span><span class="n">reboot</span> <span class="o">-</span><span class="n">t</span> <span class="n">now</span>
+</pre></div>
+</div>
+<p>也可以简写成:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">reboot</span> <span class="n">the</span> <span class="n">servers</span>
+  <span class="n">command</span><span class="p">:</span> <span class="o">/</span><span class="n">sbin</span><span class="o">/</span><span class="n">reboot</span> <span class="o">-</span><span class="n">t</span> <span class="n">now</span>
+</pre></div>
+</div>
+<p>另一种给模块传递参数的方式是使用 ymal 语法,这也被称为 ‘complex args’</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">restart</span> <span class="n">webserver</span>
+  <span class="n">service</span><span class="p">:</span>
+    <span class="n">name</span><span class="p">:</span> <span class="n">httpd</span>
+    <span class="n">state</span><span class="p">:</span> <span class="n">restarted</span>
+</pre></div>
+</div>
+<p>无论你是使用命令行还是 playbooks 所有模块都会返回以 JSON 格式组织的数据.一般来说,对此你
+无需知道太多.但如果你在编写你自己的模块,那你需要在意,这意味着你不需要以特定的语言来编写
+你的模块 – 你可以自行选择.</p>
+<p>模块努力使自身幂等,这意味着它们会尽可能避免对系统做出改动除非那是必须的.当使用 Ansible
+playbooks 时,这些模块能够触发 ‘change events’,以这种形式通知 ‘handlers’ 去运行附加任务.</p>
+<p>每个模块的文档能够通过命令行的 ansible-doc 工具来获取:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ansible</span><span class="o">-</span><span class="n">doc</span> <span class="n">yum</span>
+</pre></div>
+</div>
+<p>列出所有已安装的模块文档:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ansible</span><span class="o">-</span><span class="n">doc</span> <span class="o">-</span><span class="n">l</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="intro_adhoc.html"><span class="doc">Introduction To Ad-Hoc Commands</span></a></dt><dd><p>Examples of using modules in /usr/bin/ansible</p>
+</dd>
+<dt><a class="reference internal" href="playbooks.html"><span class="doc">Playbooks</span></a></dt><dd><p>Examples of using modules with /usr/bin/ansible-playbook</p>
+</dd>
+<dt><a class="reference internal" href="developing_modules.html"><span class="doc">Developing Modules</span></a></dt><dd><p>How to write your own modules</p>
+</dd>
+<dt><a class="reference internal" href="developing_api.html"><span class="doc">Python API</span></a></dt><dd><p>Examples of using modules with the Python API</p>
+</dd>
+<dt><a class="reference external" href="http://groups.google.com/group/ansible-project">Mailing List</a></dt><dd><p>Questions? Help? Ideas?  Stop by the list on Google Groups</p>
+</dd>
+<dt><a class="reference external" href="http://irc.freenode.net">irc.freenode.net</a></dt><dd><p>#ansible IRC chat channel</p>
+</dd>
+</dl>
+</aside>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="modules.html" class="btn btn-neutral float-left" title="模块相关" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="modules_core.html" class="btn btn-neutral float-right" title="核心模块" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2015, http://www.magedu.com, 马哥Linux团队成员荣誉出品(薛定谔的章鱼 &amp; guli &amp; 以马内利 &amp; 黄博文 &amp; coocla &amp; 云中鹤 &amp; stanley) 官方QQ交流群:372011984.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

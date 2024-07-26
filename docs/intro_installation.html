@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installation &mdash; 国内最专业的Ansible中文官方学习手册</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="新手上路" href="intro_getting_started.html" />
+    <link rel="prev" title="总体介绍" href="intro.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Ansible中文权威指南
+          </a>
+              <div class="version">
+                5.2.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="intro.html">总体介绍</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#githubansible">从Github获取Ansible</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#section-1">需要安装些什么</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#section-2">选择哪一个版本?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#section-3">对管理主机的要求</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#section-4">对托管节点的要求</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#section-5">安装管理主机</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#section-6">从源码运行</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#yum">通过Yum安装最新发布版本</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#apt-ubuntu">通过Apt (Ubuntu)安装最新发布版本</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#portage-gentoo">通过 Portage (Gentoo)安装最新发布版本</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pkg-freebsd">通过 pkg (FreeBSD)安装最新发布版本</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mac-osx">在Mac OSX 上安装最新发布版本</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#opencsw-solaris">通过 OpenCSW 安装最新发布版本(Solaris)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pacman-arch-linux">通过 Pacman 安装最新发布版本(Arch Linux)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pip">通过 Pip 安装最新发布版本</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tarball">发行版的Tarball</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="intro_getting_started.html">新手上路</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro_inventory.html">Inventory文件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro_dynamic_inventory.html">动态 Inventory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro_patterns.html">Patterns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro_adhoc.html">Introduction To Ad-Hoc Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro_configuration.html">Ansible的配置文件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro_windows.html">Windows Support</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">快速学习视频</a></li>
+<li class="toctree-l1"><a class="reference internal" href="playbooks.html">Playbooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="playbooks_special_topics.html">Playbooks: Special Topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">模块相关</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guides.html">详细指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developing.html">开发者须知</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tower.html">Ansible Tower</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community.html">Ansible用户</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community.html#section-4">对当前和未来的开发人员</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community.html#section-5">其它主题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="galaxy.html">Ansible Galaxy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test_strategies.html">测试策略</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">术语表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="YAMLSyntax.html">YAML 语法</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Ansible中文权威指南</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="intro.html">总体介绍</a></li>
+      <li class="breadcrumb-item active">Installation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/docs/intro_installation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="installation">
+<h1><a class="toc-backref" href="#toc-entry-1" role="doc-backlink">Installation</a><a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<nav class="contents" id="topics">
+<p class="topic-title">Topics</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#installation" id="toc-entry-1">Installation</a></p>
+<ul>
+<li><p><a class="reference internal" href="#githubansible" id="toc-entry-2">从Github获取Ansible</a></p></li>
+<li><p><a class="reference internal" href="#section-1" id="toc-entry-3">需要安装些什么</a></p></li>
+<li><p><a class="reference internal" href="#section-2" id="toc-entry-4">选择哪一个版本?</a></p></li>
+<li><p><a class="reference internal" href="#section-3" id="toc-entry-5">对管理主机的要求</a></p></li>
+<li><p><a class="reference internal" href="#section-4" id="toc-entry-6">对托管节点的要求</a></p></li>
+<li><p><a class="reference internal" href="#section-5" id="toc-entry-7">安装管理主机</a></p>
+<ul>
+<li><p><a class="reference internal" href="#section-6" id="toc-entry-8">从源码运行</a></p></li>
+<li><p><a class="reference internal" href="#yum" id="toc-entry-9">通过Yum安装最新发布版本</a></p></li>
+<li><p><a class="reference internal" href="#apt-ubuntu" id="toc-entry-10">通过Apt (Ubuntu)安装最新发布版本</a></p></li>
+<li><p><a class="reference internal" href="#portage-gentoo" id="toc-entry-11">通过 Portage (Gentoo)安装最新发布版本</a></p></li>
+<li><p><a class="reference internal" href="#pkg-freebsd" id="toc-entry-12">通过 pkg (FreeBSD)安装最新发布版本</a></p></li>
+<li><p><a class="reference internal" href="#mac-osx" id="toc-entry-13">在Mac OSX 上安装最新发布版本</a></p></li>
+<li><p><a class="reference internal" href="#opencsw-solaris" id="toc-entry-14">通过 OpenCSW 安装最新发布版本(Solaris)</a></p></li>
+<li><p><a class="reference internal" href="#pacman-arch-linux" id="toc-entry-15">通过 Pacman 安装最新发布版本(Arch Linux)</a></p></li>
+<li><p><a class="reference internal" href="#pip" id="toc-entry-16">通过 Pip 安装最新发布版本</a></p></li>
+<li><p><a class="reference internal" href="#tarball" id="toc-entry-17">发行版的Tarball</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="githubansible">
+<span id="getting-ansible"></span><h2><a class="toc-backref" href="#toc-entry-2" role="doc-backlink">从Github获取Ansible</a><a class="headerlink" href="#githubansible" title="Permalink to this headline">¶</a></h2>
+<p>如果你有一个github账户,可以跟进Ansible在Github的项目: <a class="reference external" href="https://github.com/ansible/ansible">Github project</a> 我们在这里保持对bugs和feature ideas的跟踪.</p>
+</section>
+<section id="section-1">
+<span id="what-will-be-installed"></span><h2><a class="toc-backref" href="#toc-entry-3" role="doc-backlink">需要安装些什么</a><a class="headerlink" href="#section-1" title="Permalink to this headline">¶</a></h2>
+<p>Ansible默认通过  SSH 协议管理机器.</p>
+<p>安装Ansible之后,不需要启动或运行一个后台进程,或是添加一个数据库.只要在一台电脑(可以是一台笔记本)上安装好,就可以通过这台电脑管理一组远程的机器.在远程被管理的机器上,不需要安装运行任何软件,因此升级Ansible版本不会有太多问题.</p>
+</section>
+<section id="section-2">
+<span id="what-version"></span><h2><a class="toc-backref" href="#toc-entry-4" role="doc-backlink">选择哪一个版本?</a><a class="headerlink" href="#section-2" title="Permalink to this headline">¶</a></h2>
+<p>因为Ansible可以很简单的从源码运行,且不必在远程被管理机器上安装任何软件,很多Ansible用户会跟进使用开发版本.</p>
+<p>Ansible一般每两个月出一个发行版本.小bugs一般在下一个发行版本中修复,并在稳定分支中做backports.大bugs会在必要时出一个维护版本,不过这不是很频繁.</p>
+<p>若你希望使用Ansible的最新版本,并且你使用的操作系统是 Red Hat Enterprise Linux (TM), CentOS, Fedora, Debian, Ubuntu,我们建议使用系统的软件包管理器.</p>
+<p>另有一种选择是通过”pip”工具安装,”pip”是一个安装和管理Python包的工具.</p>
+<p>若你希望跟进开发版本,想使用和测试最新的功能特性,我们会分享如何从源码运行Ansible的方法.从源码运行程序不需要进行软件安装.</p>
+</section>
+<section id="section-3">
+<span id="control-machine-requirements"></span><h2><a class="toc-backref" href="#toc-entry-5" role="doc-backlink">对管理主机的要求</a><a class="headerlink" href="#section-3" title="Permalink to this headline">¶</a></h2>
+<p>目前,只要机器上安装了 Python 2.6 或 Python 2.7 (windows系统不可以做控制主机),都可以运行Ansible.</p>
+<p>主机的系统可以是 Red Hat, Debian, CentOS, OS X, BSD的各种版本,等等.</p>
+<p>自2.0版本开始,ansible使用了更多句柄来管理它的子进程,对于OS X系统,你需要增加ulimit值才能使用15个以上子进程,方法
+sudo launchctl limit maxfiles 1024 2048,否则你可能会看见”Too many open file”的错误提示.</p>
+</section>
+<section id="section-4">
+<span id="managed-node-requirements"></span><h2><a class="toc-backref" href="#toc-entry-6" role="doc-backlink">对托管节点的要求</a><a class="headerlink" href="#section-4" title="Permalink to this headline">¶</a></h2>
+<p>通常我们使用 ssh 与托管节点通信，默认使用 sftp.如果 sftp 不可用，可在 ansible.cfg 配置文件中配置成 scp 的方式.
+在托管节点上也需要安装 Python 2.4 或以上的版本.如果版本低于 Python 2.5 ,还需要额外安装一个模块:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">python-simplejson</span></code></p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>没安装python-simplejson,也可以使用Ansible的”raw”模块和script模块,因此从技术上讲,你可以通过Ansible的”raw”模块安装python-simplejson,之后就可以使用Ansible的所有功能了.</p>
+</aside>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>如果托管节点上开启了SElinux,你需要安装libselinux-python,这样才可使用Ansible中与copy/file/template相关的函数.你可以通过Ansible的yum模块在需要的托管节点上安装libselinux-python.</p>
+</aside>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<dl class="simple">
+<dt>Python 3 与 Python 2 是稍有不同的语言,大多数Python程序还不能在 Python 3 中正确运行.一些Linux发行版(Gentoo, Arch)没有默认安装 Python 2.X 解释器.在这些系统上,你需要安装一个 Python 2.X 解释器,并在 inventory (详见 <a class="reference internal" href="intro_inventory.html"><span class="doc">Inventory文件</span></a>) 中设置 ‘ansible_python_interpreter’ 变量指向你的 2.X Python.你可以使用 ‘raw’ 模块在托管节点上远程安装Python 2.X.</dt><dd><p>例如：<code class="docutils literal notranslate"><span class="pre">ansible</span> <span class="pre">myhost</span> <span class="pre">--sudo</span> <span class="pre">-m</span> <span class="pre">raw</span> <span class="pre">-a</span> <span class="pre">&quot;yum</span> <span class="pre">install</span> <span class="pre">-y</span> <span class="pre">python2</span> <span class="pre">python-simplejson&quot;</span></code>
+这条命令可以通过远程方式在托管节点上安装 Python 2.X 和 simplejson 模块.</p>
+</dd>
+</dl>
+<p>Red Hat Enterprise Linux, CentOS, Fedora, and Ubuntu 等发行版都默认安装了 2.X 的解释器,包括几乎所有的Unix系统也是如此.</p>
+</aside>
+</section>
+<section id="section-5">
+<span id="installing-the-control-machine"></span><h2><a class="toc-backref" href="#toc-entry-7" role="doc-backlink">安装管理主机</a><a class="headerlink" href="#section-5" title="Permalink to this headline">¶</a></h2>
+<section id="section-6">
+<span id="from-source"></span><h3><a class="toc-backref" href="#toc-entry-8" role="doc-backlink">从源码运行</a><a class="headerlink" href="#section-6" title="Permalink to this headline">¶</a></h3>
+<p>从项目的checkout中可以很容易运行Ansible,Ansible的运行不要求root权限,也不依赖于其他软件,不要求运行后台进程,也不需要设置数据库.因此我们社区的许多用户一直使用Ansible的开发版本,这样可以利用最新的功能特性,也方便对项目做贡献.因为不需要安装任何东西,跟进Ansible的开发版相对于其他开源项目要容易很多.</p>
+<p>从源码安装的步骤</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>git://github.com/ansible/ansible.git<span class="w"> </span>--recursive
+$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>./ansible
+</pre></div>
+</div>
+<p>使用 Bash:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">source</span><span class="w"> </span>./hacking/env-setup
+</pre></div>
+</div>
+<p>使用 Fish:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ . ./hacking/env-setup.fish
+</pre></div>
+</div>
+<p>If you want to suppress spurious warnings/errors, use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ source ./hacking/env-setup -q
+</pre></div>
+</div>
+<p>如果没有安装pip, 请先安装对应于你的Python版本的pip:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo easy_install pip
+</pre></div>
+</div>
+<p>以下的Python模块也需要安装 <a href="#system-message-1"><span class="problematic" id="footnote-reference-1">[1]_</span></a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo pip install paramiko PyYAML Jinja2 httplib2 six
+</pre></div>
+</div>
+<p>注意,当更新ansible版本时,不只要更新git的源码树,也要更新git中指向Ansible自身模块的 “submodules” (不是同一种模块)</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>pull<span class="w"> </span>--rebase
+$<span class="w"> </span>git<span class="w"> </span>submodule<span class="w"> </span>update<span class="w"> </span>--init<span class="w"> </span>--recursive
+</pre></div>
+</div>
+<p>一旦运行env-setup脚本,就意味着Ansible从源码中运行起来了.默认的inventory文件是 /etc/ansible/hosts.inventory文件也可以另行指定 (详见 <a class="reference internal" href="intro_inventory.html"><span class="doc">Inventory文件</span></a>) :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;127.0.0.1&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>~/ansible_hosts
+$<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">ANSIBLE_HOSTS</span><span class="o">=</span>~/ansible_hosts
+</pre></div>
+</div>
+<p>你可以在手册的后续章节阅读更多关于 inventory 文件的使用,现在让我们测试一条ping命令:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span>ping<span class="w"> </span>--ask-pass
+</pre></div>
+</div>
+<p>你也可以使用命令 “sudo make install”</p>
+</section>
+<section id="yum">
+<span id="from-yum"></span><h3><a class="toc-backref" href="#toc-entry-9" role="doc-backlink">通过Yum安装最新发布版本</a><a class="headerlink" href="#yum" title="Permalink to this headline">¶</a></h3>
+<p>通过Yum安装RPMs适用于 <a class="reference external" href="http://fedoraproject.org/wiki/EPEL">EPEL</a> 6, 7, 以及仍在支持中的Fedora发行版.</p>
+<p>托管节点的操作系统版本可以是更早的版本(如 EL5), 但必须安装 Python 2.4 或更高版本的Python.</p>
+<p>Fedora 用户可直接安装Ansible, 但RHEL或CentOS用户,需要 <a class="reference external" href="http://fedoraproject.org/wiki/EPEL">配置 EPEL</a></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># install the epel-release RPM if needed on CentOS, RHEL, or Scientific Linux</span>
+$<span class="w"> </span>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>ansible
+</pre></div>
+</div>
+<p>你也可以自己创建RPM软件包.在Ansible项目的checkout的根目录下,或是在一个tarball中,使用 <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">rpm</span></code> 命令创建RPM软件包.
+然后可分发这个软件包或是使用它来安装Ansible.在创建之前,先确定你已安装了 <code class="docutils literal notranslate"><span class="pre">rpm-build</span></code>, <code class="docutils literal notranslate"><span class="pre">make</span></code>, and <code class="docutils literal notranslate"><span class="pre">python2-devel</span></code> .</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>git://github.com/ansible/ansible.git
+$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>./ansible
+$<span class="w"> </span>make<span class="w"> </span>rpm
+$<span class="w"> </span>sudo<span class="w"> </span>rpm<span class="w"> </span>-Uvh<span class="w"> </span>~/rpmbuild/ansible-*.noarch.rpm
+</pre></div>
+</div>
+</section>
+<section id="apt-ubuntu">
+<span id="from-apt"></span><h3><a class="toc-backref" href="#toc-entry-10" role="doc-backlink">通过Apt (Ubuntu)安装最新发布版本</a><a class="headerlink" href="#apt-ubuntu" title="Permalink to this headline">¶</a></h3>
+<p>Ubuntu 编译版可在PPA中获得: ` &lt;<a class="reference external" href="https://launchpad.net/~ansible/+archive/ansible">https://launchpad.net/~ansible/+archive/ansible</a>&gt;`_.</p>
+<p>配置PPA及安装ansible,执行如下命令:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>software-properties-common
+$<span class="w"> </span>sudo<span class="w"> </span>apt-add-repository<span class="w"> </span>ppa:ansible/ansible
+$<span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+$<span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>ansible
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>在早期Ubuntu发行版中, “software-properties-common” 名为 “python-software-properties”.</p>
+</aside>
+<p>也可从源码checkout中创建 Debian/Ubuntu 软件包,执行:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>make<span class="w"> </span>deb
+</pre></div>
+</div>
+<p>你或许也想从源码中运行最新发行版本,可看前面的说明.</p>
+</section>
+<section id="portage-gentoo">
+<span id="from-pkg"></span><h3><a class="toc-backref" href="#toc-entry-11" role="doc-backlink">通过 Portage (Gentoo)安装最新发布版本</a><a class="headerlink" href="#portage-gentoo" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>emerge<span class="w"> </span>-av<span class="w"> </span>app-admin/ansible
+</pre></div>
+</div>
+<p>要安装最新版本,你可能需要在执行 emerge 之前，先做如下操作(unmsk ansible)</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;app-admin/ansible&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>/etc/portage/package.accept_keywords
+</pre></div>
+</div>
+<p>若在Gentoo托管节点中,已经安装了 Python 3 并将之作为默认的 Python slot(这也是默认设置),则你必须在 组变量 或 inventory 变量中设置如下变量
+<code class="docutils literal notranslate"><span class="pre">ansible_python_interpreter</span> <span class="pre">=</span> <span class="pre">/usr/bin/python2</span></code></p>
+</section>
+<section id="pkg-freebsd">
+<h3><a class="toc-backref" href="#toc-entry-12" role="doc-backlink">通过 pkg (FreeBSD)安装最新发布版本</a><a class="headerlink" href="#pkg-freebsd" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>pkg<span class="w"> </span>install<span class="w"> </span>ansible
+</pre></div>
+</div>
+<p>你或许想从ports中安装:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>make<span class="w"> </span>-C<span class="w"> </span>/usr/ports/sysutils/ansible<span class="w"> </span>install
+</pre></div>
+</div>
+</section>
+<section id="mac-osx">
+<span id="on-macos"></span><h3><a class="toc-backref" href="#toc-entry-13" role="doc-backlink">在Mac OSX 上安装最新发布版本</a><a class="headerlink" href="#mac-osx" title="Permalink to this headline">¶</a></h3>
+<p>在 Mac 上安装 ansible，最好是通过 pip 安装，在 <a class="reference internal" href="#pip">通过 Pip 安装最新发布版本</a> 小节介绍.</p>
+</section>
+<section id="opencsw-solaris">
+<span id="from-pkgutil"></span><h3><a class="toc-backref" href="#toc-entry-14" role="doc-backlink">通过 OpenCSW 安装最新发布版本(Solaris)</a><a class="headerlink" href="#opencsw-solaris" title="Permalink to this headline">¶</a></h3>
+<p>在 Solaris 上安装 ansible: <a class="reference external" href="https://www.opencsw.org/packages/ansible/">SysV package from OpenCSW</a>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># pkgadd -d http://get.opencsw.org/now</span>
+<span class="c1"># /opt/csw/bin/pkgutil -i ansible</span>
+</pre></div>
+</div>
+</section>
+<section id="pacman-arch-linux">
+<span id="from-pacman"></span><h3><a class="toc-backref" href="#toc-entry-15" role="doc-backlink">通过 Pacman 安装最新发布版本(Arch Linux)</a><a class="headerlink" href="#pacman-arch-linux" title="Permalink to this headline">¶</a></h3>
+<p>Ansible 已经放入了 Community repository:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pacman -S ansible
+</pre></div>
+</div>
+<p>The AUR has a PKGBUILD for pulling directly from Github called <a class="reference external" href="https://aur.archlinux.org/packages/ansible-git">ansible-git</a>.</p>
+<p>Also see the <a class="reference external" href="https://wiki.archlinux.org/index.php/Ansible">Ansible</a> page on the ArchWiki.</p>
+<p>如果在 Arch Linux 上已经安装了 Python 3，并设置为默认的 Python slot，你必须在 组变量 或 inventory 变量中设置如下变量:
+<code class="docutils literal notranslate"><span class="pre">ansible_python_interpreter</span> <span class="pre">=</span> <span class="pre">/usr/bin/python2</span></code></p>
+</section>
+<section id="pip">
+<span id="from-pip"></span><h3><a class="toc-backref" href="#toc-entry-16" role="doc-backlink">通过 Pip 安装最新发布版本</a><a class="headerlink" href="#pip" title="Permalink to this headline">¶</a></h3>
+<p>Ansible可通过 “pip” 安装(安装和管理Python包的工具),若你还没有安装 pip,可执行如下命令安装:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo easy_install pip
+</pre></div>
+</div>
+<p>然后安装Ansible:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo pip install ansible
+</pre></div>
+</div>
+<p>如果你是在 OS X Mavericks 上安装,编译器可能或告警或报错,可通过如下设置避免这种情况:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo CFLAGS=-Qunused-arguments CPPFLAGS=-Qunused-arguments pip install ansible
+</pre></div>
+</div>
+<p>使用 virtualenv 的读者可通过 virtualenv 安装 Ansible, 然而我们建议不用这样做,直接在全局安装 Ansible.不要使用 easy_install 直接安装 ansible.</p>
+</section>
+<section id="tarball">
+<span id="tagged-releases"></span><h3><a class="toc-backref" href="#toc-entry-17" role="doc-backlink">发行版的Tarball</a><a class="headerlink" href="#tarball" title="Permalink to this headline">¶</a></h3>
+<p>不想通过git checkout 创建Ansible的软件包？在这里可获取Tarball <a class="reference external" href="http://releases.ansible.com/ansible">Ansible downloads</a></p>
+<p>各种版本的Ansible在这里做了版本标注 <a class="reference external" href="https://github.com/ansible/ansible/releases">git repository</a></p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="intro_adhoc.html"><span class="doc">Introduction To Ad-Hoc Commands</span></a></dt><dd><p>Examples of basic commands</p>
+</dd>
+<dt><a class="reference internal" href="playbooks.html"><span class="doc">Playbooks</span></a></dt><dd><p>Learning ansible’s configuration management language</p>
+</dd>
+<dt><a class="reference external" href="http://groups.google.com/group/ansible-project">Mailing List</a></dt><dd><p>Questions? Help? Ideas?  Stop by the list on Google Groups</p>
+</dd>
+<dt><a class="reference external" href="http://irc.freenode.net">irc.freenode.net</a></dt><dd><p>#ansible IRC chat channel</p>
+</dd>
+</dl>
+</aside>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="intro.html" class="btn btn-neutral float-left" title="总体介绍" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="intro_getting_started.html" class="btn btn-neutral float-right" title="新手上路" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2015, http://www.magedu.com, 马哥Linux团队成员荣誉出品(薛定谔的章鱼 &amp; guli &amp; 以马内利 &amp; 黄博文 &amp; coocla &amp; 云中鹤 &amp; stanley) 官方QQ交流群:372011984.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

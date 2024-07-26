@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ansible中文权威指南 &mdash; 国内最专业的Ansible中文官方学习手册</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="总体介绍" href="docs/intro.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            Ansible中文权威指南
+          </a>
+              <div class="version">
+                5.2.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="docs/intro.html">总体介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/quickstart.html">快速学习视频</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/playbooks.html">Playbooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/playbooks_special_topics.html">Playbooks: Special Topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/modules.html">模块相关</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/guides.html">详细指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/developing.html">开发者须知</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/tower.html">Ansible Tower</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/community.html">Ansible用户</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/community.html#section-4">对当前和未来的开发人员</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/community.html#section-5">其它主题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/galaxy.html">Ansible Galaxy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/test_strategies.html">测试策略</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/faq.html">常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/glossary.html">术语表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/YAMLSyntax.html">YAML 语法</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Ansible中文权威指南</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Ansible中文权威指南</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ansible">
+<h1>Ansible中文权威指南<a class="headerlink" href="#ansible" title="Permalink to this headline">¶</a></h1>
+<p>目录:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="docs/intro.html">总体介绍</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="docs/intro_installation.html">Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="docs/intro_installation.html#githubansible">从Github获取Ansible</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/intro_installation.html#section-1">需要安装些什么</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/intro_installation.html#section-2">选择哪一个版本?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/intro_installation.html#section-3">对管理主机的要求</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/intro_installation.html#section-4">对托管节点的要求</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/intro_installation.html#section-5">安装管理主机</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="docs/intro_getting_started.html">新手上路</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="docs/intro_getting_started.html#section-2">前言</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/intro_getting_started.html#section-3">你的第一条命令</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/intro_getting_started.html#section-4">公钥认证</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="docs/intro_inventory.html">Inventory文件</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="docs/intro_inventory.html#section-1">主机与组</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/intro_inventory.html#section-2">主机变量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/intro_inventory.html#section-3">组的变量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/intro_inventory.html#section-4">把一个组作为另一个组的子成员</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/intro_inventory.html#host-group">分文件定义 Host 和 Group 变量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/intro_inventory.html#inventory-2">Inventory 参数的说明</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="docs/intro_dynamic_inventory.html">动态 Inventory</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="docs/intro_dynamic_inventory.html#cobbler-inventory">Cobbler 外部 Inventory 脚本</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/intro_dynamic_inventory.html#aws-ec2-inventory">AWS EC2 外部 inventory 脚本</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/intro_dynamic_inventory.html#inventory-1">其它 inventory 脚本</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/intro_dynamic_inventory.html#inventory-2">使用多个 inventory 源</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/intro_dynamic_inventory.html#section-1">动态组作为静态组的子组</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="docs/intro_patterns.html">Patterns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/intro_adhoc.html">Introduction To Ad-Hoc Commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="docs/intro_adhoc.html#parallelism-and-shell-commands-1">Parallelism and Shell Commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/intro_adhoc.html#file-transfer-1">File Transfer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/intro_adhoc.html#managing-packages-1">Managing Packages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/intro_adhoc.html#users-and-groups-1">Users and Groups</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/intro_adhoc.html#deploying-from-source-control">Deploying From Source Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/intro_adhoc.html#managing-services-1">Managing Services</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/intro_adhoc.html#time-limited-background-operations-1">Time Limited Background Operations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/intro_adhoc.html#gathering-facts">Gathering Facts</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="docs/intro_configuration.html">Ansible的配置文件</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="docs/intro_configuration.html#section-1">获取最新配置文件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/intro_configuration.html#section-2">环境配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/intro_configuration.html#section-3">配置文件不同段详解</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="docs/intro_windows.html">Windows Support</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="docs/intro_windows.html#windows">windows下的运行方式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/intro_windows.html#section-1">安装管理机</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/intro_windows.html#inventory">Inventory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/intro_windows.html#windows-system-prep-1">Windows System Prep</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/intro_windows.html#getting-to-powershell-3-0-or-higher">Getting to PowerShell 3.0 or higher</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/intro_windows.html#windows-1">可用的windows模块</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/intro_windows.html#section-2">开发者:支持的模块及工作原理</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/intro_windows.html#linux">提醒:控制机必须是Linux系统</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/intro_windows.html#windows-facts-1">Windows Facts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/intro_windows.html#windows-playbook-examples">Windows Playbook Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/intro_windows.html#windows-contributions-1">Windows Contributions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="docs/quickstart.html">快速学习视频</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/playbooks.html">Playbooks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="docs/playbooks_intro.html">Playbooks 介绍</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_intro.html#playbooks-1">Playbooks 简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_intro.html#playbook">Playbook 语言的示例</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_intro.html#playbook-1">playbook基础</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_intro.html#action-shorthand-1">Action Shorthand</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_intro.html#handlers-1">Handlers: 在发生改变时执行的操作</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_intro.html#playbook-2">执行一个 playbook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_intro.html#ansible-pull-1">Ansible-Pull（拉取配置而非推送配置）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_intro.html#section-2">提示与技巧</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="docs/playbooks_roles.html">Playbook 角色(Roles) 和 Include 语句</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_roles.html#section-1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_roles.html#task-include-files-and-encouraging-reuse">Task Include Files And Encouraging Reuse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_roles.html#roles-1">Roles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_roles.html#role-default-variables">角色默认变量(Role Default Variables)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_roles.html#role-dependencies">角色依赖(Role Dependencies)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_roles.html#roles-2">在 Roles 中嵌入模块</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_roles.html#ansible-galaxy">Ansible Galaxy</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="docs/playbooks_variables.html">Variables</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_variables.html#section-1">合法的变量名</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_variables.html#inventory">在Inventory中定义变量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_variables.html#playbook">在playbook中定义变量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_variables.html#role">在文件和role中定义变量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_variables.html#jinja2">使用变量: 关于Jinja2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_variables.html#jinja2-1">Jinja2过滤器</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_variables.html#yaml">YAML陷阱</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_variables.html#facts">使用Facts获取的信息</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_variables.html#facts-1">关闭Facts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_variables.html#facts-facts-d">本地Facts(Facts.d)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_variables.html#fact">Fact缓存</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_variables.html#section-2">注册变量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_variables.html#section-3">访问复杂变量数据</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_variables.html#section-4">魔法变量,以及如何访问其它主机的信息</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_variables.html#section-5">变量文件分割</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_variables.html#section-6">命令行中传递变量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_variables.html#section-7">变量的优先级: 我该在什么地方放置变量?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="docs/playbooks_conditionals.html">条件选择</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_conditionals.html#when">When 语句</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_conditionals.html#section-2">加载客户事件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_conditionals.html#roles-includes-when">在roles 和 includes 上面应用’when’语句</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_conditionals.html#section-3">条件导入</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_conditionals.html#section-4">基于变量选择文件和模版</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_conditionals.html#section-5">注册变量</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="docs/playbooks_loops.html">循环</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_loops.html#section-2">标准循环</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_loops.html#section-3">嵌套循环</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_loops.html#section-4">对哈希表使用循环</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_loops.html#section-5">对文件列表使用循环</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_loops.html#section-6">对并行数据集使用循环</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_loops.html#section-7">对子元素使用循环</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_loops.html#section-8">对整数序列使用循环</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_loops.html#section-9">随机选择</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_loops.html#do-until">Do-Until循环</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_loops.html#section-10">查找第一个匹配的文件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_loops.html#section-11">迭代程序的执行结果</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_loops.html#section-12">使用索引循环列表</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_loops.html#section-13">循环配置文件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_loops.html#section-14">扁平化列表</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_loops.html#section-15">循环中使用注册器</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_loops.html#section-16">自定义迭代</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="docs/playbooks_best_practices.html">最佳实践</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_best_practices.html#content-organization-1">Content Organization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_best_practices.html#stage-vs-production-1">Stage vs Production</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_best_practices.html#rolling-updates">Rolling Updates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_best_practices.html#always-mention-the-state">Always Mention The State</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_best_practices.html#group-by-roles-1">Group By Roles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_best_practices.html#operating-system-and-distribution-variance">Operating System and Distribution Variance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_best_practices.html#bundling-ansible-modules-with-playbooks">Bundling Ansible Modules With Playbooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_best_practices.html#whitespace-and-comments">Whitespace and Comments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_best_practices.html#always-name-tasks">Always Name Tasks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_best_practices.html#keep-it-simple-1">Keep It Simple</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_best_practices.html#version-control-1">Version Control</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="docs/playbooks_special_topics.html">Playbooks: Special Topics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="docs/playbooks_acceleration.html">Accelerated Mode</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_acceleration.html#section-1">你也许不需要这个！</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_acceleration.html#section-2">加速模式详解</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="docs/playbooks_async.html">异步操作和轮询</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/playbooks_checkmode.html">Check Mode (“Dry Run”)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_checkmode.html#section-1">在测试模式下运行一个任务.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_checkmode.html#showing-differences-with-diff">Showing Differences with <code class="docutils literal notranslate"><span class="pre">--diff</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="docs/playbooks_delegation.html">委托,滚动更新,本地动作</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_delegation.html#section-2">最大失败百分比</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_delegation.html#section-3">委任</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_delegation.html#run-once-1">Run Once</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_delegation.html#playbooks">本地Playbooks</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="docs/playbooks_environment.html">配置环境 (在代理环境中)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/playbooks_error_handling.html">Playbooks 中的错误处理</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_error_handling.html#section-1">忽略错误的命令</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_error_handling.html#section-2">控制对失败的定义</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_error_handling.html#section-3">覆写更改结果</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="docs/playbooks_tags.html">标签</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/playbooks_vault.html">Vault</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_vault.html#vault-1">Vault可以加密些什么</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_vault.html#section-1">创建加密文件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_vault.html#editing">Editing加密文件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_vault.html#section-2">密钥更新加密文件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_vault.html#section-3">加密普通文件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_vault.html#section-4">解密已加密文件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_vault.html#section-5">查阅已加密文件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_vault.html#vaultplaybook">在Vault下运行Playbook</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="docs/playbooks_startnstep.html">从指定任务开始运行palybook以及分步运行playbook</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_startnstep.html#start-at-task-1">Start-at-task</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/playbooks_startnstep.html#playbook">分步运行playbook</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="docs/modules.html">模块相关</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="docs/modules_intro.html">简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/modules_core.html">核心模块</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/modules_extra.html">额外模块</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/common_return_values.html">共同的返回值</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="docs/common_return_values.html#facts-1">Facts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/common_return_values.html#status-1">Status</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/common_return_values.html#section-2">其他的共同返回</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="docs/guides.html">详细指南</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="docs/guide_aws.html">Amazon Web Services Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="docs/guide_aws.html#section-1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/guide_aws.html#section-2">认证</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/guide_aws.html#provisioning">供给(Provisioning)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/guide_aws.html#section-3">主机清单</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/guide_aws.html#section-4">标签,组和变量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/guide_aws.html#ansible-pull">使用Ansible Pull自动伸缩</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/guide_aws.html#asnible-tower">使用Asnible Tower自动伸缩</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/guide_aws.html#ansible">Ansible云构造</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/guide_aws.html#ansible-aws">使用Ansible 构造AWS镜像</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/guide_aws.html#section-5">下一步:探索模块</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="docs/guide_rax.html">Rackspace 云指南</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="docs/guide_rax.html#section-1">介绍</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/guide_rax.html#section-2">凭证文件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/guide_rax.html#section-3">配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/guide_rax.html#inventory">主机 Inventory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/guide_rax.html#section-4">使用案例</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/guide_rax.html#section-8">高级用法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="docs/guide_gce.html">Google Cloud Platform Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="docs/guide_gce.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/guide_gce.html#credentials">Credentials</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/guide_gce.html#gce-dynamic-inventory">GCE Dynamic Inventory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/guide_gce.html#use-cases">Use Cases</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="docs/guide_vagrant.html">使用Vagrant和Ansible</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="docs/guide_vagrant.html#section-1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/guide_vagrant.html#vagrant">配置Vagrant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/guide_vagrant.html#ansible">手动运行Ansible</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="docs/guide_rolling_upgrade.html">持续交付与滚动升级</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="docs/guide_rolling_upgrade.html#section-2">介绍</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/guide_rolling_upgrade.html#section-3">部署网站</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/guide_rolling_upgrade.html#roles">可重用的: Roles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/guide_rolling_upgrade.html#group-variables">配置: Group Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/guide_rolling_upgrade.html#section-4">滚动升级</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/guide_rolling_upgrade.html#section-5">管理其他的负载均衡</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/guide_rolling_upgrade.html#section-6">持续交付结束</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="docs/developing.html">开发者须知</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="docs/developing_api.html">Python API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="docs/developing_api.html#python-api-2">Python API</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="docs/developing_inventory.html">开发动态的Inventory数据源</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="docs/developing_inventory.html#section-1">脚本规范</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/developing_inventory.html#inventory-1">开启调用外部Inventory脚本</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="docs/developing_modules.html">Developing Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="docs/developing_modules.html#tutorial">Tutorial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/developing_modules.html#testing-modules">Testing Modules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/developing_modules.html#reading-input-1">Reading Input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/developing_modules.html#module-provided-facts-1">Module Provided ‘Facts’</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/developing_modules.html#common-module-boilerplate-1">Common Module Boilerplate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/developing_modules.html#check-mode">Check Mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/developing_modules.html#common-pitfalls">Common Pitfalls</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/developing_modules.html#conventions-recommendations">Conventions/Recommendations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/developing_modules.html#documenting-your-module">Documenting Your Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/developing_modules.html#module-paths">Module Paths</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/developing_modules.html#getting-your-module-into-ansible">Getting Your Module Into Ansible</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/developing_modules.html#module-checklist">Module checklist</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/developing_modules.html#windows-modules-checklist">Windows modules checklist</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/developing_modules.html#deprecating-and-making-module-aliases">Deprecating and making module aliases</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="docs/developing_plugins.html">Developing Plugins</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="docs/developing_plugins.html#connection-type-plugins">Connection Type Plugins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/developing_plugins.html#lookup-plugins">Lookup Plugins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/developing_plugins.html#vars-plugins">Vars Plugins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/developing_plugins.html#filter-plugins">Filter Plugins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/developing_plugins.html#callbacks">Callbacks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/developing_plugins.html#distributing-plugins-1">Distributing Plugins</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="docs/developing_test_pr.html">帮助测试PR</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="docs/developing_test_pr.html#section-1">开始测试</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/developing_test_pr.html#section-2">使用开发环境</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/developing_test_pr.html#section-3">找到对应分支并测试</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/developing_test_pr.html#for-those-about-to-test-we-salute-you">For Those About To Test, We Salute You</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="docs/tower.html">Ansible Tower</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/community.html">Ansible用户</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="docs/community.html#section-1">我有个问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/community.html#section-2">我想跟上版本发布公告</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/community.html#ansible-1">我想帮助分享和改善Ansible</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/community.html#ansible-2">我想让Ansible开发的更快</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/community.html#bug">我想报告 Bug</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/community.html#section-3">我想帮助改善文档</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="docs/community.html#section-4">对当前和未来的开发人员</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="docs/community.html#ansible-3">我想学习如何在 Ansible 上开发</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/community.html#bug-1">贡献代码(特性或者修复bug)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="docs/community.html#section-5">其它主题</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="docs/community.html#ansible-4">Ansible 职员</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/community.html#section-6">邮件列表信息</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/community.html#section-7">版本号</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/community.html#tower">Tower 支持问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/community.html#irc">IRC 频道</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/community.html#section-8">注意优先级的标识</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/community.html#section-9">社区代码和产品</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/community.html#section-10">贡献执照许可</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="docs/galaxy.html">Ansible Galaxy</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="docs/galaxy.html#ansible-galaxy-2">ansible-galaxy命令行工具</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="docs/galaxy.html#section-1">安装角色</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/galaxy.html#section-2">构建角色架构</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/galaxy.html#section-3">从一个文件安装多个角色</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/galaxy.html#requirements">Requirements 文件高级用法</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="docs/test_strategies.html">测试策略</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="docs/test_strategies.html#ansible-playbooks">Ansible Playbooks 的集成测试</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/test_strategies.html#section-2">正确的测试等级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/test_strategies.html#check">Check 模块作为主要测试</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/test_strategies.html#section-3">用于测试的模块</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/test_strategies.html#section-4">测试的生命周期</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/test_strategies.html#section-5">结合滚动更新测试</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/test_strategies.html#section-6">实现连续部署</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/test_strategies.html#section-7">结尾</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="docs/faq.html">常见问题</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="docs/faq.html#task-playbook-path">我可以为一个任务(task)或剧本(playbook)设置 PATH 或者其它环境变量吗？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/faq.html#section-2">如何处理需要不同账户与端口登录的不同机器？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/faq.html#ansible-kerberized-ssh-ansible-ssh-config">如何让 ansible 重用连接，启用 Kerberized SSH，或者让Ansible 注意本地的 SSH config 文件。</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/faq.html#ec2">如何在EC2内加速管理？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/faq.html#usr-bin-python">如何处理远程机器上没有 /usr/bin/python 路径？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/faq.html#section-3">让内容重用和重新分发的最好方式是什么？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/faq.html#section-4">配置文件在那个地方，我如何配置它？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/faq.html#cowsay">如何禁止 cowsay?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/faq.html#section-5">如何遍历某一组内的所有主机，在模板中？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/faq.html#section-6">如何以编程方式访问变量名</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/faq.html#section-7">如何访问组内第一个主机的变量？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/faq.html#section-8">如何递归的宝贝文件到目标主机上?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/faq.html#shell">如何查看 shell 环境变量？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/faq.html#section-9">如何为用户模块生成加密密码？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/faq.html#ansible">如何获得Ansible培训到商业支持？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/faq.html#rest-api-etc">有网络接口  / REST API / etc?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/faq.html#section-10">如何提交文档改变信息？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/faq.html#section-11">如何加密我的剧本数据？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/faq.html#section-12">在这里我没看到我的问题</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="docs/glossary.html">术语表</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="docs/glossary.html#action">动作(Action)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/glossary.html#ad-hoc">Ad Hoc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/glossary.html#async">Async</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/glossary.html#callback-plugin">Callback Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/glossary.html#check-mode">Check Mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/glossary.html#connection-type-connection-plugin">Connection Type, Connection Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/glossary.html#conditionals">Conditionals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/glossary.html#diff-mode">Diff Mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/glossary.html#facts">Facts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/glossary.html#filter-plugin">Filter Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/glossary.html#forks">Forks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/glossary.html#gather-facts-boolean">Gather Facts (Boolean)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/glossary.html#globbing">Globbing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/glossary.html#group">Group</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/glossary.html#group-vars">Group Vars</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/glossary.html#handlers">Handlers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/glossary.html#host">Host</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/glossary.html#host-specifier">Host Specifier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/glossary.html#host-vars">Host Vars</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/glossary.html#lazy-evaluation">Lazy Evaluation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/glossary.html#lookup-plugin">Lookup Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/glossary.html#multi-tier">Multi-Tier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/glossary.html#idempotency">Idempotency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/glossary.html#includes">Includes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/glossary.html#inventory">Inventory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/glossary.html#inventory-script">Inventory Script</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/glossary.html#jinja2">Jinja2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/glossary.html#json">JSON</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/glossary.html#library">Library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/glossary.html#limit-groups">Limit Groups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/glossary.html#local-connection">Local Connection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/glossary.html#local-action">Local Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/glossary.html#loops">Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/glossary.html#modules">Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/glossary.html#notify">Notify</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/glossary.html#orchestration">Orchestration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/glossary.html#paramiko">paramiko</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/glossary.html#playbooks">Playbooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/glossary.html#plays">Plays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/glossary.html#pull-mode">Pull Mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/glossary.html#push-mode">Push Mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/glossary.html#register-variable">Register Variable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/glossary.html#resource-model">Resource Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/glossary.html#roles">Roles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/glossary.html#rolling-update">Rolling Update</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/glossary.html#runner">Runner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/glossary.html#serial">Serial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/glossary.html#ssh-native">SSH (Native)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/glossary.html#tags">Tags</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/glossary.html#tasks">Tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/glossary.html#templates">Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/glossary.html#transport">Transport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/glossary.html#when">When</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/glossary.html#van-halen">Van Halen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/glossary.html#vars-variables">Vars (Variables)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/glossary.html#yaml">YAML</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="docs/YAMLSyntax.html">YAML 语法</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="docs/YAMLSyntax.html#yaml-1">基本的 YAML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/YAMLSyntax.html#gotchas">Gotchas</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="docs/intro.html" class="btn btn-neutral float-right" title="总体介绍" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2015, http://www.magedu.com, 马哥Linux团队成员荣誉出品(薛定谔的章鱼 &amp; guli &amp; 以马内利 &amp; 黄博文 &amp; coocla &amp; 云中鹤 &amp; stanley) 官方QQ交流群:372011984.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

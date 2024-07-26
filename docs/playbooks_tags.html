@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>标签 &mdash; 国内最专业的Ansible中文官方学习手册</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Vault" href="playbooks_vault.html" />
+    <link rel="prev" title="Playbooks 中的错误处理" href="playbooks_error_handling.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Ansible中文权威指南
+          </a>
+              <div class="version">
+                5.2.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">总体介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">快速学习视频</a></li>
+<li class="toctree-l1"><a class="reference internal" href="playbooks.html">Playbooks</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="playbooks_special_topics.html">Playbooks: Special Topics</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="playbooks_acceleration.html">Accelerated Mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_async.html">异步操作和轮询</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_checkmode.html">Check Mode (“Dry Run”)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_delegation.html">委托,滚动更新,本地动作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_environment.html">配置环境 (在代理环境中)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_error_handling.html">Playbooks 中的错误处理</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">标签</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_vault.html">Vault</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_startnstep.html">从指定任务开始运行palybook以及分步运行playbook</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">模块相关</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guides.html">详细指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developing.html">开发者须知</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tower.html">Ansible Tower</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community.html">Ansible用户</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community.html#section-4">对当前和未来的开发人员</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community.html#section-5">其它主题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="galaxy.html">Ansible Galaxy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test_strategies.html">测试策略</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">术语表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="YAMLSyntax.html">YAML 语法</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Ansible中文权威指南</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="playbooks_special_topics.html">Playbooks: Special Topics</a></li>
+      <li class="breadcrumb-item active">标签</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/docs/playbooks_tags.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="section-1">
+<h1>标签<a class="headerlink" href="#section-1" title="Permalink to this headline">¶</a></h1>
+<p>如果你有一个大型的 playbook,那能够只运行其中特定部分的配置而无需运行整个 playbook
+将会很有用.</p>
+<p>plays 和 tasks 都因这个理由而支持 “tags:”</p>
+<p>例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tasks</span><span class="p">:</span>
+
+    <span class="o">-</span> <span class="n">yum</span><span class="p">:</span> <span class="n">name</span><span class="o">=</span><span class="p">{{</span> <span class="n">item</span> <span class="p">}}</span> <span class="n">state</span><span class="o">=</span><span class="n">installed</span>
+      <span class="n">with_items</span><span class="p">:</span>
+         <span class="o">-</span> <span class="n">httpd</span>
+         <span class="o">-</span> <span class="n">memcached</span>
+      <span class="n">tags</span><span class="p">:</span>
+         <span class="o">-</span> <span class="n">packages</span>
+
+    <span class="o">-</span> <span class="n">template</span><span class="p">:</span> <span class="n">src</span><span class="o">=</span><span class="n">templates</span><span class="o">/</span><span class="n">src</span><span class="o">.</span><span class="n">j2</span> <span class="n">dest</span><span class="o">=/</span><span class="n">etc</span><span class="o">/</span><span class="n">foo</span><span class="o">.</span><span class="n">conf</span>
+      <span class="n">tags</span><span class="p">:</span>
+         <span class="o">-</span> <span class="n">configuration</span>
+</pre></div>
+</div>
+<p>如果你只想运行一个非常大的 playbook 中的 “configuration” 和 “packages”,你可以这样做:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ansible</span><span class="o">-</span><span class="n">playbook</span> <span class="n">example</span><span class="o">.</span><span class="n">yml</span> <span class="o">--</span><span class="n">tags</span> <span class="s2">&quot;configuration,packages&quot;</span>
+</pre></div>
+</div>
+<p>另一方面,如果你只想执行 playbook 中某个特定任务 <em>之外</em> 的所有任务,你可以这样做:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ansible</span><span class="o">-</span><span class="n">playbook</span> <span class="n">example</span><span class="o">.</span><span class="n">yml</span> <span class="o">--</span><span class="n">skip</span><span class="o">-</span><span class="n">tags</span> <span class="s2">&quot;notification&quot;</span>
+</pre></div>
+</div>
+<p>你同样也可以对 roles 应用 tags:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">roles</span><span class="p">:</span>
+  <span class="o">-</span> <span class="p">{</span> <span class="n">role</span><span class="p">:</span> <span class="n">webserver</span><span class="p">,</span> <span class="n">port</span><span class="p">:</span> <span class="mi">5000</span><span class="p">,</span> <span class="n">tags</span><span class="p">:</span> <span class="p">[</span> <span class="s1">&#39;web&#39;</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span> <span class="p">]</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>你同样也可以对基本的 include 语句使用 tag:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">include</span><span class="p">:</span> <span class="n">foo</span><span class="o">.</span><span class="n">yml</span> <span class="n">tags</span><span class="o">=</span><span class="n">web</span><span class="p">,</span><span class="n">foo</span>
+</pre></div>
+</div>
+<p>以上这样也有对每个 include 语句中的单个任务进行标签的功能.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="playbooks.html"><span class="doc">Playbooks</span></a></dt><dd><p>An introduction to playbooks</p>
+</dd>
+<dt><a class="reference internal" href="playbooks_roles.html"><span class="doc">Playbook 角色(Roles) 和 Include 语句</span></a></dt><dd><p>Playbook organization by roles</p>
+</dd>
+<dt><a class="reference external" href="http://groups.google.com/group/ansible-devel">User Mailing List</a></dt><dd><p>Have a question?  Stop by the google group!</p>
+</dd>
+<dt><a class="reference external" href="http://irc.freenode.net">irc.freenode.net</a></dt><dd><p>#ansible IRC chat channel</p>
+</dd>
+</dl>
+</aside>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="playbooks_error_handling.html" class="btn btn-neutral float-left" title="Playbooks 中的错误处理" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="playbooks_vault.html" class="btn btn-neutral float-right" title="Vault" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2015, http://www.magedu.com, 马哥Linux团队成员荣誉出品(薛定谔的章鱼 &amp; guli &amp; 以马内利 &amp; 黄博文 &amp; coocla &amp; 云中鹤 &amp; stanley) 官方QQ交流群:372011984.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

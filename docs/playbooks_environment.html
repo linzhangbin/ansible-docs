@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>配置环境 (在代理环境中) &mdash; 国内最专业的Ansible中文官方学习手册</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Playbooks 中的错误处理" href="playbooks_error_handling.html" />
+    <link rel="prev" title="委托,滚动更新,本地动作" href="playbooks_delegation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Ansible中文权威指南
+          </a>
+              <div class="version">
+                5.2.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">总体介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">快速学习视频</a></li>
+<li class="toctree-l1"><a class="reference internal" href="playbooks.html">Playbooks</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="playbooks_special_topics.html">Playbooks: Special Topics</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="playbooks_acceleration.html">Accelerated Mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_async.html">异步操作和轮询</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_checkmode.html">Check Mode (“Dry Run”)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_delegation.html">委托,滚动更新,本地动作</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">配置环境 (在代理环境中)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_error_handling.html">Playbooks 中的错误处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_tags.html">标签</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_vault.html">Vault</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_startnstep.html">从指定任务开始运行palybook以及分步运行playbook</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">模块相关</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guides.html">详细指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developing.html">开发者须知</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tower.html">Ansible Tower</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community.html">Ansible用户</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community.html#section-4">对当前和未来的开发人员</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community.html#section-5">其它主题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="galaxy.html">Ansible Galaxy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test_strategies.html">测试策略</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">术语表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="YAMLSyntax.html">YAML 语法</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Ansible中文权威指南</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="playbooks_special_topics.html">Playbooks: Special Topics</a></li>
+      <li class="breadcrumb-item active">配置环境 (在代理环境中)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/docs/playbooks_environment.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="section-1">
+<h1>配置环境 (在代理环境中)<a class="headerlink" href="#section-1" title="Permalink to this headline">¶</a></h1>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.1.</span></p>
+</div>
+<p>你完全有可能遇到一些更新包需要通过proxy才能正常获取,或者甚至一部分包需要通过proxy升级而另外一部分包则不需要通过proxy.或者可能你的某个脚本需要调用某个环境变量才能正常运行.</p>
+<p>Ansible 使用 ‘environment’ 关键字对于环境部署的配置非常简单容易,下面是一个使用案例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">hosts</span><span class="p">:</span> <span class="nb">all</span>
+  <span class="n">remote_user</span><span class="p">:</span> <span class="n">root</span>
+
+  <span class="n">tasks</span><span class="p">:</span>
+
+    <span class="o">-</span> <span class="n">apt</span><span class="p">:</span> <span class="n">name</span><span class="o">=</span><span class="n">cobbler</span> <span class="n">state</span><span class="o">=</span><span class="n">installed</span>
+      <span class="n">environment</span><span class="p">:</span>
+        <span class="n">http_proxy</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">proxy</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="mi">8080</span>
+</pre></div>
+</div>
+<p>environment 也可以被存储在变量中,像如下方式访问:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">hosts</span><span class="p">:</span> <span class="nb">all</span>
+  <span class="n">remote_user</span><span class="p">:</span> <span class="n">root</span>
+
+  <span class="c1"># here we make a variable named &quot;proxy_env&quot; that is a dictionary</span>
+  <span class="nb">vars</span><span class="p">:</span>
+    <span class="n">proxy_env</span><span class="p">:</span>
+      <span class="n">http_proxy</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">proxy</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="mi">8080</span>
+
+  <span class="n">tasks</span><span class="p">:</span>
+
+    <span class="o">-</span> <span class="n">apt</span><span class="p">:</span> <span class="n">name</span><span class="o">=</span><span class="n">cobbler</span> <span class="n">state</span><span class="o">=</span><span class="n">installed</span>
+      <span class="n">environment</span><span class="p">:</span> <span class="n">proxy_env</span>
+</pre></div>
+</div>
+<p>虽然上面只展示了 proxy 设置,但其实可以同时其实支持多个设置. 大部分合合乎逻辑的地方来定义一个环境变量都可以成为 group_vars 文件,示例如下:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---</span>
+<span class="c1"># file: group_vars/boston</span>
+
+<span class="n">ntp_server</span><span class="p">:</span> <span class="n">ntp</span><span class="o">.</span><span class="n">bos</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">com</span>
+<span class="n">backup</span><span class="p">:</span> <span class="n">bak</span><span class="o">.</span><span class="n">bos</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">com</span>
+<span class="n">proxy_env</span><span class="p">:</span>
+  <span class="n">http_proxy</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">proxy</span><span class="o">.</span><span class="n">bos</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="mi">8080</span>
+  <span class="n">https_proxy</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">proxy</span><span class="o">.</span><span class="n">bos</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="mi">8080</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="playbooks.html"><span class="doc">Playbooks</span></a></dt><dd><p>An introduction to playbooks</p>
+</dd>
+<dt><a class="reference external" href="http://groups.google.com/group/ansible-devel">User Mailing List</a></dt><dd><p>Have a question?  Stop by the google group!</p>
+</dd>
+<dt><a class="reference external" href="http://irc.freenode.net">irc.freenode.net</a></dt><dd><p>#ansible IRC chat channel</p>
+</dd>
+</dl>
+</aside>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="playbooks_delegation.html" class="btn btn-neutral float-left" title="委托,滚动更新,本地动作" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="playbooks_error_handling.html" class="btn btn-neutral float-right" title="Playbooks 中的错误处理" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2015, http://www.magedu.com, 马哥Linux团队成员荣誉出品(薛定谔的章鱼 &amp; guli &amp; 以马内利 &amp; 黄博文 &amp; coocla &amp; 云中鹤 &amp; stanley) 官方QQ交流群:372011984.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

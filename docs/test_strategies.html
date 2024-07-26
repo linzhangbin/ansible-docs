@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>测试策略 &mdash; 国内最专业的Ansible中文官方学习手册</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="常见问题" href="faq.html" />
+    <link rel="prev" title="Ansible Galaxy" href="galaxy.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Ansible中文权威指南
+          </a>
+              <div class="version">
+                5.2.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">总体介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">快速学习视频</a></li>
+<li class="toctree-l1"><a class="reference internal" href="playbooks.html">Playbooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="playbooks_special_topics.html">Playbooks: Special Topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">模块相关</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guides.html">详细指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developing.html">开发者须知</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tower.html">Ansible Tower</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community.html">Ansible用户</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community.html#section-4">对当前和未来的开发人员</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community.html#section-5">其它主题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="galaxy.html">Ansible Galaxy</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">测试策略</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#ansible-playbooks">Ansible Playbooks 的集成测试</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#section-2">正确的测试等级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#check">Check 模块作为主要测试</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#section-3">用于测试的模块</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#section-4">测试的生命周期</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#section-5">结合滚动更新测试</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#section-6">实现连续部署</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#section-7">结尾</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">术语表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="YAMLSyntax.html">YAML 语法</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Ansible中文权威指南</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">测试策略</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/docs/test_strategies.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="section-1">
+<h1>测试策略<a class="headerlink" href="#section-1" title="Permalink to this headline">¶</a></h1>
+<section id="ansible-playbooks">
+<span id="testing-intro"></span><h2>Ansible Playbooks 的集成测试<a class="headerlink" href="#ansible-playbooks" title="Permalink to this headline">¶</a></h2>
+<p>很多时候, 人们问, “我怎样才能最好的将 Ansible playbooks 和测试结合在一起?” 这有很多选择. Ansible 的设计实际上是一个”fail-fast”有序系统, 因此它可以很容易地嵌入到 Ansible playbooks. 在这一章节, 我们将讨论基础设施的集成测试及合适的测试等级.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>这是一个关于测试你部署应用程序的章节, 不是如何测试开发的 Ansible 模块. 对于那些内容, 请移步开发区域.</p>
+</aside>
+<p>通过将某种程度的测试部署合并到部署工作流中, 当代码运行在生产环境中这将减少意外的产生, 在许多情况下, 测试可以避免在生产中因为更新失败而导致的迁移整个安装. 因为它是基于推送的, 它可以很容易的运行在 localhost 或者测试服务器上. Ansible 允许你添加尽可能多的检查在你的升级流程中.</p>
+</section>
+<section id="section-2">
+<h2>正确的测试等级<a class="headerlink" href="#section-2" title="Permalink to this headline">¶</a></h2>
+<p>Ansible 资源是期望状态的模块. 因此测试服务是否处于运行, 包是否已经安装, 或其他这样的事情它不是必要的. Ansible 确保这些系统中的这些声明是真实的. 相反, 在你的 playbooks 中 assert 这些事情.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">tasks</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">name=foo state=started enabled=yes</span>
+</pre></div>
+</div>
+<p>如果你认为该服务可能没有启动, 最好的事情就是要求它处于启动状态. 如果这个服务启动失败, Ansible 将适当的抛出. (这不应该和服务是否正在做一些功能性的事情混淆, 而我们应该更多的展示如何做这些事).</p>
+</section>
+<section id="check">
+<h2>Check 模块作为主要测试<a class="headerlink" href="#check" title="Permalink to this headline">¶</a></h2>
+<p>在上面的设置中, <cite>–check</cite> 模块在 Ansible 中可以作为一层测试. 如果在一个现有的系统部署 playbook, 使用 <cite>–check</cite> 选项 <cite>ansible</cite> 命令将会报告出 Ansible 使系统进入一个期望状态所做的任何更改.</p>
+<p>这可以让你知道前面任何需要不如到给定系统的信息. 一般的脚本和命令不运行在检查模式, 所以如果你想要某些步骤总是在检查模式下执行, 例如调用 script 模块, 添加 ‘always_run’ 标记:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">roles</span><span class="p">:</span>
+  <span class="o">-</span> <span class="n">webserver</span>
+
+<span class="n">tasks</span><span class="p">:</span>
+  <span class="o">-</span> <span class="n">script</span><span class="p">:</span> <span class="n">verify</span><span class="o">.</span><span class="n">sh</span>
+    <span class="n">always_run</span><span class="p">:</span> <span class="kc">True</span>
+</pre></div>
+</div>
+</section>
+<section id="section-3">
+<h2>用于测试的模块<a class="headerlink" href="#section-3" title="Permalink to this headline">¶</a></h2>
+<p>某些 playbook 模块对于测试特别友好. 下面的例子保证端口处于打开状态:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tasks</span><span class="p">:</span>
+
+  <span class="o">-</span> <span class="n">wait_for</span><span class="p">:</span> <span class="n">host</span><span class="o">=</span><span class="p">{{</span> <span class="n">inventory_hostname</span> <span class="p">}}</span> <span class="n">port</span><span class="o">=</span><span class="mi">22</span>
+    <span class="n">delegate_to</span><span class="p">:</span> <span class="n">localhost</span>
+</pre></div>
+</div>
+<p>这是使用 URI 模块来确保 web service 有正确的返回:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tasks</span><span class="p">:</span>
+
+  <span class="o">-</span> <span class="n">action</span><span class="p">:</span> <span class="n">uri</span> <span class="n">url</span><span class="o">=</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">com</span> <span class="n">return_content</span><span class="o">=</span><span class="n">yes</span>
+    <span class="n">register</span><span class="p">:</span> <span class="n">webpage</span>
+
+  <span class="o">-</span> <span class="n">fail</span><span class="p">:</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;service is not happy&#39;</span>
+    <span class="n">when</span><span class="p">:</span> <span class="s2">&quot;&#39;AWESOME&#39; not in webpage.content&quot;</span>
+</pre></div>
+</div>
+<p>可以很容易的将任意(语言)的脚本推送到远程主机上, 如果这个脚本有一个非零的返回码, 它将自动失效:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tasks</span><span class="p">:</span>
+
+  <span class="o">-</span> <span class="n">script</span><span class="p">:</span> <span class="n">test_script1</span>
+  <span class="o">-</span> <span class="n">script</span><span class="p">:</span> <span class="n">test_script2</span> <span class="o">--</span><span class="n">parameter</span> <span class="n">value</span> <span class="o">--</span><span class="n">parameter2</span> <span class="n">value</span>
+</pre></div>
+</div>
+<p>如果使用 roles(你应该这样做, roles 是伟大的!), 脚本模块可以推送 role 下的 ‘files/’ 目录下的脚本</p>
+<p>添加 assert 模块, 它可以很容易的验证各种真理:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tasks</span><span class="p">:</span>
+
+   <span class="o">-</span> <span class="n">shell</span><span class="p">:</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">some</span><span class="o">-</span><span class="n">command</span> <span class="o">--</span><span class="n">parameter</span> <span class="n">value</span>
+     <span class="n">register</span><span class="p">:</span> <span class="n">cmd_result</span>
+
+   <span class="o">-</span> <span class="k">assert</span><span class="p">:</span>
+       <span class="n">that</span><span class="p">:</span>
+         <span class="o">-</span> <span class="s2">&quot;&#39;not ready&#39; not in cmd_result.stderr&quot;</span>
+         <span class="o">-</span> <span class="s2">&quot;&#39;gizmo enabled&#39; in cmd_result.stdout&quot;</span>
+</pre></div>
+</div>
+<p>如果你觉得需要测试通过 Ansible 设置的文件是否存在, ‘stat’ 模块是一个不错的选择:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tasks</span><span class="p">:</span>
+
+   <span class="o">-</span> <span class="n">stat</span><span class="p">:</span> <span class="n">path</span><span class="o">=/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">something</span>
+     <span class="n">register</span><span class="p">:</span> <span class="n">p</span>
+
+   <span class="o">-</span> <span class="k">assert</span><span class="p">:</span>
+       <span class="n">that</span><span class="p">:</span>
+         <span class="o">-</span> <span class="n">p</span><span class="o">.</span><span class="n">stat</span><span class="o">.</span><span class="n">exists</span> <span class="ow">and</span> <span class="n">p</span><span class="o">.</span><span class="n">stat</span><span class="o">.</span><span class="n">isdir</span>
+</pre></div>
+</div>
+<p>如上所处, 哪些没必要检查的东西如命令的返回码. Ansible 自动检查它们.
+如果检查用户存在, 考虑使用 user 模块使其存在.</p>
+<p>Ansible 是一个 fail-fast 系统, 所以当创建用户失败, 它将停止 playbook 的运行. 你不必检查它背后的原因.</p>
+</section>
+<section id="section-4">
+<h2>测试的生命周期<a class="headerlink" href="#section-4" title="Permalink to this headline">¶</a></h2>
+<p>如果将你的应用程序的基本验证写入了你的 playbooks 中, 在你每次部署的适合他们都将运行.</p>
+<p>因此部署到本地开发的虚拟机和临时的环境都将根据你的生产环境的部署计划来验证这一切.</p>
+<p>你的工作流可能是这样:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">使用相同的</span> <span class="n">playbook</span> <span class="n">在开发过程中嵌入测试</span>
+<span class="o">-</span> <span class="n">使用</span> <span class="n">playbook</span> <span class="n">部署一个临时环境</span><span class="p">(</span><span class="n">使用相同的playbooks</span><span class="p">)</span><span class="n">来模拟生产</span>
+<span class="o">-</span> <span class="n">运行一个由</span> <span class="n">QA</span> <span class="n">团建编写的集成测试用例</span>
+<span class="o">-</span> <span class="n">使用相同的总和测试部署到生产</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>如果你是一个产品服务, 一些像集成测试系列需要通过你的 QA 团队来编写. 这将包含诸如测试用例或自动化 API 测试, 这些通常不是嵌入到 Ansible 的 playbooks 中的.</p>
+<p>然而, 它包含基本的健康的检查使 playbooks 有意义, 而且在某些情况下它可能会相对于远程节点运行一些 QA 的子集合. 这是下一节所涵盖的内容.</p>
+</section>
+<section id="section-5">
+<h2>结合滚动更新测试<a class="headerlink" href="#section-5" title="Permalink to this headline">¶</a></h2>
+<p>如果你已经读到 <a class="reference internal" href="playbooks_delegation.html"><span class="doc">委托,滚动更新,本地动作</span></a> 滚动更新的扩展好处可以迅速变得明显, 你可以使用 playbook 运行的成功或失败来决定是否增加机器到负载均衡器中.</p>
+<p>这是嵌入测试的显著结果:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---</span>
+
+<span class="o">-</span> <span class="n">hosts</span><span class="p">:</span> <span class="n">webservers</span>
+  <span class="n">serial</span><span class="p">:</span> <span class="mi">5</span>
+
+  <span class="n">pre_tasks</span><span class="p">:</span>
+
+    <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">take</span> <span class="n">out</span> <span class="n">of</span> <span class="n">load</span> <span class="n">balancer</span> <span class="n">pool</span>
+      <span class="n">command</span><span class="p">:</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">take_out_of_pool</span> <span class="p">{{</span> <span class="n">inventory_hostname</span> <span class="p">}}</span>
+      <span class="n">delegate_to</span><span class="p">:</span> <span class="mf">127.0.0.1</span>
+
+  <span class="n">roles</span><span class="p">:</span>
+
+     <span class="o">-</span> <span class="n">common</span>
+     <span class="o">-</span> <span class="n">webserver</span>
+     <span class="o">-</span> <span class="n">apply_testing_checks</span>
+
+  <span class="n">post_tasks</span><span class="p">:</span>
+
+    <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">add</span> <span class="n">back</span> <span class="n">to</span> <span class="n">load</span> <span class="n">balancer</span> <span class="n">pool</span>
+      <span class="n">command</span><span class="p">:</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">add_back_to_pool</span> <span class="p">{{</span> <span class="n">inventory_hostname</span> <span class="p">}}</span>
+      <span class="n">delegate_to</span><span class="p">:</span> <span class="mf">127.0.0.1</span>
+</pre></div>
+</div>
+<p>在上述过程中, “task out of the pool” 和 “add back” 的步骤将会代替 Ansible 调用负载均衡模块或对应的 shell 命令. 您还可以使用监控模块对机器进行创建和关闭中断的窗口.</p>
+<p>然而, 你可以从上面看出测试作为入口 – 如果”apply_testing_checks”这一步不执行, 这个机器将不会被添加到池中.</p>
+<p>阅读关于”max_fail_percentage”的代表章节, 你可以控制有多少失败的测试后停止程序的滚动更新.</p>
+<p>这种方式也可以被修改为先在测试机器上执行测试步骤然后在远程机器执行测试的步骤:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---</span>
+
+<span class="o">-</span> <span class="n">hosts</span><span class="p">:</span> <span class="n">webservers</span>
+  <span class="n">serial</span><span class="p">:</span> <span class="mi">5</span>
+
+  <span class="n">pre_tasks</span><span class="p">:</span>
+
+    <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">take</span> <span class="n">out</span> <span class="n">of</span> <span class="n">load</span> <span class="n">balancer</span> <span class="n">pool</span>
+      <span class="n">command</span><span class="p">:</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">take_out_of_pool</span> <span class="p">{{</span> <span class="n">inventory_hostname</span> <span class="p">}}</span>
+      <span class="n">delegate_to</span><span class="p">:</span> <span class="mf">127.0.0.1</span>
+
+  <span class="n">roles</span><span class="p">:</span>
+
+     <span class="o">-</span> <span class="n">common</span>
+     <span class="o">-</span> <span class="n">webserver</span>
+
+  <span class="n">tasks</span><span class="p">:</span>
+     <span class="o">-</span> <span class="n">script</span><span class="p">:</span> <span class="o">/</span><span class="n">srv</span><span class="o">/</span><span class="n">qa_team</span><span class="o">/</span><span class="n">app_testing_script</span><span class="o">.</span><span class="n">sh</span> <span class="o">--</span><span class="n">server</span> <span class="p">{{</span> <span class="n">inventory_hostname</span> <span class="p">}}</span>
+       <span class="n">delegate_to</span><span class="p">:</span> <span class="n">testing_server</span>
+
+  <span class="n">post_tasks</span><span class="p">:</span>
+
+    <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">add</span> <span class="n">back</span> <span class="n">to</span> <span class="n">load</span> <span class="n">balancer</span> <span class="n">pool</span>
+      <span class="n">command</span><span class="p">:</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">add_back_to_pool</span> <span class="p">{{</span> <span class="n">inventory_hostname</span> <span class="p">}}</span>
+      <span class="n">delegate_to</span><span class="p">:</span> <span class="mf">127.0.0.1</span>
+</pre></div>
+</div>
+<p>在上面的例子中, 从测试服务器上执行一个脚本紧接着将一个远程的节点添加到 pool 中.</p>
+<p>在出现问题时, 解决一些服务器不能使用 Ansible 自动生成的重试文件重复部署这些服务器.</p>
+</section>
+<section id="section-6">
+<h2>实现连续部署<a class="headerlink" href="#section-6" title="Permalink to this headline">¶</a></h2>
+<p>如果需要, 上述技术可以扩展到启用连续部署中.</p>
+<p>这个工作流可能像这样:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">编写和使用自动部署本地开发虚拟机</span>
+<span class="o">-</span> <span class="n">有一个</span> <span class="n">CI</span> <span class="n">系统像</span> <span class="n">Jenkins</span><span class="p">,</span> <span class="n">来将每一次的代码变更部署到临时环境中</span>
+<span class="o">-</span> <span class="n">这个部署任务调用测试脚本</span><span class="p">,</span> <span class="n">参考通过</span><span class="o">/</span><span class="n">失败来确定每一次的部署是否进行</span> <span class="n">build</span>
+<span class="o">-</span> <span class="n">如果部署任务成功</span><span class="p">,</span> <span class="n">它将在生产环境中运行相同的部署</span> <span class="n">playbook</span>
+</pre></div>
+</div>
+<p>一些 Ansible 用户使用上述方式, 在一个小时内多次部署使它们所有的基础设施不下线. 如果你想达到那种水平, 一个自动 QA 系统是至关重要的.</p>
+<p>如果你仍然在大量使用人工 QA, 你仍然需要决定手动部署是否是最好的, 但它仍然可以帮助滚动更新前的一部分工作, 包括基本的健康检查使用模块 ‘script’, ‘stat’, ‘uri’, 和 ‘assert’.</p>
+</section>
+<section id="section-7">
+<h2>结尾<a class="headerlink" href="#section-7" title="Permalink to this headline">¶</a></h2>
+<p>Ansible 相信你应该不需要另一个框架来验证你的基础设施是正确的. 这种情况是因为 Ansible 是基于顺序的系统, 处理失败后将立即在主机上引发错误, 并阻止该主机进一步的配置. 这迫使 Ansible 在运行结束后将错误作为摘要显示在顶端.</p>
+<p>然而, Ansible 作为一个多层编排系统, 它可以很轻松的将测试合并到 playbook 中运行完毕, 使用 tasks 或 roles. 当使用滚动更新时, 测试步骤可以决定是否要把一台服务器添加到负载均衡池中.</p>
+<p>最后, 因为 Ansible 错误会通过所有的方式进行传播以及 Ansible 程序本身的返回码, Ansible 默认运行在一个简单的推送模式, 如果你想使用它作为部署系统, 持续集成/持续交付道路上的组成部分, Ansible 是作为构建环境的最好的阶段, 如上面部分的介绍.</p>
+<p>重点不应该放在基础设施测试上, 而是在应用程序的测试, 所以我们强烈鼓励你和你的 QA 团队商量出对于每一次部署的开发虚拟机什么样的测试是有意义的, 并将他们希望对每个部署的临时环境的测试进行排序. Ansible 描述了资源应该所处的状态, 所以你不需要考虑这些. 如果存在你需要确定的东西, 使用 stat/assert 这些伟大的模块来实现你的目的, 这将是最棒的.</p>
+<p>总之, 测试是一个组织非常明确的事情. 每一个人都应该这样做, 但是这些要根据你要部署什么以及谁在使用它们来确定最适合的方案 – 但每个人肯定都会从一个更加强大和可靠的部署系统中受益.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="modules.html"><span class="doc">模块相关</span></a></dt><dd><p>All the documentation for Ansible modules</p>
+</dd>
+<dt><a class="reference internal" href="playbooks.html"><span class="doc">Playbooks</span></a></dt><dd><p>An introduction to playbooks</p>
+</dd>
+<dt><a class="reference internal" href="playbooks_delegation.html"><span class="doc">委托,滚动更新,本地动作</span></a></dt><dd><p>Delegation, useful for working with loud balancers, clouds, and locally executed steps.</p>
+</dd>
+<dt><a class="reference external" href="http://groups.google.com/group/ansible-project">User Mailing List</a></dt><dd><p>Have a question?  Stop by the google group!</p>
+</dd>
+<dt><a class="reference external" href="http://irc.freenode.net">irc.freenode.net</a></dt><dd><p>#ansible IRC chat channel</p>
+</dd>
+</dl>
+</aside>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="galaxy.html" class="btn btn-neutral float-left" title="Ansible Galaxy" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="faq.html" class="btn btn-neutral float-right" title="常见问题" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2015, http://www.magedu.com, 马哥Linux团队成员荣誉出品(薛定谔的章鱼 &amp; guli &amp; 以马内利 &amp; 黄博文 &amp; coocla &amp; 云中鹤 &amp; stanley) 官方QQ交流群:372011984.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

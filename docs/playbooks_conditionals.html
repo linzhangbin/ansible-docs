@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>条件选择 &mdash; 国内最专业的Ansible中文官方学习手册</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="循环" href="playbooks_loops.html" />
+    <link rel="prev" title="Variables" href="playbooks_variables.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Ansible中文权威指南
+          </a>
+              <div class="version">
+                5.2.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">总体介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">快速学习视频</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="playbooks.html">Playbooks</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="playbooks_intro.html">Playbooks 介绍</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_roles.html">Playbook 角色(Roles) 和 Include 语句</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_variables.html">Variables</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">条件选择</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#when">When 语句</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#section-2">加载客户事件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#roles-includes-when">在roles 和 includes 上面应用’when’语句</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#section-3">条件导入</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#section-4">基于变量选择文件和模版</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#section-5">注册变量</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_loops.html">循环</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_best_practices.html">最佳实践</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="playbooks_special_topics.html">Playbooks: Special Topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">模块相关</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guides.html">详细指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developing.html">开发者须知</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tower.html">Ansible Tower</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community.html">Ansible用户</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community.html#section-4">对当前和未来的开发人员</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community.html#section-5">其它主题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="galaxy.html">Ansible Galaxy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test_strategies.html">测试策略</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">术语表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="YAMLSyntax.html">YAML 语法</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Ansible中文权威指南</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="playbooks.html">Playbooks</a></li>
+      <li class="breadcrumb-item active">条件选择</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/docs/playbooks_conditionals.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="section-1">
+<h1><a class="toc-backref" href="#toc-entry-1" role="doc-backlink">条件选择</a><a class="headerlink" href="#section-1" title="Permalink to this headline">¶</a></h1>
+<nav class="contents" id="topics">
+<p class="topic-title">Topics</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#section-1" id="toc-entry-1">条件选择</a></p>
+<ul>
+<li><p><a class="reference internal" href="#when" id="toc-entry-2">When 语句</a></p></li>
+<li><p><a class="reference internal" href="#section-2" id="toc-entry-3">加载客户事件</a></p></li>
+<li><p><a class="reference internal" href="#roles-includes-when" id="toc-entry-4">在roles 和 includes 上面应用’when’语句</a></p></li>
+<li><p><a class="reference internal" href="#section-3" id="toc-entry-5">条件导入</a></p></li>
+<li><p><a class="reference internal" href="#section-4" id="toc-entry-6">基于变量选择文件和模版</a></p></li>
+<li><p><a class="reference internal" href="#section-5" id="toc-entry-7">注册变量</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<p>常常来说,一个play的结果经常取决于一个变量的值,事件（从远端系统得到事件）,
+或者之前任务的结果.在有些情况下,这些变量的值也会取决于其他变量.
+进而,可以建立多余的组基于这些主机是否符合某些条件来操控主机,
+Ansible 提供了很多不同选项,来控制执行流.
+让我们详细看看这些都是啥.</p>
+<section id="when">
+<h2><a class="toc-backref" href="#toc-entry-2" role="doc-backlink">When 语句</a><a class="headerlink" href="#when" title="Permalink to this headline">¶</a></h2>
+<p>有时候用户有可能需要某一个主机越过某一个特定的步骤.这个过程就可以简单的像在某一个特定版本的系统上
+少装了一个包一样或者像在一个满了的文件系统上执行清理操作一样.
+这些操作在Ansible上,若使用`when`语句都异常简单.When语句包含Jinja2表达式(参见:doc:<cite>playbooks_variables</cite>).
+实际上真的很简单:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tasks</span><span class="p">:</span>
+  <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="s2">&quot;shutdown Debian flavored systems&quot;</span>
+    <span class="n">command</span><span class="p">:</span> <span class="o">/</span><span class="n">sbin</span><span class="o">/</span><span class="n">shutdown</span> <span class="o">-</span><span class="n">t</span> <span class="n">now</span>
+    <span class="n">when</span><span class="p">:</span> <span class="n">ansible_os_family</span> <span class="o">==</span> <span class="s2">&quot;Debian&quot;</span>
+</pre></div>
+</div>
+<p>一系列的Jinja2 “过滤器” 也可以在when语句中使用, 但有些是Ansible中独有的.
+比如我们想忽略某一错误,通过执行成功与否来做决定,我们可以像这样:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tasks</span><span class="p">:</span>
+  <span class="o">-</span> <span class="n">command</span><span class="p">:</span> <span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">false</span>
+    <span class="n">register</span><span class="p">:</span> <span class="n">result</span>
+    <span class="n">ignore_errors</span><span class="p">:</span> <span class="kc">True</span>
+  <span class="o">-</span> <span class="n">command</span><span class="p">:</span> <span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">something</span>
+    <span class="n">when</span><span class="p">:</span> <span class="n">result</span><span class="o">|</span><span class="n">failed</span>
+  <span class="o">-</span> <span class="n">command</span><span class="p">:</span> <span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">something_else</span>
+    <span class="n">when</span><span class="p">:</span> <span class="n">result</span><span class="o">|</span><span class="n">success</span>
+  <span class="o">-</span> <span class="n">command</span><span class="p">:</span> <span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">still</span><span class="o">/</span><span class="n">something_else</span>
+    <span class="n">when</span><span class="p">:</span> <span class="n">result</span><span class="o">|</span><span class="n">skipped</span>
+</pre></div>
+</div>
+<p>我知道,在这里讨论’register’语句命令,有点过于超前,我们将会在这议长靠后一点的地方接触这个.</p>
+<p>友情提示,如果想查看哪些事件在某个特定系统中时允许的,可以执行以下命令:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ansible</span> <span class="n">hostname</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">com</span> <span class="o">-</span><span class="n">m</span> <span class="n">setup</span>
+</pre></div>
+</div>
+<p>提示: 有些时候你得到一个返回参数的值是一个字符串,并且你还想使用数学操作来比较它,那么你可以执行一下操作:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tasks</span><span class="p">:</span>
+  <span class="o">-</span> <span class="n">shell</span><span class="p">:</span> <span class="n">echo</span> <span class="s2">&quot;only on Red Hat 6, derivatives, and later&quot;</span>
+    <span class="n">when</span><span class="p">:</span> <span class="n">ansible_os_family</span> <span class="o">==</span> <span class="s2">&quot;RedHat&quot;</span> <span class="ow">and</span> <span class="n">ansible_lsb</span><span class="o">.</span><span class="n">major_release</span><span class="o">|</span><span class="nb">int</span> <span class="o">&gt;=</span> <span class="mi">6</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>以上事例需要目标主机上安装lsb_release软件包,来返回ansible_lsb.major_release 事件.</p>
+</aside>
+<p>在playbooks 和 inventory中定义的变量都可以使用. 下面一个例子,就是基于布尔值来决定一个任务是否被执行:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">vars</span><span class="p">:</span>
+  <span class="n">epic</span><span class="p">:</span> <span class="n">true</span>
+</pre></div>
+</div>
+<p>一个条件选择执行也许看起来像这样:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tasks</span><span class="p">:</span>
+    <span class="o">-</span> <span class="n">shell</span><span class="p">:</span> <span class="n">echo</span> <span class="s2">&quot;This certainly is epic!&quot;</span>
+      <span class="n">when</span><span class="p">:</span> <span class="n">epic</span>
+</pre></div>
+</div>
+<p>或者像这样:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tasks</span><span class="p">:</span>
+    <span class="o">-</span> <span class="n">shell</span><span class="p">:</span> <span class="n">echo</span> <span class="s2">&quot;This certainly isn&#39;t epic!&quot;</span>
+      <span class="n">when</span><span class="p">:</span> <span class="ow">not</span> <span class="n">epic</span>
+</pre></div>
+</div>
+<p>如果一个变量不存在,你可以使用Jinja2的`defined`命令跳过或略过.例如:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tasks</span><span class="p">:</span>
+    <span class="o">-</span> <span class="n">shell</span><span class="p">:</span> <span class="n">echo</span> <span class="s2">&quot;I&#39;ve got &#39;{{ foo }}&#39; and am not afraid to use it!&quot;</span>
+      <span class="n">when</span><span class="p">:</span> <span class="n">foo</span> <span class="ow">is</span> <span class="n">defined</span>
+
+    <span class="o">-</span> <span class="n">fail</span><span class="p">:</span> <span class="n">msg</span><span class="o">=</span><span class="s2">&quot;Bailing out. this play requires &#39;bar&#39;&quot;</span>
+      <span class="n">when</span><span class="p">:</span> <span class="n">bar</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">defined</span>
+</pre></div>
+</div>
+<p>这个机制在选择引入变量文件时有时候特别有用,详情如下.</p>
+<p>note当同时使用`when`he`with_items` (详见:doc:<cite>playbooks_loops</cite>), note`when`语句对于不同项目将会单独处理.这个源于原初设计:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tasks</span><span class="p">:</span>
+    <span class="o">-</span> <span class="n">command</span><span class="p">:</span> <span class="n">echo</span> <span class="p">{{</span> <span class="n">item</span> <span class="p">}}</span>
+      <span class="n">with_items</span><span class="p">:</span> <span class="p">[</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span> <span class="p">]</span>
+      <span class="n">when</span><span class="p">:</span> <span class="n">item</span> <span class="o">&gt;</span> <span class="mi">5</span>
+</pre></div>
+</div>
+</section>
+<section id="section-2">
+<h2><a class="toc-backref" href="#toc-entry-3" role="doc-backlink">加载客户事件</a><a class="headerlink" href="#section-2" title="Permalink to this headline">¶</a></h2>
+<p>加载客户自己的事件,事实上也很简单,将在:doc:<cite>developing_modules</cite> 详细介绍.只要调用客户自己的事件,进而把所有的模块放在任务列表顶端,
+变量的返回值今后就可以访问了:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tasks</span><span class="p">:</span>
+    <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">gather</span> <span class="n">site</span> <span class="n">specific</span> <span class="n">fact</span> <span class="n">data</span>
+      <span class="n">action</span><span class="p">:</span> <span class="n">site_facts</span>
+    <span class="o">-</span> <span class="n">command</span><span class="p">:</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">thingy</span>
+      <span class="n">when</span><span class="p">:</span> <span class="n">my_custom_fact_just_retrieved_from_the_remote_system</span> <span class="o">==</span> <span class="s1">&#39;1234&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="roles-includes-when">
+<h2><a class="toc-backref" href="#toc-entry-4" role="doc-backlink">在roles 和 includes 上面应用’when’语句</a><a class="headerlink" href="#roles-includes-when" title="Permalink to this headline">¶</a></h2>
+<p>note,如果你的很多任务都共享同样的条件语句的话,可以在选择语句后面添加inlcudes语句,参见下面事例.
+这个特性并不适用于playbook的inclues,只有task 的 includes适用.所有的task都会被检验,
+选择会应用到所有的task上面:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">include</span><span class="p">:</span> <span class="n">tasks</span><span class="o">/</span><span class="n">sometasks</span><span class="o">.</span><span class="n">yml</span>
+  <span class="n">when</span><span class="p">:</span> <span class="s2">&quot;&#39;reticulating splines&#39; in output&quot;</span>
+</pre></div>
+</div>
+<p>或者应用于role:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">hosts</span><span class="p">:</span> <span class="n">webservers</span>
+  <span class="n">roles</span><span class="p">:</span>
+     <span class="o">-</span> <span class="p">{</span> <span class="n">role</span><span class="p">:</span> <span class="n">debian_stock_config</span><span class="p">,</span> <span class="n">when</span><span class="p">:</span> <span class="n">ansible_os_family</span> <span class="o">==</span> <span class="s1">&#39;Debian&#39;</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>在系统中使用这个方法但是并不能匹配某些标准时,你会发现在Ansible中,有很多默认’skipped’的结果.
+详情参见:doc:<cite>modules</cite> 文档中的 ‘group_by’ 模块, 你会找到更加赏心悦目的方法来解决这个问题.</p>
+</section>
+<section id="section-3">
+<h2><a class="toc-backref" href="#toc-entry-5" role="doc-backlink">条件导入</a><a class="headerlink" href="#section-3" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>这是一个很高级但是却被经常使用的话题.当然你也可以跳过这一节.</p>
+</aside>
+<p>基于某个特定标准,又是你也许在一个playbook中你想以不同的方式做同一件事.
+在不同平台或操作系统上使用痛一个playbook就是一个很好的例子.</p>
+<p>举个例子,名字叫做Apache的包,在CentOS 和 Debian系统中也许不同,
+但是这个问题可以一些简单的语法就可以被Ansible Playbook解决:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---</span>
+<span class="o">-</span> <span class="n">hosts</span><span class="p">:</span> <span class="nb">all</span>
+  <span class="n">remote_user</span><span class="p">:</span> <span class="n">root</span>
+  <span class="n">vars_files</span><span class="p">:</span>
+    <span class="o">-</span> <span class="s2">&quot;vars/common.yml&quot;</span>
+    <span class="o">-</span> <span class="p">[</span> <span class="s2">&quot;vars/{{ ansible_os_family }}.yml&quot;</span><span class="p">,</span> <span class="s2">&quot;vars/os_defaults.yml&quot;</span> <span class="p">]</span>
+  <span class="n">tasks</span><span class="p">:</span>
+  <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">make</span> <span class="n">sure</span> <span class="n">apache</span> <span class="ow">is</span> <span class="n">running</span>
+    <span class="n">service</span><span class="p">:</span> <span class="n">name</span><span class="o">=</span><span class="p">{{</span> <span class="n">apache</span> <span class="p">}}</span> <span class="n">state</span><span class="o">=</span><span class="n">running</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>‘ansible_os_family’ 已经被导入到为vars_files定义的文件名列表中了.</p>
+</aside>
+<p>提醒一下,很多的不同的YAML文件只是包含键和值:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---</span>
+<span class="c1"># for vars/CentOS.yml</span>
+<span class="n">apache</span><span class="p">:</span> <span class="n">httpd</span>
+<span class="n">somethingelse</span><span class="p">:</span> <span class="mi">42</span>
+</pre></div>
+</div>
+<p>这个具体事怎么工作的呢？ 如果操作系统是’CentOS’, Ansible导入的第一个文件将是’vars/CentOS.yml’,紧接着
+是’/var/os_defaults.yml’,如果这个文件不存在.而且在列表中没有找到,就会报错.
+在Debian,最先查看的将是’vars/Debian.yml’而不是’vars/CentOS.yml’, 如果没找到,则寻找默认文件’vars/os_defaults.yml’
+很简单.如果使用这个条件性导入特性,你需要在运行playbook之前安装facter 或者 ohai.当然如果你喜欢,
+你也可以把这个事情推给Ansible来做:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># for facter</span>
+<span class="n">ansible</span> <span class="o">-</span><span class="n">m</span> <span class="n">yum</span> <span class="o">-</span><span class="n">a</span> <span class="s2">&quot;pkg=facter state=present&quot;</span>
+<span class="n">ansible</span> <span class="o">-</span><span class="n">m</span> <span class="n">yum</span> <span class="o">-</span><span class="n">a</span> <span class="s2">&quot;pkg=ruby-json state=present&quot;</span>
+
+<span class="c1"># for ohai</span>
+<span class="n">ansible</span> <span class="o">-</span><span class="n">m</span> <span class="n">yum</span> <span class="o">-</span><span class="n">a</span> <span class="s2">&quot;pkg=ohai state=present&quot;</span>
+</pre></div>
+</div>
+<p>Ansible 中的设置方式———— 从任务中把参数分开,这样可避免代码中有太多丑陋嵌套if等复杂语句.
+这样可以使得配置条目更加的流畅的赏心悦目———— 特别是因为这样可以尽量减少决定点</p>
+</section>
+<section id="section-4">
+<h2><a class="toc-backref" href="#toc-entry-6" role="doc-backlink">基于变量选择文件和模版</a><a class="headerlink" href="#section-4" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>这是一个经常用到的高级话题.也可以跳过这章.</p>
+</aside>
+<p>有时候,你想要复制一个配置文件,或者一个基于参数的模版.
+下面的结构选载选第一个宿主给予的变量文件,这些可以比把很多if选择放在模版里要简单的多.
+下面的例子展示怎样根据不同的系统,例如CentOS,Debian制作一个配置文件的模版:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">template</span> <span class="n">a</span> <span class="n">file</span>
+   <span class="n">template</span><span class="p">:</span> <span class="n">src</span><span class="o">=</span><span class="p">{{</span> <span class="n">item</span> <span class="p">}}</span> <span class="n">dest</span><span class="o">=/</span><span class="n">etc</span><span class="o">/</span><span class="n">myapp</span><span class="o">/</span><span class="n">foo</span><span class="o">.</span><span class="n">conf</span>
+   <span class="n">with_first_found</span><span class="p">:</span>
+     <span class="o">-</span> <span class="n">files</span><span class="p">:</span>
+        <span class="o">-</span> <span class="p">{{</span> <span class="n">ansible_distribution</span> <span class="p">}}</span><span class="o">.</span><span class="n">conf</span>
+        <span class="o">-</span> <span class="n">default</span><span class="o">.</span><span class="n">conf</span>
+       <span class="n">paths</span><span class="p">:</span>
+        <span class="o">-</span> <span class="n">search_location_one</span><span class="o">/</span><span class="n">somedir</span><span class="o">/</span>
+        <span class="o">-</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">other_location</span><span class="o">/</span><span class="n">somedir</span><span class="o">/</span>
+</pre></div>
+</div>
+</section>
+<section id="section-5">
+<h2><a class="toc-backref" href="#toc-entry-7" role="doc-backlink">注册变量</a><a class="headerlink" href="#section-5" title="Permalink to this headline">¶</a></h2>
+<p>经常在playbook中,存储某个命令的结果在变量中,以备日后访问是很有用的.
+这样使用命令模块可以在许多方面除去写站（site）特异事件,据哥例子
+你可以检测某一个特定程序是否存在</p>
+<p>这个 ‘register’ 关键词决定了把结果存储在哪个变量中.结果参数可以用在模版中,动作条目,或者 <em>when</em> 语句. 像这样（这是一个浅显的例子）:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">test</span> <span class="n">play</span>
+  <span class="n">hosts</span><span class="p">:</span> <span class="nb">all</span>
+
+  <span class="n">tasks</span><span class="p">:</span>
+
+      <span class="o">-</span> <span class="n">shell</span><span class="p">:</span> <span class="n">cat</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">motd</span>
+        <span class="n">register</span><span class="p">:</span> <span class="n">motd_contents</span>
+
+      <span class="o">-</span> <span class="n">shell</span><span class="p">:</span> <span class="n">echo</span> <span class="s2">&quot;motd contains the word hi&quot;</span>
+        <span class="n">when</span><span class="p">:</span> <span class="n">motd_contents</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;hi&#39;</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span>
+</pre></div>
+</div>
+<p>就像上面展示的那样,这个注册后的参数的内容为字符串’stdout’是可以访问.
+这个注册了以后的结果,如果像上面展示的,可以转化为一个list（或者已经是一个list）,就可以在任务中的”with_items”中使用.
+“stdout_lines”在对象中已经可以访问了,当然如果你喜欢也可以调用 “home_dirs.stdout.split()” , 也可以用其它字段切割:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">registered</span> <span class="n">variable</span> <span class="n">usage</span> <span class="k">as</span> <span class="n">a</span> <span class="n">with_items</span> <span class="nb">list</span>
+  <span class="n">hosts</span><span class="p">:</span> <span class="nb">all</span>
+
+  <span class="n">tasks</span><span class="p">:</span>
+
+      <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">retrieve</span> <span class="n">the</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">home</span> <span class="n">directories</span>
+        <span class="n">command</span><span class="p">:</span> <span class="n">ls</span> <span class="o">/</span><span class="n">home</span>
+        <span class="n">register</span><span class="p">:</span> <span class="n">home_dirs</span>
+
+      <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">add</span> <span class="n">home</span> <span class="n">dirs</span> <span class="n">to</span> <span class="n">the</span> <span class="n">backup</span> <span class="n">spooler</span>
+        <span class="n">file</span><span class="p">:</span> <span class="n">path</span><span class="o">=/</span><span class="n">mnt</span><span class="o">/</span><span class="n">bkspool</span><span class="o">/</span><span class="p">{{</span> <span class="n">item</span> <span class="p">}}</span> <span class="n">src</span><span class="o">=/</span><span class="n">home</span><span class="o">/</span><span class="p">{{</span> <span class="n">item</span> <span class="p">}}</span> <span class="n">state</span><span class="o">=</span><span class="n">link</span>
+        <span class="n">with_items</span><span class="p">:</span> <span class="n">home_dirs</span><span class="o">.</span><span class="n">stdout_lines</span>
+        <span class="c1"># same as with_items: home_dirs.stdout.split()</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="playbooks.html"><span class="doc">Playbooks</span></a></dt><dd><p>An introduction to playbooks</p>
+</dd>
+<dt><a class="reference internal" href="playbooks_roles.html"><span class="doc">Playbook 角色(Roles) 和 Include 语句</span></a></dt><dd><p>Playbook organization by roles</p>
+</dd>
+<dt><a class="reference internal" href="playbooks_best_practices.html"><span class="doc">最佳实践</span></a></dt><dd><p>Best practices in playbooks</p>
+</dd>
+<dt><a class="reference internal" href="#"><span class="doc">条件选择</span></a></dt><dd><p>Conditional statements in playbooks</p>
+</dd>
+<dt><a class="reference internal" href="playbooks_variables.html"><span class="doc">Variables</span></a></dt><dd><p>All about variables</p>
+</dd>
+<dt><a class="reference external" href="http://groups.google.com/group/ansible-devel">User Mailing List</a></dt><dd><p>Have a question?  Stop by the google group!</p>
+</dd>
+<dt><a class="reference external" href="http://irc.freenode.net">irc.freenode.net</a></dt><dd><p>#ansible IRC chat channel</p>
+</dd>
+</dl>
+</aside>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="playbooks_variables.html" class="btn btn-neutral float-left" title="Variables" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="playbooks_loops.html" class="btn btn-neutral float-right" title="循环" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2015, http://www.magedu.com, 马哥Linux团队成员荣誉出品(薛定谔的章鱼 &amp; guli &amp; 以马内利 &amp; 黄博文 &amp; coocla &amp; 云中鹤 &amp; stanley) 官方QQ交流群:372011984.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

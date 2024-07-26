@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Playbooks 介绍 &mdash; 国内最专业的Ansible中文官方学习手册</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Playbook 角色(Roles) 和 Include 语句" href="playbooks_roles.html" />
+    <link rel="prev" title="Playbooks" href="playbooks.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Ansible中文权威指南
+          </a>
+              <div class="version">
+                5.2.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">总体介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">快速学习视频</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="playbooks.html">Playbooks</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Playbooks 介绍</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#playbooks-1">Playbooks 简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#playbook">Playbook 语言的示例</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#playbook-1">playbook基础</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#section-1">主机与用户</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tasks">Tasks 列表</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#action-shorthand-1">Action Shorthand</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#handlers-1">Handlers: 在发生改变时执行的操作</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#playbook-2">执行一个 playbook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ansible-pull-1">Ansible-Pull（拉取配置而非推送配置）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#section-2">提示与技巧</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_roles.html">Playbook 角色(Roles) 和 Include 语句</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_variables.html">Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_conditionals.html">条件选择</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_loops.html">循环</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_best_practices.html">最佳实践</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="playbooks_special_topics.html">Playbooks: Special Topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">模块相关</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guides.html">详细指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developing.html">开发者须知</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tower.html">Ansible Tower</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community.html">Ansible用户</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community.html#section-4">对当前和未来的开发人员</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community.html#section-5">其它主题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="galaxy.html">Ansible Galaxy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test_strategies.html">测试策略</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">术语表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="YAMLSyntax.html">YAML 语法</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Ansible中文权威指南</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="playbooks.html">Playbooks</a></li>
+      <li class="breadcrumb-item active">Playbooks 介绍</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/docs/playbooks_intro.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="playbooks">
+<h1>Playbooks 介绍<a class="headerlink" href="#playbooks" title="Permalink to this headline">¶</a></h1>
+<section id="playbooks-1">
+<span id="about-playbooks"></span><h2>Playbooks 简介<a class="headerlink" href="#playbooks-1" title="Permalink to this headline">¶</a></h2>
+<p>Playbooks 与 adhoc 相比,是一种完全不同的运用 ansible 的方式,是非常之强大的.</p>
+<p>简单来说,playbooks 是一种简单的配置管理系统与多机器部署系统的基础.与现有的其他系统有不同之处,且非常适合于复杂应用的部署.</p>
+<p>Playbooks 可用于声明配置,更强大的地方在于,在 playbooks 中可以编排有序的执行过程,甚至于做到在多组机器间,来回有序的执行特别指定的步骤.并且可以同步或异步的发起任务.</p>
+<p>我们使用 adhoc 时,主要是使用 /usr/bin/ansible 程序执行任务.而使用 playbooks 时,更多是将之放入源码控制之中,用之推送你的配置或是用于确认你的远程系统的配置是否符合配置规范.</p>
+<p>在如右的连接中: <a class="reference external" href="https://github.com/ansible/ansible-examples">ansible-examples repository</a> ,有一些整套的playbooks,它们阐明了上述的这些技巧.我们建议你在另一个标签页中打开它看看,配合本章节一起看.</p>
+<p>即便学完 playbooks 这个章节,仍有许多知识点只是入门的级别,完成本章的学习后,可回到文档索引继续学习.</p>
+</section>
+<section id="playbook">
+<span id="playbook-language-example"></span><h2>Playbook 语言的示例<a class="headerlink" href="#playbook" title="Permalink to this headline">¶</a></h2>
+<p>Playbooks 的格式是YAML（详见:<a class="reference internal" href="YAMLSyntax.html"><span class="doc">YAML 语法</span></a>）,语法做到最小化,意在避免 playbooks 成为一种编程语言或是脚本,但它也并不是一个配置模型或过程的模型.</p>
+<p>playbook 由一个或多个 ‘plays’ 组成.它的内容是一个以 ‘plays’ 为元素的列表.</p>
+<p>在 play 之中,一组机器被映射为定义好的角色.在 ansible 中,play 的内容,被称为 tasks,即任务.在基本层次的应用中,一个任务是一个对 ansible 模块的调用,这在前面章节学习过.</p>
+<p>‘plays’ 好似音符,playbook 好似由 ‘plays’ 构成的曲谱,通过 playbook,可以编排步骤进行多机器的部署,比如在 webservers 组的所有机器上运行一定的步骤,
+然后在 database server 组运行一些步骤,最后回到 webservers 组,再运行一些步骤,诸如此类.</p>
+<p>“plays” 算是一个体育方面的类比,你可以通过多个 plays 告诉你的系统做不同的事情,不仅是定义一种特定的状态或模型.你可以在不同时间运行不同的 plays.</p>
+<p>对初学者,这里有一个 playbook,其中仅包含一个 play:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---</span>
+<span class="o">-</span> <span class="n">hosts</span><span class="p">:</span> <span class="n">webservers</span>
+  <span class="nb">vars</span><span class="p">:</span>
+    <span class="n">http_port</span><span class="p">:</span> <span class="mi">80</span>
+    <span class="n">max_clients</span><span class="p">:</span> <span class="mi">200</span>
+  <span class="n">remote_user</span><span class="p">:</span> <span class="n">root</span>
+  <span class="n">tasks</span><span class="p">:</span>
+  <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">ensure</span> <span class="n">apache</span> <span class="ow">is</span> <span class="n">at</span> <span class="n">the</span> <span class="n">latest</span> <span class="n">version</span>
+    <span class="n">yum</span><span class="p">:</span> <span class="n">pkg</span><span class="o">=</span><span class="n">httpd</span> <span class="n">state</span><span class="o">=</span><span class="n">latest</span>
+  <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">write</span> <span class="n">the</span> <span class="n">apache</span> <span class="n">config</span> <span class="n">file</span>
+    <span class="n">template</span><span class="p">:</span> <span class="n">src</span><span class="o">=/</span><span class="n">srv</span><span class="o">/</span><span class="n">httpd</span><span class="o">.</span><span class="n">j2</span> <span class="n">dest</span><span class="o">=/</span><span class="n">etc</span><span class="o">/</span><span class="n">httpd</span><span class="o">.</span><span class="n">conf</span>
+    <span class="n">notify</span><span class="p">:</span>
+    <span class="o">-</span> <span class="n">restart</span> <span class="n">apache</span>
+  <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">ensure</span> <span class="n">apache</span> <span class="ow">is</span> <span class="n">running</span>
+    <span class="n">service</span><span class="p">:</span> <span class="n">name</span><span class="o">=</span><span class="n">httpd</span> <span class="n">state</span><span class="o">=</span><span class="n">started</span>
+  <span class="n">handlers</span><span class="p">:</span>
+    <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">restart</span> <span class="n">apache</span>
+      <span class="n">service</span><span class="p">:</span> <span class="n">name</span><span class="o">=</span><span class="n">httpd</span> <span class="n">state</span><span class="o">=</span><span class="n">restarted</span>
+</pre></div>
+</div>
+<p>在下面,我们将分别讲解 playbook 语言的多个特性.</p>
+</section>
+<section id="playbook-1">
+<span id="playbook-basics"></span><h2>playbook基础<a class="headerlink" href="#playbook-1" title="Permalink to this headline">¶</a></h2>
+<section id="section-1">
+<span id="playbook-hosts-and-users"></span><h3>主机与用户<a class="headerlink" href="#section-1" title="Permalink to this headline">¶</a></h3>
+<p>你可以为 playbook 中的每一个 play,个别地选择操作的目标机器是哪些,以哪个用户身份去完成要执行的步骤（called tasks）.</p>
+<dl>
+<dt><cite>hosts</cite> 行的内容是一个或多个组或主机的 patterns,以逗号为分隔符,详见 <a class="reference internal" href="intro_patterns.html"><span class="doc">Patterns</span></a> 章节.</dt><dd><p><cite>remote_user</cite> 就是账户名:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---</span>
+<span class="o">-</span> <span class="n">hosts</span><span class="p">:</span> <span class="n">webservers</span>
+  <span class="n">remote_user</span><span class="p">:</span> <span class="n">root</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>参数 <cite>remote_user</cite> 以前写做 <cite>user</cite>,在 Ansible 1.4 以后才改为 remote_user.主要为了不跟 <cite>user</cite> 模块混淆（user 模块用于在远程系统上创建用户）.</p>
+</aside>
+<p>再者,在每一个 task 中,可以定义自己的远程用户:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---</span>
+<span class="o">-</span> <span class="n">hosts</span><span class="p">:</span> <span class="n">webservers</span>
+  <span class="n">remote_user</span><span class="p">:</span> <span class="n">root</span>
+  <span class="n">tasks</span><span class="p">:</span>
+    <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">test</span> <span class="n">connection</span>
+      <span class="n">ping</span><span class="p">:</span>
+      <span class="n">remote_user</span><span class="p">:</span> <span class="n">yourname</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>task 中的 <cite>remote_user</cite> 参数在 1.4 版本以后添加.</p>
+</aside>
+<p>也支持从 sudo 执行命令:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---</span>
+<span class="o">-</span> <span class="n">hosts</span><span class="p">:</span> <span class="n">webservers</span>
+  <span class="n">remote_user</span><span class="p">:</span> <span class="n">yourname</span>
+  <span class="n">sudo</span><span class="p">:</span> <span class="n">yes</span>
+</pre></div>
+</div>
+<p>同样的,你可以仅在一个 task 中,使用 sudo 执行命令,而不是在整个 play 中使用 sudo:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---</span>
+<span class="o">-</span> <span class="n">hosts</span><span class="p">:</span> <span class="n">webservers</span>
+  <span class="n">remote_user</span><span class="p">:</span> <span class="n">yourname</span>
+  <span class="n">tasks</span><span class="p">:</span>
+    <span class="o">-</span> <span class="n">service</span><span class="p">:</span> <span class="n">name</span><span class="o">=</span><span class="n">nginx</span> <span class="n">state</span><span class="o">=</span><span class="n">started</span>
+      <span class="n">sudo</span><span class="p">:</span> <span class="n">yes</span>
+</pre></div>
+</div>
+<p>你也可以登陆后,sudo 到不同的用户身份,而不是使用 root:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---</span>
+<span class="o">-</span> <span class="n">hosts</span><span class="p">:</span> <span class="n">webservers</span>
+  <span class="n">remote_user</span><span class="p">:</span> <span class="n">yourname</span>
+  <span class="n">sudo</span><span class="p">:</span> <span class="n">yes</span>
+  <span class="n">sudo_user</span><span class="p">:</span> <span class="n">postgres</span>
+</pre></div>
+</div>
+<p>如果你需要在使用 sudo 时指定密码,可在运行 <cite>ansible-playbook</cite> 命令时加上选项 <code class="docutils literal notranslate"><span class="pre">--ask-sudo-pass</span></code> (<cite>-K</cite>).
+如果使用 sudo 时,playbook 疑似被挂起,可能是在 sudo prompt 处被卡住,这时可执行 <cite>Control-C</cite> 杀死卡住的任务,再重新运行一次.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>当使用 <cite>sudo_user</cite> 切换到 非root 用户时,模块的参数会暂时写入 /tmp 目录下的一个随机临时文件.
+当命令执行结束后,临时文件立即删除.这种情况发生在普通用户的切换时,比如从 ‘bob’ 切换到 ‘timmy’,
+切换到 root 账户时,不会发生,如从 ‘bob’ 切换到 ‘root’,直接以普通用户或root身份登录也不会发生.
+如果你不希望这些数据在短暂的时间内可以被读取（不可写）,请避免在 <cite>sudo_user</cite> 中传递未加密的密码.
+其他情况下,’/tmp’ 目录不被使用,这种情况不会发生.Ansible 也有意识的在日志中不记录密码参数.</p>
+</aside>
+</section>
+<section id="tasks">
+<span id="tasks-list"></span><h3>Tasks 列表<a class="headerlink" href="#tasks" title="Permalink to this headline">¶</a></h3>
+<p>每一个 play 包含了一个 task 列表（任务列表）.一个 task 在其所对应的所有主机上（通过 host pattern 匹配的所有主机）执行完毕之后,下一个 task 才会执行.有一点需要明白的是（很重要）,在一个 play 之中,所有 hosts 会获取相同的任务指令,这是 play 的一个目的所在,也就是将一组选出的 hosts 映射到 task.（注:此处翻译未必准确,暂时保留原文）</p>
+<p>在运行 playbook 时（从上到下执行）,如果一个 host 执行 task 失败,这个 host 将会从整个 playbook 的 rotation 中移除.
+如果发生执行失败的情况,请修正 playbook 中的错误,然后重新执行即可.</p>
+<p>每个 task 的目标在于执行一个 moudle, 通常是带有特定的参数来执行.在参数中可以使用变量（variables）.</p>
+<p>modules 具有”幂等”性,意思是如果你再一次地执行 moudle（译者注:比如遇到远端系统被意外改动,需要恢复原状）,moudle
+只会执行必要的改动,只会改变需要改变的地方.所以重复多次执行 playbook 也很安全.</p>
+<p>对于 <cite>command</cite> module 和 <cite>shell</cite> module,重复执行 playbook,实际上是重复运行同样的命令.如果执行的命令类似于 ‘chmod’ 或者 ‘setsebool’ 这种命令,这没有任何问题.也可以使用一个叫做 ‘creates’ 的 flag 使得这两个 module 变得具有”幂等”特性
+（不是必要的）.</p>
+<p>每一个 task 必须有一个名称 <cite>name</cite>,这样在运行 playbook 时,从其输出的任务执行信息中可以很好的辨别出是属于哪一个 task 的.
+如果没有定义 <cite>name</cite>,‘action’ 的值将会用作输出信息中标记特定的 task.</p>
+<p>如果要声明一个 task,以前有一种格式: “action: module options” （可能在一些老的 playbooks 中还能见到）.现在推荐使用更常见的格式:”module: options” ,本文档使用的就是这种格式.</p>
+<p>下面是一种基本的 task 的定义,service moudle 使用 key=value 格式的参数,这也是大多数 module 使用的参数格式:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tasks</span><span class="p">:</span>
+  <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">make</span> <span class="n">sure</span> <span class="n">apache</span> <span class="ow">is</span> <span class="n">running</span>
+    <span class="n">service</span><span class="p">:</span> <span class="n">name</span><span class="o">=</span><span class="n">httpd</span> <span class="n">state</span><span class="o">=</span><span class="n">running</span>
+</pre></div>
+</div>
+<p>比较特别的两个 modudle 是  <cite>command</cite> 和 <cite>shell</cite> ,它们不使用 key=value 格式的参数,而是这样:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tasks</span><span class="p">:</span>
+  <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">disable</span> <span class="n">selinux</span>
+    <span class="n">command</span><span class="p">:</span> <span class="o">/</span><span class="n">sbin</span><span class="o">/</span><span class="n">setenforce</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p>使用 command module 和 shell module 时,我们需要关心返回码信息,如果有一条命令,它的成功执行的返回码不是0,
+你或许希望这样做:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tasks</span><span class="p">:</span>
+  <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">run</span> <span class="n">this</span> <span class="n">command</span> <span class="ow">and</span> <span class="n">ignore</span> <span class="n">the</span> <span class="n">result</span>
+    <span class="n">shell</span><span class="p">:</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">somecommand</span> <span class="o">||</span> <span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">true</span>
+</pre></div>
+</div>
+<p>或者是这样:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tasks</span><span class="p">:</span>
+  <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">run</span> <span class="n">this</span> <span class="n">command</span> <span class="ow">and</span> <span class="n">ignore</span> <span class="n">the</span> <span class="n">result</span>
+    <span class="n">shell</span><span class="p">:</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">somecommand</span>
+    <span class="n">ignore_errors</span><span class="p">:</span> <span class="kc">True</span>
+</pre></div>
+</div>
+<p>如果 action 行看起来太长,你可以使用 space（空格） 或者 indent（缩进） 隔开连续的一行:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tasks</span><span class="p">:</span>
+  <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">Copy</span> <span class="n">ansible</span> <span class="n">inventory</span> <span class="n">file</span> <span class="n">to</span> <span class="n">client</span>
+    <span class="n">copy</span><span class="p">:</span> <span class="n">src</span><span class="o">=/</span><span class="n">etc</span><span class="o">/</span><span class="n">ansible</span><span class="o">/</span><span class="n">hosts</span> <span class="n">dest</span><span class="o">=/</span><span class="n">etc</span><span class="o">/</span><span class="n">ansible</span><span class="o">/</span><span class="n">hosts</span>
+            <span class="n">owner</span><span class="o">=</span><span class="n">root</span> <span class="n">group</span><span class="o">=</span><span class="n">root</span> <span class="n">mode</span><span class="o">=</span><span class="mi">0644</span>
+</pre></div>
+</div>
+<p>在 action 行中可以使用变量.假设在 ‘vars’ 那里定义了一个变量 ‘vhost’ ,可以这样使用它:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tasks</span><span class="p">:</span>
+  <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">create</span> <span class="n">a</span> <span class="n">virtual</span> <span class="n">host</span> <span class="n">file</span> <span class="k">for</span> <span class="p">{{</span> <span class="n">vhost</span> <span class="p">}}</span>
+    <span class="n">template</span><span class="p">:</span> <span class="n">src</span><span class="o">=</span><span class="n">somefile</span><span class="o">.</span><span class="n">j2</span> <span class="n">dest</span><span class="o">=/</span><span class="n">etc</span><span class="o">/</span><span class="n">httpd</span><span class="o">/</span><span class="n">conf</span><span class="o">.</span><span class="n">d</span><span class="o">/</span><span class="p">{{</span> <span class="n">vhost</span> <span class="p">}}</span>
+</pre></div>
+</div>
+<p>这些变量在 tempates 中也是可用的,稍后会讲到.</p>
+<p>在一个基础的 playbook 中,所有的 task 都是在一个 play 中列出,稍后将介绍一种更合理的安排 task 的方式:使用 ‘include:’
+指令.</p>
+</section>
+</section>
+<section id="action-shorthand-1">
+<span id="action-shorthand"></span><h2>Action Shorthand<a class="headerlink" href="#action-shorthand-1" title="Permalink to this headline">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 0.8.</span></p>
+</div>
+<p>在 0.8 及以后的版本中,ansible 更喜欢使用如下的格式列出 modules:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">template</span><span class="p">:</span> <span class="n">src</span><span class="o">=</span><span class="n">templates</span><span class="o">/</span><span class="n">foo</span><span class="o">.</span><span class="n">j2</span> <span class="n">dest</span><span class="o">=/</span><span class="n">etc</span><span class="o">/</span><span class="n">foo</span><span class="o">.</span><span class="n">conf</span>
+</pre></div>
+</div>
+<p>在早期的版本中,使用以下的格式:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">action</span><span class="p">:</span> <span class="n">template</span> <span class="n">src</span><span class="o">=</span><span class="n">templates</span><span class="o">/</span><span class="n">foo</span><span class="o">.</span><span class="n">j2</span> <span class="n">dest</span><span class="o">=/</span><span class="n">etc</span><span class="o">/</span><span class="n">foo</span><span class="o">.</span><span class="n">conf</span>
+</pre></div>
+</div>
+<p>早期的格式在新版本中仍然可用,并且没有计划将这种旧的格式弃用.</p>
+</section>
+<section id="handlers-1">
+<span id="handlers"></span><h2>Handlers: 在发生改变时执行的操作<a class="headerlink" href="#handlers-1" title="Permalink to this headline">¶</a></h2>
+<p>上面我们曾提到过,module 具有”幂等”性,所以当远端系统被人改动时,可以重放 playbooks 达到恢复的目的.
+playbooks 本身可以识别这种改动,并且有一个基本的 event system（事件系统）,可以响应这种改动.</p>
+<p>（当发生改动时）’notify’ actions 会在 playbook 的每一个 task 结束时被触发,而且即使有多个不同的 task 通知改动的发生,
+‘notify’ actions 只会被触发一次.</p>
+<p>举例来说,比如多个 resources 指出因为一个配置文件被改动,所以 apache 需要重新启动,但是重新启动的操作只会被执行一次.</p>
+<p>这里有一个例子,当一个文件的内容被改动时,重启两个 services:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">template</span> <span class="n">configuration</span> <span class="n">file</span>
+  <span class="n">template</span><span class="p">:</span> <span class="n">src</span><span class="o">=</span><span class="n">template</span><span class="o">.</span><span class="n">j2</span> <span class="n">dest</span><span class="o">=/</span><span class="n">etc</span><span class="o">/</span><span class="n">foo</span><span class="o">.</span><span class="n">conf</span>
+  <span class="n">notify</span><span class="p">:</span>
+     <span class="o">-</span> <span class="n">restart</span> <span class="n">memcached</span>
+     <span class="o">-</span> <span class="n">restart</span> <span class="n">apache</span>
+</pre></div>
+</div>
+<p>‘notify’ 下列出的即是 handlers.</p>
+<p>Handlers 也是一些 task 的列表,通过名字来引用,它们和一般的 task 并没有什么区别.Handlers 是由通知者进行 notify,
+如果没有被 notify,handlers 不会执行.不管有多少个通知者进行了 notify,等到 play 中的所有 task 执行完成之后,handlers  也只会被执行一次.</p>
+<p>这里是一个 handlers 的示例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">handlers</span><span class="p">:</span>
+    <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">restart</span> <span class="n">memcached</span>
+      <span class="n">service</span><span class="p">:</span>  <span class="n">name</span><span class="o">=</span><span class="n">memcached</span> <span class="n">state</span><span class="o">=</span><span class="n">restarted</span>
+    <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">restart</span> <span class="n">apache</span>
+      <span class="n">service</span><span class="p">:</span> <span class="n">name</span><span class="o">=</span><span class="n">apache</span> <span class="n">state</span><span class="o">=</span><span class="n">restarted</span>
+</pre></div>
+</div>
+<p>Handlers 最佳的应用场景是用来重启服务,或者触发系统重启操作.除此以外很少用到了.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>handlers 会按照声明的顺序执行</p>
+</aside>
+<p>Roles 将在下一章节讲述.值得指出的是,handlers 会在 ‘pre_tasks’, ‘roles’, ‘tasks’, 和 ‘post_tasks’ 之间自动执行.
+如果你想立即执行所有的 handler 命令,在1.2及以后的版本,你可以这样做:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tasks</span><span class="p">:</span>
+   <span class="o">-</span> <span class="n">shell</span><span class="p">:</span> <span class="n">some</span> <span class="n">tasks</span> <span class="n">go</span> <span class="n">here</span>
+   <span class="o">-</span> <span class="n">meta</span><span class="p">:</span> <span class="n">flush_handlers</span>
+   <span class="o">-</span> <span class="n">shell</span><span class="p">:</span> <span class="n">some</span> <span class="n">other</span> <span class="n">tasks</span>
+</pre></div>
+</div>
+<p>在以上的例子中,任何在排队等候的 handlers 会在执行到 ‘meta’ 部分时,优先执行.这个技巧在有些时候也能派上用场.</p>
+</section>
+<section id="playbook-2">
+<span id="executing-a-playbook"></span><h2>执行一个 playbook<a class="headerlink" href="#playbook-2" title="Permalink to this headline">¶</a></h2>
+<p>既然现在你已经学习了 playbook 的语法,那要如何运行一个 playbook 呢？这很简单,这里的示例是并行的运行 playbook,并行的级别
+是10（译者注:是10个并发的进程？）:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ansible</span><span class="o">-</span><span class="n">playbook</span> <span class="n">playbook</span><span class="o">.</span><span class="n">yml</span> <span class="o">-</span><span class="n">f</span> <span class="mi">10</span>
+</pre></div>
+</div>
+</section>
+<section id="ansible-pull-1">
+<span id="ansible-pull"></span><h2>Ansible-Pull（拉取配置而非推送配置）<a class="headerlink" href="#ansible-pull-1" title="Permalink to this headline">¶</a></h2>
+<p>我们可不可以将 ansible 的体系架构颠倒过来,让托管节点从一个 central location 做 check in 获取配置信息,而不是
+推送配置信息到所有的托管节点？是可以的.</p>
+<p>Ansible-pull 是一个小脚本,它从 git 上 checkout 一个关于配置指令的 repo,然后以这个配置指令来运行 ansible-playbook.</p>
+<p>假设你对你的 checkout location 做负载均衡,ansible-pull 基本上可以无限的提升规模.</p>
+<p>可执行 <code class="docutils literal notranslate"><span class="pre">ansible-pull</span> <span class="pre">--help</span></code> 获取详细的帮助信息.</p>
+<p>也有一个叫做 clever playbook 的东西:  <a class="reference external" href="https://github.com/ansible/ansible-examples/blob/master/language_features/ansible_pull.yml">clever playbook</a> .
+这个可以通过 crontab 来配置 ansible-pull（from push mode）.</p>
+</section>
+<section id="section-2">
+<span id="tips-and-tricks"></span><h2>提示与技巧<a class="headerlink" href="#section-2" title="Permalink to this headline">¶</a></h2>
+<p>在 playbook 执行输出信息的底部,可以找到关于托管节点的信息.也可看到一般的失败信息,和严重的 “unreachable” 信息.
+这两个是分开计数的.</p>
+<p>如果你想看到执行成功的 modules 的输出信息,使用 <code class="docutils literal notranslate"><span class="pre">--verbose</span></code> flag（否则只有执行失败的才会有输出信息）.这在 0.5 及以后的版本中可用.</p>
+<p>如果安装了 cowsay 软件包,ansible playbook 的输出已经进行了广泛的升级.可以尝试一下！</p>
+<p>在执行一个 playbook 之前,想看看这个 playbook 的执行会影响到哪些 hosts,你可以这样做:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ansible</span><span class="o">-</span><span class="n">playbook</span> <span class="n">playbook</span><span class="o">.</span><span class="n">yml</span> <span class="o">--</span><span class="nb">list</span><span class="o">-</span><span class="n">hosts</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="YAMLSyntax.html"><span class="doc">YAML 语法</span></a></dt><dd><p>Learn about YAML syntax</p>
+</dd>
+<dt><a class="reference internal" href="playbooks_best_practices.html"><span class="doc">最佳实践</span></a></dt><dd><p>Various tips about managing playbooks in the real world</p>
+</dd>
+<dt><a class="reference internal" href="index.html"><span class="doc">Ansible 文档</span></a></dt><dd><p>Hop back to the documentation index for a lot of special topics about playbooks</p>
+</dd>
+<dt><a class="reference internal" href="modules.html"><span class="doc">模块相关</span></a></dt><dd><p>Learn about available modules</p>
+</dd>
+<dt><a class="reference internal" href="developing_modules.html"><span class="doc">Developing Modules</span></a></dt><dd><p>Learn how to extend Ansible by writing your own modules</p>
+</dd>
+<dt><a class="reference internal" href="intro_patterns.html"><span class="doc">Patterns</span></a></dt><dd><p>Learn about how to select hosts</p>
+</dd>
+<dt><a class="reference external" href="https://github.com/ansible/ansible-examples">Github examples directory</a></dt><dd><p>Complete end-to-end playbook examples</p>
+</dd>
+<dt><a class="reference external" href="http://groups.google.com/group/ansible-project">Mailing List</a></dt><dd><p>Questions? Help? Ideas?  Stop by the list on Google Groups</p>
+</dd>
+</dl>
+</aside>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="playbooks.html" class="btn btn-neutral float-left" title="Playbooks" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="playbooks_roles.html" class="btn btn-neutral float-right" title="Playbook 角色(Roles) 和 Include 语句" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2015, http://www.magedu.com, 马哥Linux团队成员荣誉出品(薛定谔的章鱼 &amp; guli &amp; 以马内利 &amp; 黄博文 &amp; coocla &amp; 云中鹤 &amp; stanley) 官方QQ交流群:372011984.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

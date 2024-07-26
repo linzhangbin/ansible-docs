@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Check Mode (“Dry Run”) &mdash; 国内最专业的Ansible中文官方学习手册</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="委托,滚动更新,本地动作" href="playbooks_delegation.html" />
+    <link rel="prev" title="异步操作和轮询" href="playbooks_async.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Ansible中文权威指南
+          </a>
+              <div class="version">
+                5.2.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">总体介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">快速学习视频</a></li>
+<li class="toctree-l1"><a class="reference internal" href="playbooks.html">Playbooks</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="playbooks_special_topics.html">Playbooks: Special Topics</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="playbooks_acceleration.html">Accelerated Mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_async.html">异步操作和轮询</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Check Mode (“Dry Run”)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#section-1">在测试模式下运行一个任务.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#showing-differences-with-diff">Showing Differences with <code class="docutils literal notranslate"><span class="pre">--diff</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_delegation.html">委托,滚动更新,本地动作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_environment.html">配置环境 (在代理环境中)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_error_handling.html">Playbooks 中的错误处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_tags.html">标签</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_vault.html">Vault</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_startnstep.html">从指定任务开始运行palybook以及分步运行playbook</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">模块相关</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guides.html">详细指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developing.html">开发者须知</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tower.html">Ansible Tower</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community.html">Ansible用户</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community.html#section-4">对当前和未来的开发人员</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community.html#section-5">其它主题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="galaxy.html">Ansible Galaxy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test_strategies.html">测试策略</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">术语表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="YAMLSyntax.html">YAML 语法</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Ansible中文权威指南</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="playbooks_special_topics.html">Playbooks: Special Topics</a></li>
+      <li class="breadcrumb-item active">Check Mode (“Dry Run”)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/docs/playbooks_checkmode.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="check-mode-dry-run">
+<h1><a class="toc-backref" href="#toc-entry-1" role="doc-backlink">Check Mode (“Dry Run”)</a><a class="headerlink" href="#check-mode-dry-run" title="Permalink to this headline">¶</a></h1>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.1.</span></p>
+</div>
+<nav class="contents" id="topics">
+<p class="topic-title">Topics</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#check-mode-dry-run" id="toc-entry-1">Check Mode (“Dry Run”)</a></p>
+<ul>
+<li><p><a class="reference internal" href="#section-1" id="toc-entry-2">在测试模式下运行一个任务.</a></p></li>
+<li><p><a class="reference internal" href="#showing-differences-with-diff" id="toc-entry-3">Showing Differences with <code class="docutils literal notranslate"><span class="pre">--diff</span></code></a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<p>当以 <code class="docutils literal notranslate"><span class="pre">--check</span></code> 参数来运行 ansible-playbook 时,将不会对远程的系统作出任何更改.相对的,任何带有检测功能的模块(这几乎包含了所有的主要核心模块,但这不要求所有的模块都需支持.)
+只要支持 ‘检测模式’ 将会报告它们会做出什么改变而不是直接进行改变.其他不支持检测模式的模块将既不响应也不提出相应的报告.</p>
+<p>检测模式只是一种模拟.如果你的playbook是以先前命令的执行结果作为条件的话,那它可能对你就没有什么大用处了.
+但是对于基于一次一节点的基础配置管理的使用情形来说是很有用.</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ansible</span><span class="o">-</span><span class="n">playbook</span> <span class="n">foo</span><span class="o">.</span><span class="n">yml</span> <span class="o">--</span><span class="n">check</span>
+</pre></div>
+</div>
+<section id="section-1">
+<span id="forcing-to-run-in-check-mode"></span><h2><a class="toc-backref" href="#toc-entry-2" role="doc-backlink">在测试模式下运行一个任务.</a><a class="headerlink" href="#section-1" title="Permalink to this headline">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.3.</span></p>
+</div>
+<p>有时候你甚至会想在检测模式中执行一个任务.为了达到这样的效果,
+你需要在相应的任务上使用 <cite>always_run</cite> 子句.跟 <cite>when</cite> 子句一样,它的值是一个 Jinja2 表达式.
+在一个简单的例子中,布尔值也会表达为一个适当的 YAML 值.</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tasks</span><span class="p">:</span>
+
+  <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">this</span> <span class="n">task</span> <span class="ow">is</span> <span class="n">run</span> <span class="n">even</span> <span class="ow">in</span> <span class="n">check</span> <span class="n">mode</span>
+    <span class="n">command</span><span class="p">:</span> <span class="o">/</span><span class="n">something</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">run</span> <span class="o">--</span><span class="n">even</span><span class="o">-</span><span class="ow">in</span><span class="o">-</span><span class="n">check</span><span class="o">-</span><span class="n">mode</span>
+    <span class="n">always_run</span><span class="p">:</span> <span class="n">yes</span>
+</pre></div>
+</div>
+<p>友情提示,带有 <cite>when</cite> 子句的任务会返回false,该任务将会被跳过,即使它还被添加了会返回true的 <cite>always_run</cite> 子句.</p>
+</section>
+<section id="showing-differences-with-diff">
+<span id="diff-mode"></span><h2><a class="toc-backref" href="#toc-entry-3" role="doc-backlink">Showing Differences with <code class="docutils literal notranslate"><span class="pre">--diff</span></code></a><a class="headerlink" href="#showing-differences-with-diff" title="Permalink to this headline">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.1: </span>对 ansible-playbook 来说 <code class="docutils literal notranslate"><span class="pre">--diff</span></code> 选项与 <code class="docutils literal notranslate"><span class="pre">--check</span></code> (详情参下)配合使用效果奇佳,不过它也可以单独使用.当提供了相应的标识后,当远程系统上任何模板文件的变化时,ansible-playbook CLI 将会报告文件上任何文本的变化
+(或者,如果使用了 <code class="docutils literal notranslate"><span class="pre">--check</span></code> 参数,将报告会发生的变化.).因为 diff 特性会产生大量的输出结果,所以它在一次检测一个主机时使用为佳,如:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ansible</span><span class="o">-</span><span class="n">playbook</span> <span class="n">foo</span><span class="o">.</span><span class="n">yml</span> <span class="o">--</span><span class="n">check</span> <span class="o">--</span><span class="n">diff</span> <span class="o">--</span><span class="n">limit</span> <span class="n">foo</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">com</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="playbooks_async.html" class="btn btn-neutral float-left" title="异步操作和轮询" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="playbooks_delegation.html" class="btn btn-neutral float-right" title="委托,滚动更新,本地动作" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2015, http://www.magedu.com, 马哥Linux团队成员荣誉出品(薛定谔的章鱼 &amp; guli &amp; 以马内利 &amp; 黄博文 &amp; coocla &amp; 云中鹤 &amp; stanley) 官方QQ交流群:372011984.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>术语表 &mdash; 国内最专业的Ansible中文官方学习手册</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="YAML 语法" href="YAMLSyntax.html" />
+    <link rel="prev" title="常见问题" href="faq.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Ansible中文权威指南
+          </a>
+              <div class="version">
+                5.2.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">总体介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">快速学习视频</a></li>
+<li class="toctree-l1"><a class="reference internal" href="playbooks.html">Playbooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="playbooks_special_topics.html">Playbooks: Special Topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">模块相关</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guides.html">详细指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developing.html">开发者须知</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tower.html">Ansible Tower</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community.html">Ansible用户</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community.html#section-4">对当前和未来的开发人员</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community.html#section-5">其它主题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="galaxy.html">Ansible Galaxy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test_strategies.html">测试策略</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">常见问题</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">术语表</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#action">动作(Action)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ad-hoc">Ad Hoc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#async">Async</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#callback-plugin">Callback Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#check-mode">Check Mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#connection-type-connection-plugin">Connection Type, Connection Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#conditionals">Conditionals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#diff-mode">Diff Mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#facts">Facts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#filter-plugin">Filter Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#forks">Forks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gather-facts-boolean">Gather Facts (Boolean)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#globbing">Globbing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#group">Group</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#group-vars">Group Vars</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#handlers">Handlers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#host">Host</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#host-specifier">Host Specifier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#host-vars">Host Vars</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lazy-evaluation">Lazy Evaluation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lookup-plugin">Lookup Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#multi-tier">Multi-Tier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#idempotency">Idempotency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#includes">Includes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#inventory">Inventory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#inventory-script">Inventory Script</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#jinja2">Jinja2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#json">JSON</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#library">Library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#limit-groups">Limit Groups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#local-connection">Local Connection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#local-action">Local Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#loops">Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#modules">Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#notify">Notify</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#orchestration">Orchestration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#paramiko">paramiko</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#playbooks">Playbooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#plays">Plays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pull-mode">Pull Mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#push-mode">Push Mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#register-variable">Register Variable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#resource-model">Resource Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#roles">Roles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rolling-update">Rolling Update</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#runner">Runner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#serial">Serial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ssh-native">SSH (Native)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tags">Tags</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tasks">Tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#templates">Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#transport">Transport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#when">When</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#van-halen">Van Halen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vars-variables">Vars (Variables)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#yaml">YAML</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="YAMLSyntax.html">YAML 语法</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Ansible中文权威指南</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">术语表</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/docs/glossary.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="section-1">
+<h1>术语表<a class="headerlink" href="#section-1" title="Permalink to this headline">¶</a></h1>
+<p>下面是一系列的 Ansible 文档中的术语。</p>
+<p>在主界面查看文档，了解这些术语的上下文环境，不过这里是一个好的资源测试你对 Ansible 组件的了解和更好的理解他们是如何组合起来的。你可能在想回顾 Ansible 知识的时候看看这里，在邮件中出现一些术语的时候参考一下这个文档。</p>
+<section id="action">
+<h2>动作(Action)<a class="headerlink" href="#action" title="Permalink to this headline">¶</a></h2>
+<p>一个动作属于一个任务的一部分，指定运行的模块，然后传递参数给此模块。每个任务之一一个动作，但是它可以有不同的参数。</p>
+</section>
+<section id="ad-hoc">
+<h2>Ad Hoc<a class="headerlink" href="#ad-hoc" title="Permalink to this headline">¶</a></h2>
+<p>指的是使用 /usr/bin/ansible 运行 Ansible 直接执行一些命令，而不是使用 /usr/bin/ansible-playbook 执行剧本。一个 ad-hoc 命令例子，可以是在你的基础设施里面重启50台机器。任何你可以做的东西， ad-hoc 都可以实现通过写一个剧本, 剧本肯定也组合了其它的一些操作。</p>
+</section>
+<section id="async">
+<h2>Async<a class="headerlink" href="#async" title="Permalink to this headline">¶</a></h2>
+<p>指的是一个任务配置为运行在后台，而不是等它完成。如果你有一个很长的任务要执行，而且时长可能超出 SSH 登录时长， 那么运行那个任务在 async 方式比较有意义。Async 方式可以每隔一段时间 poll 一次，等待此任务完成。它可以调整为把任务踢出去，然后不再理会它，以便后来使用。Async方式可以在 /usr/bin/ansible 和 /usr/bin/ansible-playbook下面。</p>
+</section>
+<section id="callback-plugin">
+<h2>Callback Plugin<a class="headerlink" href="#callback-plugin" title="Permalink to this headline">¶</a></h2>
+<p>指一些用户编写的代码可以从 Ansible 运行结果获取数据,并做出一些处理。 一些提供的在 Github 项目上的事例实现了自定义日志，发邮件，甚至播放声音效果。</p>
+</section>
+<section id="check-mode">
+<h2>Check Mode<a class="headerlink" href="#check-mode" title="Permalink to this headline">¶</a></h2>
+<p>指的是运行 Ansible 使用 <code class="docutils literal notranslate"><span class="pre">--ckeck</span></code> 选项，但是系统本身却不作出任何改变，仅仅输出可能发生的改变。这就像在其它系统上叫做 “dry run”的方式， 用户应该被警告因为这个方式没考虑到命令失败的问题，或者冲突影响。使用这个可以知道哪些东西可能会发生，但是这不是一个好的替代 staging 环境。</p>
+</section>
+<section id="connection-type-connection-plugin">
+<h2>Connection Type, Connection Plugin<a class="headerlink" href="#connection-type-connection-plugin" title="Permalink to this headline">¶</a></h2>
+<p>Ansible 默认用可插拨的库和远端系统通信。 Ansible 支持天然的 OpenSSH (‘ssh’) 或者 Python 实现的 ‘paramiko’ 库。如果你在使用最近的 Ansible 版本，最好使用 OpenSSH ，同时支持 Kerberos 和 jump hosts。这在文档开始部分就有提到。也有一些加速方式的连接类型，但是必须 bootstrapped 基于SSH类型的连接，但是它非常快，就像在本地系统上运行一样。用户也可以写他们自己的连接类型插件。</p>
+</section>
+<section id="conditionals">
+<h2>Conditionals<a class="headerlink" href="#conditionals" title="Permalink to this headline">¶</a></h2>
+<p>一个条件式是根据一个表达式正确或错误判断是否在一个机器上执行给定的任务。 Ansible 的条件表达式由 ‘when’ 提供，在playbook文档里面有讨论。</p>
+</section>
+<section id="diff-mode">
+<h2>Diff Mode<a class="headerlink" href="#diff-mode" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">--diff``标识可以传递给</span> <span class="pre">Ansible</span> <span class="pre">来展示模板文件如何改变的，或者使用</span> <span class="pre">``--check</span></code> 模式时它们可能发生的改变 。这些 diffs 统一为diff格式。</p>
+</div></blockquote>
+</section>
+<section id="facts">
+<h2>Facts<a class="headerlink" href="#facts" title="Permalink to this headline">¶</a></h2>
+<p>Facts 是发现远端节点的信息。当它们被用在模板的时候， facts只能被引用，而不能被设置。Facts是当运行 plays 时候执行内部的’setup’模块自动收集的。你不需要明确的调用 setup 模块，它自己运行，但是当你想节省时间的时候你可以禁止它。为了方便用户转向其他系统配置工具， fact 模块可以拉取 facts 从 Chef的’ohai’ 和 Puppet的’facter’工具。</p>
+</section>
+<section id="filter-plugin">
+<h2>Filter Plugin<a class="headerlink" href="#filter-plugin" title="Permalink to this headline">¶</a></h2>
+<p>过滤插件式大多数用户从来不需要了解的东西。这允许创在新的 Jinja2 过滤，而这只对那些知道什么是 Jinja2 过滤的人有帮助。如果你需要他们，你可以从 API docs 部分学习如何写他们。</p>
+</section>
+<section id="forks">
+<h2>Forks<a class="headerlink" href="#forks" title="Permalink to this headline">¶</a></h2>
+<p>Ansible 与远端节点交流是通过并行的机制，并行机制的方式可以通过传递 <a href="#system-message-1"><span class="problematic" id="problematic-1">``</span></a>–forks``参数设置，或者在配置文件里面编辑。默认是保守的5个线程。如果你有足够的内存，你可以很容易的设置为50或者更多值。</p>
+</section>
+<section id="gather-facts-boolean">
+<h2>Gather Facts (Boolean)<a class="headerlink" href="#gather-facts-boolean" title="Permalink to this headline">¶</a></h2>
+<p>上面已经提到了Facts。有时候在运行多个 playbook ，可能不想收集一些fact ，而且以后也不会用到这些值。在playbook里面设置 <cite>gather_facts:False</cite> 指示跳过收集 facts。</p>
+</section>
+<section id="globbing">
+<h2>Globbing<a class="headerlink" href="#globbing" title="Permalink to this headline">¶</a></h2>
+<p>Globbing 是一个一种基于通配符的方式挑选许多主机，而不是明确指定主机的名字，或者它们的组名。例如 ，使用 “www*”，来匹配所有以 “www” 开头的所有主机。这个理念直接被吸收进 Func 。除此之外，不同的 set 操作也可以通过 globbing 实现。</p>
+</section>
+<section id="group">
+<h2>Group<a class="headerlink" href="#group" title="Permalink to this headline">¶</a></h2>
+<p>组由几个主机组成，可以方便的当做一个目标看待，同时可以共享变量。</p>
+</section>
+<section id="group-vars">
+<h2>Group Vars<a class="headerlink" href="#group-vars" title="Permalink to this headline">¶</a></h2>
+<p>group_vars 文件位于一个目录下面，同时在 inventory 旁边，有一个可选的文件名在每个组后面。这是一个方便的位置来存放变量，提供给每个组，由其是复杂的数据结构，因此这些变量不需要嵌入在 inventory 文件或 playbook 文件里面。</p>
+</section>
+<section id="handlers">
+<h2>Handlers<a class="headerlink" href="#handlers" title="Permalink to this headline">¶</a></h2>
+<p>Handler 仅仅是普通的任务在Ansible playbook里面(请参考tasks)。但是仅仅当任务包含 “notify” 指令和指示它改变了一些东西的时候才运行。例如，如果一个配置文件改变了，然后任务引用这个配置文件模板通知服务器重启 handler 。这意味着服务可以被反弹仅仅他们需要重启的时候。Handler 不仅仅可以用于重启服务，但是重启服务是最通用的用法。</p>
+</section>
+<section id="host">
+<h2>Host<a class="headerlink" href="#host" title="Permalink to this headline">¶</a></h2>
+<p>一个host 只是简单的 Ansible 管理的远端机器。它们可以被分配私有的变量，可以被组织为一个组。所有的组有可以访问一个名字，也可以是IP地址，如果他们在默认的SSH端口不能访问，可以指定一个一个可选的端口号</p>
+</section>
+<section id="host-specifier">
+<h2>Host Specifier<a class="headerlink" href="#host-specifier" title="Permalink to this headline">¶</a></h2>
+<p>每一个 Play 映射为一系列的 tasks (可以是定义的role，purpose，或系统指令) 到一些系统的集合</p>
+<p>“hosts:” 指令在每个play中通常叫做主机指定。</p>
+<p>它可以挑选一个系统，一个或更多组，甚至一些主机在其他组不在某个组里面，但是在另外一个组里面。</p>
+</section>
+<section id="host-vars">
+<h2>Host Vars<a class="headerlink" href="#host-vars" title="Permalink to this headline">¶</a></h2>
+<p>就像”Group Vars”，一个名称为 “host_vars/” 的目录在 inventory 文件旁，可以在 invetory 文件的主机名后面包含这个文件，使用 YAML 格式。这提供一个方便的位置分配变量给这个主机而不要在 inventory 文件里面嵌入太多变量。Host Vars 文件还可以用于定义复杂的在 inventory 文件里面不断出现的数据结构。</p>
+</section>
+<section id="lazy-evaluation">
+<h2>Lazy Evaluation<a class="headerlink" href="#lazy-evaluation" title="Permalink to this headline">¶</a></h2>
+<p>总的来说， Ansible 评估任何变量在 playbook 内容在最新的可能的时间里，也就是意味着如果你定义了一个数据结构，这个数据结构自身也可以定义变量值在里面，然后每件事情就像你期望的那样工作。 这也意味着 变量字符串可以包含其它的变量在字符串里面。</p>
+</section>
+<section id="lookup-plugin">
+<h2>Lookup Plugin<a class="headerlink" href="#lookup-plugin" title="Permalink to this headline">¶</a></h2>
+<p>一个查询插件是从外界得到数据进入 Ansible 。这些东西就像 “with_items” ，一个基础的循环插件，但是也有其它的查询插件就像 “with_file”, 从文件加载数据，甚至有一些逡巡环境变量， DNS 文本记录，或者键值存储。 查询插件也可以被 templates 访问 ，<code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">lookup('file','/path/to/file')</span> <span class="pre">}}</span></code>.</p>
+</section>
+<section id="multi-tier">
+<h2>Multi-Tier<a class="headerlink" href="#multi-tier" title="Permalink to this headline">¶</a></h2>
+<p>IT 系统不是一次在同一时间只管理一个系统，而是在多个系统之间交互，一组系统，在一个定义好的顺序里面。例如，一个 web server 可能需要在数据库服务器之前更新，web server的部分内容又要在 <em>THAT</em> 数据库服务之后更新，同时不同的负载均衡器和监控服务器也需要被联系到。 Ansible 看待系统为整个工作流和拓扑，而不是简单的一次一个系统。</p>
+</section>
+<section id="idempotency">
+<h2>Idempotency<a class="headerlink" href="#idempotency" title="Permalink to this headline">¶</a></h2>
+<p>改变类的命令仅仅在他们需要使用的时候才被使用，最好描述系统的状态而不是如何到达系统某个状态的过程。打个比方，从美国的卡罗莱纳州到加利福尼亚州包括驾驶很长一段距离的车，但是如果我是在阿拉斯加州，则需要乘坐地铁。 Ansible的资源就像你说，“把我放到加利福尼亚”然后决定如何到达那里。如果你已经在加利福尼亚，没有什么会发生，然后他会让你知道什么都没有发生，不需要改变什么东西。</p>
+</section>
+<section id="includes">
+<h2>Includes<a class="headerlink" href="#includes" title="Permalink to this headline">¶</a></h2>
+<p>Playbook 文件可以包含其它的 plays，任务列表也可以扩展在其它文件的外部任务，就像处理器。 Include 可以被参数化的，也就是装载文件可以传递变量。例如，一个Include 表演设置Wordpress 博客站点，需要传递”user”参数,然后这个表演(play)可以 include 多于一次的博客站点，例如叫做 “alice” 和 “bob”</p>
+</section>
+<section id="inventory">
+<h2>Inventory<a class="headerlink" href="#inventory" title="Permalink to this headline">¶</a></h2>
+<p>一个描述主机和组的 Ansible 文件。Inventory 可以通过 “Inventory Script” 提供，有时也叫做 “External Inventory Script”</p>
+</section>
+<section id="inventory-script">
+<h2>Inventory Script<a class="headerlink" href="#inventory-script" title="Permalink to this headline">¶</a></h2>
+<p>一个简单的从外部资源寻找主机,主机组的成员，和变量信息的程序 – 可以是个 SQL 数据库，一个 CMDB 解决方案，或者是 LDAP。这个概念来自 Puppet (叫”External Nodes Classifier”)，工作方式也是类似的。</p>
+</section>
+<section id="jinja2">
+<h2>Jinja2<a class="headerlink" href="#jinja2" title="Permalink to this headline">¶</a></h2>
+<p>Jinja2 是 Ansible 模板的首选语言。它非常简单，很容易阅读和书写。</p>
+</section>
+<section id="json">
+<h2>JSON<a class="headerlink" href="#json" title="Permalink to this headline">¶</a></h2>
+<p>Ansible 从远端机器上返回的数据使用 JSON  类型。这使得模块可以使用任何语言编写，而不仅仅是Python。</p>
+</section>
+<section id="library">
+<h2>Library<a class="headerlink" href="#library" title="Permalink to this headline">¶</a></h2>
+<p>许多模块的集合供 /usr/bin/ansible 或 Ansible Playbook 使用。</p>
+</section>
+<section id="limit-groups">
+<h2>Limit Groups<a class="headerlink" href="#limit-groups" title="Permalink to this headline">¶</a></h2>
+<p>通过传递 <code class="docutils literal notranslate"><span class="pre">--limit</span> <span class="pre">somegroup</span></code> 参数给 ansible 或 ansible-playbook ，命令可以限制为一些主机的子集 。 例如这可以使目标为全部的服务器到只允许一个服务器运行 playbook 。</p>
+</section>
+<section id="local-connection">
+<h2>Local Connection<a class="headerlink" href="#local-connection" title="Permalink to this headline">¶</a></h2>
+<p>通过在 playbook 中使用 “connection:local” ，或者传递 “-c local” 给 /usr/bin/ansible ，这指明了我们正在管理本地主机而不是远端机器。</p>
+</section>
+<section id="local-action">
+<h2>Local Action<a class="headerlink" href="#local-action" title="Permalink to this headline">¶</a></h2>
+<p>local_action 指令在 playbook 意味着给予的步骤仅仅会在本地机器上运行， 但是这变量 ‘{{ ansible_hostname }}’可以被传递到远端机器引用。这可以被用于触发器，例如，rsync 操作。</p>
+</section>
+<section id="loops">
+<h2>Loops<a class="headerlink" href="#loops" title="Permalink to this headline">¶</a></h2>
+<p>通常来说， Ansible 不是一个编程语言。它跟喜欢声明，尽管不同的结果像 “with_items” 使得指定的任务重复的实验多个 items 在一个列表里面。特定的模块，例如 yum 和 apt ，对这更喜欢，可以安装多个包，然后加速了配置的总时间。</p>
+</section>
+<section id="modules">
+<h2>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h2>
+<p>Module 是 Ansible 运行远端机器的单元。模块可以使用通过 /usr/bin/ansible 或者 /usr/bin/ansible-playbook 。模块可以通过任何语言编写包括 Perl，Bash，Ruby，但是使用Python 可以利用一些有用的社区库代码。模块仅仅返回一些 JSON 格式数据或简单的 key=value 集合。一旦模块在远端执行之后，他们就被移除了，隐私不需 daemon 长时间运行。Ansible 把模块的集合看做 ‘library’</p>
+</section>
+<section id="notify">
+<h2>Notify<a class="headerlink" href="#notify" title="Permalink to this headline">¶</a></h2>
+<p>等级改变的事件和通知处理任务需要在 play 的最后运行。如果一个 handler 被多个任务通知，它会仍然仅仅运行一次。 Handler仅仅按照列表运行一次，而不是他们被notified 的顺序。</p>
+</section>
+<section id="orchestration">
+<h2>Orchestration<a class="headerlink" href="#orchestration" title="Permalink to this headline">¶</a></h2>
+<p>一些软件自动化系统使用这个单词意味着不同的事情。 Ansible使用它作为一个导演执导一个曲子。一个数据中心或云架构充满多个系统，表演很多角色 – web servers，database servers，负载均衡器，监控系统， 持续集成系统等。在具体表演过程中，必须要安排好特定的步骤。一些系统执行一些步骤，然后其它系统，然后先前的系统执行更多的步骤。同时，发送邮件也可能是需要的到 web service 联系人。 Ansible 编排了所有过程的模型。</p>
+</section>
+<section id="paramiko">
+<h2>paramiko<a class="headerlink" href="#paramiko" title="Permalink to this headline">¶</a></h2>
+<p>默认， Ansible 管理机器使用 SSH。而 Ansible 默认使用的 python 提供的库叫 paramiko。 paramiko库非常的快和很容易管理，渴望支持 Kerberos 或 jump Host 的用户转向使用 SSH 作为连接类型了。在他们的 playbook里面使用 “-c ssh” 选项即可。</p>
+</section>
+<section id="playbooks">
+<h2>Playbooks<a class="headerlink" href="#playbooks" title="Permalink to this headline">¶</a></h2>
+<p>Playbooks 是一种语言，Ansible 用于编排，配置，管理和部署吸引。他们被叫做 Playbooks 的部分原因是依据它行为的类比，使用它应该是一件有趣的事情。他们不是 工作书。</p>
+</section>
+<section id="plays">
+<h2>Plays<a class="headerlink" href="#plays" title="Permalink to this headline">¶</a></h2>
+<p>一个 playbook 就是一系列的 plays。一个 play 就是在一些主机中挑选指定的主机和主机组，然后运行任务在这些主机上，定义这些主机的角色和他们会怎么样表演。</p>
+</section>
+<section id="pull-mode">
+<h2>Pull Mode<a class="headerlink" href="#pull-mode" title="Permalink to this headline">¶</a></h2>
+<p>Pull 模式是节点每隔 N 分钟检查特定的主机。它使用 ansible-pull 程序，pull模式有很多选择性。Ansible-pull 在任务计划中检查配置指令熟悉怒，使用连接插件，在本地管理机器。</p>
+</section>
+<section id="push-mode">
+<h2>Push Mode<a class="headerlink" href="#push-mode" title="Permalink to this headline">¶</a></h2>
+<p>push 模式是 Ansible 的默认模式。事实上，这也不算是个模式 – 你不去想它的时候 ansible 就是这么工作的。Push 方式通过复杂的编排进程，而不要等到节点检查，对节点有个很好的粒度控制。</p>
+</section>
+<section id="register-variable">
+<h2>Register Variable<a class="headerlink" href="#register-variable" title="Permalink to this headline">¶</a></h2>
+<p>Ansible 运行的结果可以存储在一个变量里面以便模板或条件语句使用，用于定义这个变量的关键字叫做 ‘register’。你可以定义无限制的变量名用于 registertion.</p>
+</section>
+<section id="resource-model">
+<h2>Resource Model<a class="headerlink" href="#resource-model" title="Permalink to this headline">¶</a></h2>
+<p>Ansible 模块工作在资源上。例如，file 模块会挑选指定的文件然后确保资源的属性匹配指定的模型。例如，我们想改变 /etc/motd 的属主为 ‘root’，如果它还没设置为 root,或者设置权限为’0644’,如果还没有设置为 0644 。资源模型是幂等性( ‘idemotent’ )意味着改变命令不会运行除非需要的时候，Ansible会把系统变为期望的状态而不管当前的状态是什么。</p>
+</section>
+<section id="roles">
+<h2>Roles<a class="headerlink" href="#roles" title="Permalink to this headline">¶</a></h2>
+<p>一个 Role 可以包含特定的变量值，特定的任务，特定的触发器等东西。因为 Role 的文件结构，roles 可以是再次利用的单元，可以让你在其它 playbooks 中共享一些行为。</p>
+</section>
+<section id="rolling-update">
+<h2>Rolling Update<a class="headerlink" href="#rolling-update" title="Permalink to this headline">¶</a></h2>
+<p>一次处理某组主机的 N 个节点，避免一次全部更新导致系统离线。 例如，在一个 500 节点的 web 拓扑里，最好一次更新 10~20 台机器一次。Ansible 中的 ‘seria’ 关键字控制 rolling updtae的池。默认是一次全部处理。OS 配置可以不使用 rolling update 模型，但是可以这么做。</p>
+</section>
+<section id="runner">
+<h2>Runner<a class="headerlink" href="#runner" title="Permalink to this headline">¶</a></h2>
+<p>Ansible 核心的组件是 /usr/bin/ansible 指令，它背后有强大的力量，激发 playbook 中的每个任务。 Runner 一般是 Ansible 开发者经常谈论的，但是它对用户来说不是经常用到的词汇。</p>
+</section>
+<section id="serial">
+<h2>Serial<a class="headerlink" href="#serial" title="Permalink to this headline">¶</a></h2>
+<p>参考 “Rolling Update”.</p>
+<p>Sudo</p>
+<hr class="docutils" />
+<p>Ansible 不要求一定用 root 登录，它是无守护进程模式的(这可能是个安全问题，在敏感的环境里面)。 Ansible可以记录一些运行 sudo 命令的操作，可以运行无密码的和有密码的 sudo。 一些操作不需要使用 sudo (像 scp 文件传输)可以通过 Ansible 的 copy,template,和 fetch 模块实现。</p>
+</section>
+<section id="ssh-native">
+<h2>SSH (Native)<a class="headerlink" href="#ssh-native" title="Permalink to this headline">¶</a></h2>
+<p>OpenSSH 作为 Ansible 的传输被指定使用 “-c ssh”，这可以很有用当你想登陆通过 Kerberized SSH 或者 SSH jump hosts 等待。在 1.2.1版本，ssh被用作默认，之前使用 ‘paramiko’ 作为默认。使用一个客户端 支持 ControlMaster 和 ControlPersist 是被推荐的对于管理大量主机。如果你不需要使用 Kerbers，jump hosts或者其它的特性， 选择 paramiko 是不错的选择。Ansible 会发出警告，如果它没有检测到 ControlMaster/ControlPersist 兼容性。</p>
+</section>
+<section id="tags">
+<h2>Tags<a class="headerlink" href="#tags" title="Permalink to this headline">¶</a></h2>
+<p>Ansible 允许给playbook里面的资源通过自定义的关键字打上标签，然后只运行与关键字一致的部分代码。 例如，可能有个完成的 OS 配置，然后特定的步骤标记为 “ntp” ，然后运行 “ntp” 步骤来重新配置时间服务器信息。</p>
+</section>
+<section id="tasks">
+<h2>Tasks<a class="headerlink" href="#tasks" title="Permalink to this headline">¶</a></h2>
+<p>Playbooks 包含 Tasks， Tasks 结合一个动作使用一个名称和一些可选的关键字。处理器也是 tasks，但是他们是特殊的 tasks 不运行，除非他们被通知一个 tasks 报道的远端吸引变化。</p>
+</section>
+<section id="templates">
+<h2>Templates<a class="headerlink" href="#templates" title="Permalink to this headline">¶</a></h2>
+<p>Ansible 很容易的传输文件到远端系统上面，但是它经常需要替换一些变量在其它的文件里面。变量可以来自 清单文件，Host Vars， Group Vars,或者 Facts。Templates 使用 Jinja2 模板引擎同样可以包含逻辑控制像循环和 if 语句。</p>
+</section>
+<section id="transport">
+<h2>Transport<a class="headerlink" href="#transport" title="Permalink to this headline">¶</a></h2>
+<p>Ansible 使用 “Connection Plugins” 定义可用的传输类型。这只是 Ansible 如何到达管理的系统。Rransports 包括 paramiko, SSH (using OpenSSH), 和 local.</p>
+</section>
+<section id="when">
+<h2>When<a class="headerlink" href="#when" title="Permalink to this headline">¶</a></h2>
+<p>一个可选的关键字来决定这个任务是不是应该指向，如果再 “when:” 关键字这里的表达式是是不正确的，这个任务会被忽略。</p>
+</section>
+<section id="van-halen">
+<h2>Van Halen<a class="headerlink" href="#van-halen" title="Permalink to this headline">¶</a></h2>
+<p>没有其它的原因，Michael 真的很喜欢他们，所有的 Ansible 版本代号都是以 Van Halen 的歌曲命名。</p>
+</section>
+<section id="vars-variables">
+<h2>Vars (Variables)<a class="headerlink" href="#vars-variables" title="Permalink to this headline">¶</a></h2>
+<p>和 Facts 相反， 变量是一些值，或字典，列表的名称(可以是标量值–整数，布尔型，或字符串，字典，列表)，然后变量可以应用在模板和剧本里面。他们是声明的东西，不是获取远程系统的当前状态或性质(这是Facts)</p>
+</section>
+<section id="yaml">
+<h2>YAML<a class="headerlink" href="#yaml" title="Permalink to this headline">¶</a></h2>
+<p>Ansible 不想强迫人们编写编程语言的代码实现自动化基础设施部署,所以 Ansible 使用YAML来定义剧本还配置语言和变量文件。YAML很棒因为它有很少的语法，然后非常干净,容易浏览。对人来说，这是一个很好的数据格式的配置文件,机器也可读。YAML非常流行在动态语言社区，编程语言也有库可用来序列化这种语言.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="faq.html"><span class="doc">常见问题</span></a></dt><dd><p>常问到的问题</p>
+</dd>
+<dt><a class="reference internal" href="playbooks.html"><span class="doc">Playbooks</span></a></dt><dd><p>Playbook 介绍</p>
+</dd>
+<dt><a class="reference internal" href="playbooks_best_practices.html"><span class="doc">最佳实践</span></a></dt><dd><p>最好的联系见习</p>
+</dd>
+<dt><a class="reference external" href="http://groups.google.com/group/ansible-devel">User Mailing List</a></dt><dd><p>Have a question?  Stop by the google group!</p>
+</dd>
+<dt><a class="reference external" href="http://irc.freenode.net">irc.freenode.net</a></dt><dd><p>#ansible IRC chat channel</p>
+</dd>
+</dl>
+</aside>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="faq.html" class="btn btn-neutral float-left" title="常见问题" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="YAMLSyntax.html" class="btn btn-neutral float-right" title="YAML 语法" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2015, http://www.magedu.com, 马哥Linux团队成员荣誉出品(薛定谔的章鱼 &amp; guli &amp; 以马内利 &amp; 黄博文 &amp; coocla &amp; 云中鹤 &amp; stanley) 官方QQ交流群:372011984.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

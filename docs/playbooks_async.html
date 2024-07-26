@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>异步操作和轮询 &mdash; 国内最专业的Ansible中文官方学习手册</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Check Mode (“Dry Run”)" href="playbooks_checkmode.html" />
+    <link rel="prev" title="Accelerated Mode" href="playbooks_acceleration.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Ansible中文权威指南
+          </a>
+              <div class="version">
+                5.2.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">总体介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">快速学习视频</a></li>
+<li class="toctree-l1"><a class="reference internal" href="playbooks.html">Playbooks</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="playbooks_special_topics.html">Playbooks: Special Topics</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="playbooks_acceleration.html">Accelerated Mode</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">异步操作和轮询</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_checkmode.html">Check Mode (“Dry Run”)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_delegation.html">委托,滚动更新,本地动作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_environment.html">配置环境 (在代理环境中)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_error_handling.html">Playbooks 中的错误处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_tags.html">标签</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_vault.html">Vault</a></li>
+<li class="toctree-l2"><a class="reference internal" href="playbooks_startnstep.html">从指定任务开始运行palybook以及分步运行playbook</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">模块相关</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guides.html">详细指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developing.html">开发者须知</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tower.html">Ansible Tower</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community.html">Ansible用户</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community.html#section-4">对当前和未来的开发人员</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community.html#section-5">其它主题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="galaxy.html">Ansible Galaxy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test_strategies.html">测试策略</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">术语表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="YAMLSyntax.html">YAML 语法</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Ansible中文权威指南</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="playbooks_special_topics.html">Playbooks: Special Topics</a></li>
+      <li class="breadcrumb-item active">异步操作和轮询</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/docs/playbooks_async.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="section-1">
+<h1>异步操作和轮询<a class="headerlink" href="#section-1" title="Permalink to this headline">¶</a></h1>
+<p>默认情况下playbook中的任务执行时会一直保持连接,直到该任务在每个节点都执行完毕.有时这是不必要的,比如有些操作运行时间比SSH超时时间还要长.</p>
+<p>解决该问题最简单的方式是一起执行它们,然后轮询直到任务执行完毕.</p>
+<p>你也可以对执行时间非常长（有可能遭遇超时）的操作使用异步模式.</p>
+<p>为了异步启动一个任务,可以指定其最大超时时间以及轮询其状态的频率.如果你没有为 <cite>poll</cite> 指定值,那么默认的轮询频率是10秒钟:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---</span>
+
+<span class="o">-</span> <span class="n">hosts</span><span class="p">:</span> <span class="nb">all</span>
+  <span class="n">remote_user</span><span class="p">:</span> <span class="n">root</span>
+
+  <span class="n">tasks</span><span class="p">:</span>
+
+  <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">simulate</span> <span class="n">long</span> <span class="n">running</span> <span class="n">op</span> <span class="p">(</span><span class="mi">15</span> <span class="n">sec</span><span class="p">),</span> <span class="n">wait</span> <span class="k">for</span> <span class="n">up</span> <span class="n">to</span> <span class="mi">45</span> <span class="n">sec</span><span class="p">,</span> <span class="n">poll</span> <span class="n">every</span> <span class="mi">5</span> <span class="n">sec</span>
+    <span class="n">command</span><span class="p">:</span> <span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">sleep</span> <span class="mi">15</span>
+    <span class="k">async</span><span class="p">:</span> <span class="mi">45</span>
+    <span class="n">poll</span><span class="p">:</span> <span class="mi">5</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><cite>async</cite> 并没有默认值,如果你没有指定 <cite>async</cite> 关键字,那么任务会以同步的方式运行,这是Ansible的默认行为.</p>
+</aside>
+<p>另外,如果你不需要等待任务执行完毕,你可以指定 <cite>poll</cite> 值为0而启用 “启动并忽略”</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---</span>
+
+<span class="o">-</span> <span class="n">hosts</span><span class="p">:</span> <span class="nb">all</span>
+  <span class="n">remote_user</span><span class="p">:</span> <span class="n">root</span>
+
+  <span class="n">tasks</span><span class="p">:</span>
+
+  <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">simulate</span> <span class="n">long</span> <span class="n">running</span> <span class="n">op</span><span class="p">,</span> <span class="n">allow</span> <span class="n">to</span> <span class="n">run</span> <span class="k">for</span> <span class="mi">45</span> <span class="n">sec</span><span class="p">,</span> <span class="n">fire</span> <span class="ow">and</span> <span class="n">forget</span>
+    <span class="n">command</span><span class="p">:</span> <span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">sleep</span> <span class="mi">15</span>
+    <span class="k">async</span><span class="p">:</span> <span class="mi">45</span>
+    <span class="n">poll</span><span class="p">:</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>对于要求排它锁的操作,如果你需要在其之后对同一资源执行其它任务,那么你不应该对该操作使用”启动并忽略”.比如yum事务.</p>
+</aside>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">--forks</span></code> 参数值过大会更快的触发异步任务.也会加快轮询的效率.</p>
+</aside>
+<p>当你想对 “启动并忽略” 做个变种,改为”启动并忽略,稍后再检查”,你可以使用以下方式执行任务:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---</span>
+<span class="c1"># Requires ansible 1.8+</span>
+<span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="s1">&#39;YUM - fire and forget task&#39;</span>
+  <span class="n">yum</span><span class="p">:</span> <span class="n">name</span><span class="o">=</span><span class="n">docker</span><span class="o">-</span><span class="n">io</span> <span class="n">state</span><span class="o">=</span><span class="n">installed</span>
+  <span class="k">async</span><span class="p">:</span> <span class="mi">1000</span>
+  <span class="n">poll</span><span class="p">:</span> <span class="mi">0</span>
+  <span class="n">register</span><span class="p">:</span> <span class="n">yum_sleeper</span>
+
+<span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="s1">&#39;YUM - check on fire and forget task&#39;</span>
+  <span class="n">async_status</span><span class="p">:</span> <span class="n">jid</span><span class="o">=</span><span class="p">{{</span> <span class="n">yum_sleeper</span><span class="o">.</span><span class="n">ansible_job_id</span> <span class="p">}}</span>
+  <span class="n">register</span><span class="p">:</span> <span class="n">job_result</span>
+  <span class="n">until</span><span class="p">:</span> <span class="n">job_result</span><span class="o">.</span><span class="n">finished</span>
+  <span class="n">retries</span><span class="p">:</span> <span class="mi">30</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>如果 <code class="docutils literal notranslate"><span class="pre">async:</span></code> 值太小,可能会导致 “稍后检查” 任务执行失败,因为 <code class="docutils literal notranslate"><span class="pre">async_status::</span></code> 的临时状态文件还未被写入信息,而”稍后检查”任务就试图读取此文件.</p>
+</aside>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="playbooks.html"><span class="doc">Playbooks</span></a></dt><dd><p>An introduction to playbooks</p>
+</dd>
+<dt><a class="reference external" href="http://groups.google.com/group/ansible-devel">User Mailing List</a></dt><dd><p>Have a question?  Stop by the google group!</p>
+</dd>
+<dt><a class="reference external" href="http://irc.freenode.net">irc.freenode.net</a></dt><dd><p>#ansible IRC chat channel</p>
+</dd>
+</dl>
+</aside>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="playbooks_acceleration.html" class="btn btn-neutral float-left" title="Accelerated Mode" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="playbooks_checkmode.html" class="btn btn-neutral float-right" title="Check Mode (“Dry Run”)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2015, http://www.magedu.com, 马哥Linux团队成员荣誉出品(薛定谔的章鱼 &amp; guli &amp; 以马内利 &amp; 黄博文 &amp; coocla &amp; 云中鹤 &amp; stanley) 官方QQ交流群:372011984.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
